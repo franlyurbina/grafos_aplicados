@@ -1,0 +1,958 @@
+\documentclass[12pt,a4paper]{article}
+
+% ----------------------------------------------------
+% PAQUETES BÁSICOS
+% ----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{threeparttable}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+
+\usepgfplotslibrary{statistics}
+\pgfplotsset{compat=1.18}
+
+% ----------------------------------------------------
+% FORMATO GENERAL
+% ----------------------------------------------------
+\geometry{margin=2.5cm}
+\setstretch{1.3}
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!50!black,
+    urlcolor=blue!50!black,
+    citecolor=blue!50!black
+}
+
+\renewcommand{\baselinestretch}{1.25}
+\renewcommand{\familydefault}{\rmdefault}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Máster en Tecnologías del Lenguaje — UNED}
+\fancyhead[R]{Técnicas Basadas en Grafos}
+\fancyfoot[C]{\thepage}
+
+% ----------------------------------------------------
+% FORMATO DE SECCIONES
+% ----------------------------------------------------
+\titleformat{\section}{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection.}{0.5em}{}
+
+% ----------------------------------------------------
+% PORTADA
+% ----------------------------------------------------
+\newcommand{\portada}{
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+{\Large \textbf{Universidad Nacional de Educación a Distancia (UNED)}}\\[0.5cm]
+{\large E.T.S. de Ingeniería Informática — Máster Universitario en Tecnologías del Lenguaje}\\[2cm]
+{\huge \textbf{Técnicas Basadas en Grafos\\[0.3cm]Aplicadas al Procesamiento del Lenguaje Natural}}\\[1.5cm]
+{\Large \textbf{Tarea 1: Análisis de grafos con Gephi}}\\[3cm]
+
+\vfill
+\begin{flushright}
+\textbf{Autor:} Franly Iris Urbina Franco\\
+\textbf{DNI:} 71.997.418-N\\
+\textbf{Correo:} furbina7@alumno.uned.es\\
+\textbf{Fecha:} \today
+\end{flushright}
+ 
+{\small Curso 2025 — Tema 2}
+\end{titlepage}
+}
+
+% ----------------------------------------------------
+% ÍNDICE
+% ----------------------------------------------------
+\begin{document}
+\portada
+
+\tableofcontents
+\newpage
+
+% ----------------------------------------------------
+% INTRODUCCIÓN
+% ----------------------------------------------------
+\section*{Introducción}
+
+El presente informe tiene como objetivo analizar distintas redes representadas mediante grafos con el propósito de identificar sus propiedades estructurales y determinar su posible clasificación dentro de los principales modelos de red: \textit{mundo pequeño (small-world)}, \textit{red aleatoria}, \textit{libre de escala (scale-free)} y su \textit{heterogeneidad}.  
+Para cada grafo se ha seguido una metodología sistemática que permite caracterizar su comportamiento y comprender la forma en que se organizan las conexiones entre sus nodos.
+
+En primer lugar, se realiza una descripción general del grafo y se analizan sus \textbf{datos generales} obtenidos a partir de la vista general y de la pestaña de estadísticas de \textit{Gephi}, donde se muestran métricas clave como el número de nodos y aristas, el tipo de grafo (dirigido o no dirigido), la ponderación de las aristas, el diámetro de la red, la longitud media de los caminos, el grado medio, el coeficiente medio de clustering y el número de componentes conexas.  
+
+En la \textbf{distribución del grado} $P(k)$ de cada red, analizamos la frecuencia con la que los nodos presentan los diferentes niveles de conectividad con una representación gráfica de la distribución de grados generada por Gephi. Estos se conseguirá exportando los datos de las aristas y generando una gráfica \textbf{logarítmica doble (log--log)} con el fin de comprobar si los datos se ajustan a una ley de potencias del tipo $P(k) \sim k^{-c}$ para evaluar la tendencia a una red libre de escala.
+
+
+\newpage
+
+% ----------------------------------------------------
+% DESCRIPCIÓN EuroSisGenerale
+% ----------------------------------------------------
+\section{EuroSisGenerale.gexf}
+\subsection{Descripción}
+El grafo \textbf{EuroSisGenerale} representa la red de relaciones entre asociaciones científicas europeas generada por el proyecto 
+\textit{European Science Information System (EuroSIS)}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{./EuroSiSGenerale/EuroSiSGeneralePortada.png}
+\caption{Visualización del grafo EuroSisGenerale en Gephi.}
+\end{figure}
+
+% ----------------------------------------------------
+% DATOS GENERALES
+% ----------------------------------------------------
+\subsection{Datos generales}
+Al realizar un primer acercamiento, podemos ver un grafo dirigido y ponderado que conecta diferentes instituciones universitarias como La Universidad de Bielskok, La Red Europea de Centros de Ciencia y Museos, el Instituto de Chemii Przemyslowej junto con otras instituciones científicas europeas. Las aristas reflejan posibles vínculos de colaboración o dependencia entre ellas.
+Una cualidad destacable de esta red es su estructura jerárquica, la presencia de unos pocos nodos con un número muy elevado de conexiones sugiere la existencia de instituciones que actúan como puntos intermedios de conexión. Esta configuración favorece una difusión eficiente de información en toda la red, aunque implica dependencia estructural hacia estos nodos principales.
+
+% ----------------------------------------------------
+% PRINCIPALES CARACTERÍSTICAS
+% ----------------------------------------------------
+\subsection{Principales características}
+Para obtener los datos del grafo que conforman sus principales características, accedemos a dos secciones distintas. La primera la encontraremos en la Vista General, en una pestaña lateral derecha llamada Estadísticas con la que conformaremos la tabla de datos del enunciado, donde podremos hacer click en los botones de ejecutar para generar el resultado.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./EuroSiSGenerale/EstadisticaEuroSiSGenerale.png}
+\caption{Imagen de datos estadísticos de EuroSisGenerale.gexf.}
+\end{figure}
+
+Para confirmar que se trata de un grafo ponderado, accedemos a la sección Laboratorio de datos y veremos una tabla exportable con los datos principales con los que queramos trabajar. Dentro de estos datos se encuentra la columna id que corresponde a la identificación de la conexión entre los nodos Origen y Destino, el tipo de conexión si es dirigida o no dirigida y la columna weight, que es el peso que posee las diferentes aristas. Se considera que es un grafo es ponderado si contiene valores distintos a 1. El peso predeterminado para las aristas en Gephi es 1, esto significa que si un grafo posee todas sus aristas con dicho valor, se considerará no ponderado y ponderado cuando al menos uno de sus valores posee un valor distinto de 1. Como podemos ver en la siguiente imagen, existen valores que nos permiten confirmar que efectaviamente, se trata de un grafo ponderado. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./EuroSiSGenerale/TablaDatosEuroSisGenerale.png}
+\caption{Tabla de datos de EuroSisGenerale.gexf.}
+\end{figure} 
+
+Tras el análisis de ambas secciones podemos concluir con la siguiente tabla las principales características del grafo EuroSiSGenerale.\\[0.5cm]
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Dato} & \textbf{Valor} \\
+\midrule
+Nodos & 1285 \\
+Aristas & 7524 \\
+Grafo dirigido & Sí \\
+Grafo con pesos & Sí \\
+Longitud media de los caminos & 4.94 \\
+Coeficiente de clustering medio & 0.213 \\
+Diámetro de la red & 14 \\
+Grado medio & 5.855 \\
+Grado medio (ponderado) & 5.904 \\
+Componentes conexas fuertes (SCC\textsuperscript{1}) & 511 \\
+Componentes conexas débiles (WCC\textsuperscript{2}) & 6 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4em}
+\begin{center}
+\footnotesize
+\textsuperscript{1}\textbf{SCC:} Strongly Connected Component.\\
+\textsuperscript{2}\textbf{WCC:} Weakly Connected Component.
+\end{center}
+
+\caption{Métricas de la red EuroSisGenerale.}
+\end{table}
+
+
+Una cualidad destacable de esta red es su estructura jerárquica, la presencia de unos pocos nodos con un número muy elevado de conexiones sugiere la existencia de instituciones que actúan como puntos intermedios de conexión. Esta configuración favorece una difusión eficiente de información en toda la red, aunque implica dependencia estructural de estos nodos principales.
+
+\newpage
+
+% ----------------------------------------------------
+% DISTRIBUCIÓN DEL GRADO
+% ----------------------------------------------------
+\subsection{Distribución del grado}
+La probabilidad de que un nodo tomado al azar tenga grado $k$ se define como:
+\[
+P(k) = \frac{N_k}{N}
+\]
+donde $N_k$ es el número de nodos con grado $k$.
+
+En EuroSiSGenerale, el grado medio es 5.855, lo que indica que la mayoría de los nodos están conectados con alrededor de seis enlaces. La red tiene un número total de 1285 nodos y 7524 aristas, lo que sugiere cierta heterogeneidad. 
+\subsubsection{Análisis de la heterogeneidad}
+
+La heterogeneidad de una red se refiere a la variación en el número de conexiones (\textit{grado}) que posee cada nodo. En una red homogénea o regular, todos los nodos presentan el mismo grado; mientras que en una red heterogénea, existen nodos con muchos enlaces y otros con muy pocos.
+
+Para cuantificar la heterogeneidad se pueden emplear diferentes métricas, entre las cuales destacan:
+
+\begin{itemize}
+    \item \textbf{Varianza o desviación estándar del grado.} \\
+    Permite estimar la dispersión de los grados respecto a la media:
+    \[
+    \sigma_k^2 = \langle k^2 \rangle - \langle k \rangle^2
+    \]
+    donde $\langle k \rangle$ es el grado medio y $\langle k^2 \rangle$ el promedio del cuadrado de los grados. 
+    Cuanto mayor sea el valor de $\sigma_k$, mayor será la heterogeneidad del grafo.
+
+    \item \textbf{Coeficiente de heterogeneidad de Newman (2003).} \\
+    Una medida alternativa basada en la relación entre el segundo y el primer momento del grado:
+    \[
+    H = \frac{\langle k^2 \rangle}{\langle k \rangle^2}
+    \]
+    Si $H = 1$, la red es completamente homogénea. 
+    Valores $H > 1$ indican la presencia de nodos con grados significativamente distintos, es decir, una red heterogénea.
+\end{itemize}
+
+En el caso de la red \textbf{EuroSiSGenerale}, el valor medio de grado de $5.855$ y la presencia de nodos con un número muy elevado de conexiones respecto a otros 
+sugieren una estructura heterogénea, coherente con las redes complejas observadas en entornos científicos y de colaboración.
+
+El coeficiente de clustering, la longitud media de camino y el diámetro indica que hay caminos cortos que acortan la red y los clustering locales muestran como grupos vecinos también se conectan entre sí. 
+El grafo posee una gran cantidad de relaciones fuertemente conexas entre entidades pequeñas y solo unas pocas sugieren tener relaciones fuertemente conexas con algunas grandes, lo que hace ver una asimetría entre instituciones centrales que reciben comunicación con entidades pequeñas, pero no siempre hay reciprocidad, tal como se puede esperar de entidades institucionales grandes.
+
+% ----------------------------------------------------
+% CLASIFICACIÓN DEL GRADO
+% ----------------------------------------------------
+
+\subsection{Clasificación del grafo}
+Las métricas calculadas indican que el grafo presenta un \textbf{coeficiente de clustering medio relativamente alto} y una \textbf{longitud media de los caminos corta}, lo que sugiere una estructura de tipo \textbf{small-world}.  
+Asimismo, la distribución del grado muestra un comportamiento similar a una ley de potencias con exponente entre 2 y 3, característico de una \textbf{red libre de escala (scale-free)}.
+
+\subsubsection*{\textit{Red Small-World}}
+La red \textbf{EuroSiSGenerale} puede considerarse de tipo \textit{mundo pequeño} porque combina un alto valor medio de \textit{clustering} local de 0.213 con caminos cortos entre nodos distantes de 4.93.  
+En este tipo de redes, aun cuando cada nodo se conecta con un número pequeño de vecinos, se puede alcanzar a otro nodo en pocos pasos a través de intermediarios.  
+
+La existencia de nodos altamente conectados, como grandes agencias científicas y universidades, permite que asociaciones o centros más pequeños queden indirectamente conectados.  
+
+Este patrón cumple la propiedad característica del \textit{pequeño mundo} descrita por \textbf{Easley y Kleinberg}:
+\[
+L \approx L_{rand} \quad \text{y} \quad C \gg C_{rand}
+\]
+
+EuroSiSGenerale es un ejemplo donde se produce el mismo efecto observado en la red de colaboraciones científicas que inspiró el concepto de los \textit{seis grados de separación}; ya que combina una longitud media de los caminos pequeña con un coeficiente de \textit{clustering} alto en comparación con una red aleatoria.
+
+\vspace{1cm}
+
+\subsubsection*{\textit{Red libre de escala (scale-free)}}
+Se define una \textbf{red libre de escala} como aquella donde la distribución del grado sigue una ley de potencias:
+\[
+P(k) = k^{-c}
+\]
+con $c$ entre aproximadamente 2 y 3.  
+
+Se puede observar que la red no muestra una distribución uniforme o aleatoria de conexiones, sino una disminución rápida y continua del número de nodos al aumentar el grado, con una cola larga hacia la derecha.  
+Este patrón es coherente con una distribución de tipo potencia, característica de las redes complejas de tipo \textit{scale-free}.
+
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{./EuroSiSGenerale/DegreeDistributionEuroSisGenerale.png}
+    \caption{Representación de la distribución de los grados de EuroSisGenerale obtenida por Gephi.}
+    \label{degree_distribution_eurosisgenerale}
+\end{figure}
+
+
+Para examinar la posible naturaleza libre de escala (\textit{scale-free}) de la red EuroSiSGenerale, se exportaron los datos del grafo desde \textit{Gephi} en formato \texttt{.csv}, obteniendo una tabla con las columnas \texttt{Source}, \texttt{Target} y \texttt{Weight}. A partir de dicha tabla, se procedió a combinar los nodos de origen y destino para obtener una lista única de nodos, sobre la cual se calculó el grado $k$ de cada nodo, es decir, el número de aristas incidentes en él.
+
+Posteriormente, se determinó la frecuencia $N(k)$ de cada valor de $k$, y la probabilidad asociada $P(k)$ mediante la expresión:
+\[
+P(k) = \frac{N(k)}{\sum_k N(k)}
+\]
+Con estos valores, se representó la distribución de grados en escala logarítmica doble (\textit{log--log}) mediante las transformaciones:
+\[
+x = \log_{10}(k) \quad \text{y} \quad y = \log_{10}(P(k))
+\]
+
+El análisis de la nube de puntos y la regresión lineal obtenida muestran una relación inversamente proporcional entre $k$ y $P(k)$, coherente con una ley de potencias del tipo:
+\[
+P(k) \sim k^{-c}
+\]
+
+
+\begin{figure}[H]
+
+\def\slope{-1.2598}
+\def\intercept{-0.0005}
+\def\rsquared{0.9549}
+
+\hspace*{1cm}
+\pgfplotstableread[col sep=semicolon]{./EuroSiSGenerale/EuroSiSGenerale_Distribution.csv}\degreeTable
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=8cm,
+    anchor=center,
+    xlabel={$\log(k)$},
+    ylabel={$\log(P(k))$},
+    title={Distribución de grado en escala log-log},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!30},
+    major grid style={line width=.2pt,draw=gray!50},
+    tick align=outside,
+    tick pos=left,
+    enlargelimits=0.05,
+    legend style={at={(0.97,0.97)},draw=none},
+]
+
+% Puntos de la distribución
+\addplot[
+    only marks,
+    mark=*,
+    mark size=1.8pt,
+    color=blue!70,
+    opacity=0.8
+]
+table[x=logk, y=logPk] {\degreeTable};
+\addlegendentry{Datos observados}
+
+% Línea de regresión con pendiente -1.2598 e intercepto -0.0005
+\addplot[
+    domain=0:2.2,
+    color=red,
+    thick,
+]
+{ \slope*x + \intercept };
+\addlegendentry{Ajuste lineal ($R^2=\rsquared$)}
+
+% Cuadro con la ecuación en la esquina inferior izquierda
+\node[anchor=south west, fill=white, draw=gray!60, rounded corners=2pt, font=\small]
+at (rel axis cs:0.03,0.05) {
+    \shortstack{$\displaystyle y = \slope x + \intercept$\\$\displaystyle R^{2} = \rsquared$}
+};
+
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Representación log--log de la distribución de grados del grafo EuroSisGenerale. 
+La pendiente obtenida ($\slope$) y el coeficiente de determinación ($R^2 = \rsquared$) 
+confirman la existencia de una ley de potencias en la conectividad de la red.}
+\label{fig:free_scale_eurosisgenerale}
+
+\end{figure}
+
+En la Figura~\ref{fig:free_scale_eurosisgenerale}, se observa una tendencia lineal descendente, con una pendiente de $-1.2598$ y un coeficiente de determinación $R^2 = 0.9549$, lo cual indica un ajuste muy sólido al modelo de ley de potencias. Este resultado confirma que la red presenta una distribución heterogénea de conexiones: la mayoría de los nodos poseen pocos enlaces, mientras que un número reducido de nodos actúa como centros altamente conectados o \textit{hubs}. 
+Por tanto, los resultados reflejan que el grafo EuroSiSGenerale sigue una estructura característica de las redes libres de escala, donde la conectividad no está uniformemente distribuida, sino concentrada en unos pocos nodos clave, lo que confiere a la red propiedades de robustez y vulnerabilidad propias de este tipo de topologías.
+
+\newpage
+
+% ----------------------------------------------------
+% DESCRIPCIÓN RetGraph
+% ----------------------------------------------------
+
+\section{RetGraph.gephi}
+
+\subsection{Descripción}
+El grafo \textbf{RetGraph} representa las co-ocurrencias entre palabras dentro de una misma frase, generadas a partir de un conjunto de documentos. 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{./RetGraph/RetGraphPortada.png}
+\caption{Visualización del grafo RetGraph en Gephi.}
+\end{figure}
+ 
+
+Cada nodo corresponde a una palabra y existe una arista dirigida entre dos nodos cuando ambas aparecen conjuntamente en una oración. 
+El peso de cada arista indica la frecuencia de co-ocurrencia, lo que permite identificar asociaciones léxicas, agrupaciones semánticas y la estructura contextual del corpus.
+
+% ----------------------------------------------------
+% DATOS GENERALES
+% ----------------------------------------------------
+\subsection{Datos generales}
+A partir de la ejecución de las estadísticas en Gephi, se han obtenido las siguientes métricas principales de la red:
+\begin{table}[H]
+\centering
+\begin{tabular}{l c}
+\hline
+\textbf{Dato} & \textbf{Valor} \\
+\hline
+Nodos & 1300 \\
+Aristas & 6708 \\
+Grafo dirigido & Sí \\
+Grafo con pesos & Sí \\
+Longitud media de los caminos & 3.337 \\
+Coeficiente de clustering medio & 0.009 \\
+Diámetro de la red & 5 \\
+Grado medio & 10.32 \\
+Grado medio (ponderado) & 0.52 \\
+Componentes conexas fuertes (SCC) & No aplicable \\
+Componentes conexas débiles (WCC) & 1 \\
+\hline
+\end{tabular}
+\caption{Métricas generales del grafo RetGraph.}
+\end{table}
+
+El grafo es ponderado pero no completamente dirigido, se cataloga como mixto al existir aristas que presentan relaciones simétricas, donde la conexion entre dos nodos es mutua.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./RetGraph/TablaDatosRetGraph.png}
+\caption{Tabla de datos de RetGraph.gexf.}
+\end{figure}
+\vspace{1cm}
+
+En el caso de RetGraph, esto significa que algunas co-ocurrencias entre palabras son bidireccionales (A–B = B–A), mientras que otras reflejan una dependencia de aparición (A$\rightarrow$B) más frecuente en un sentido que en el otro.
+La coexistencia de ambos tipos de enlaces implica que el grafo podría captar asociaciones léxicas (palabras que coocurren en igual proporción) como relaciones secuenciales o direccionales (palabras que suelen preceder o seguir a otras en el texto).
+
+El diámetro reducido (5) y la longitud media de camino corta (3.33) confirman que la red está globalmente conectada. 
+Sin embargo, el coeficiente de clustering muy bajo ($C=0.009$) indica que la cohesión local entre los vecinos de un nodo es escasa, lo que sugiere una conectividad más difusa que organizada en clusters.
+
+% ----------------------------------------------------
+% PRINCIPALES CARACTERÍSTICAS
+% ----------------------------------------------------
+\subsection{Principales características}
+Como ya hemos visto, las características principales las obtenemos de la vista Estadísticas donde podremos ejecutar las funciones que nos permitirán obtener las métricas de nuestros grafos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./RetGraph/EstadisticaRetGraph.png}
+\caption{Imagen de datos estadísticos de RetGraph.gexf.}
+\end{figure}
+
+
+\subsection{Distribución del grado}
+La distribución del grado $P(k)$ describe la probabilidad de que un nodo seleccionado al azar tenga un número $k$ de conexiones, y se define como:
+
+\[
+P(k) = \frac{N_k}{N}
+\]
+
+donde $N_k$ es el número de nodos con grado $k$.
+
+En el caso de un grafo mixto, el grado total de un nodo incluye tanto los enlaces entrantes y salientes (dirigidos) como los no dirigidos, de modo que:
+\[
+k_i = k_i^{in} + k_i^{out} + k_i^{undirected}
+\]
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{./RetGraph/DegreeDistributionRetGraph.png}
+\caption{Representación de la distribución de los grados de RetGraph obtenida por Gephi.}
+\label{degree_distribution_retgraph}
+\end{figure}
+
+El grado medio de 10.32 sugiere que cada palabra está conectada, en promedio, con unas diez más, aunque existen nodos con un grado muy superior correspondientes a términos de alta frecuencia en el corpus. 
+No obstante, el conjunto muestra una fuerte dispersión: algunos nodos (palabras frecuentes) presentan un grado muy superior al promedio, mientras que la mayoría tienen pocos enlaces, lo que evidencia heterogeneidad estructural.
+
+\subsubsection{Análisis de la heterogeneidad}
+La heterogeneidad se puede estimar mediante la varianza del grado:
+
+\[
+\sigma^2_k = \langle k^2 \rangle - \langle k \rangle^2
+\]
+
+y mediante el coeficiente de heterogeneidad de Newman:
+
+\[
+H = \frac{\langle k^2 \rangle}{\langle k \rangle^2}
+\]
+
+Valores de $H > 1$ indican que existen nodos con grados muy dispares. 
+Aunque no se ha calculado explícitamente, las medidas observadas en Gephi y la forma de distribución del grado mostrado anteriormente, nos enseña una dispersión moderada, con algunos nodos fuertemente conectados y la mayoría con pocos enlaces, consistente con una red heterogénea pero no jerárquica.
+
+ 
+
+\subsection{Clasificación del grafo}
+Para analizar la posible naturaleza libre de escala de la red, se representó la distribución del grado $P(k)$ en escala logarítmica doble (log–log). 
+
+\begin{figure}[H]
+\def\slope{6*10^7}       % 6 × 10^7
+\def\intercept{7*10^8}   % 7 × 10^8
+\def\rsquared{0.4935}
+
+\hspace*{1cm}
+\pgfplotstableread[col sep=semicolon]{./RetGraph/RetGraph_Distribution.csv}\degreeTable
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=8cm,
+    anchor=center,
+    xlabel={$\log(k)$},
+    ylabel={$\log(P(k))$},
+    title={Distribución de grado en escala log-log},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!30},
+    major grid style={line width=.2pt,draw=gray!50},
+    tick align=outside,
+    tick pos=left,
+    enlargelimits=0.05,
+    legend style={
+        at={(0.97,0.5)},   % 👈 Centrado verticalmente a la derecha
+        anchor=east,
+        draw=none,
+        fill=white,
+        font=\small
+    },
+    y tick label style={/pgf/number format/sci},
+    scaled ticks=true
+]
+
+% --- Puntos observados ---
+\addplot[
+    only marks,
+    mark=*,
+    mark size=1.8pt,
+    color=blue!70,
+    opacity=0.8
+]
+table[x=logk, y=logPk] {\degreeTable};
+\addlegendentry{Datos observados}
+
+% --- Línea de regresión ---
+\addplot[
+    domain=0:2.2,
+    color=red,
+    thick,
+]
+{ \slope*x + \intercept };
+\addlegendentry{Ajuste lineal ($R^2=\rsquared$)}
+
+% --- Cuadro con la ecuación ---
+\node[anchor=south west, fill=white, draw=gray!60, rounded corners=2pt, font=\small]
+at (rel axis cs:0.05,0.08) {
+    \shortstack{
+        $\displaystyle y = (\slope)x + (\intercept)$\\
+        $\displaystyle R^{2} = \rsquared$
+    }
+};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Representación log--log de la distribución de grados del grafo RetGraph. 
+La leyenda se sitúa a la derecha para una mejor visualización de la recta de ajuste.}
+\label{fig:free_scale_retgraph}
+
+\end{figure}
+
+
+
+
+El coeficiente de determinación $R^2 = 0.4935$ muestra una correlación moderada, por lo que los datos no se ajustan a una ley de potencias del tipo $P(k) \sim k^{-c}$. 
+Aunque existen nodos más conectados que otros, la relación no sigue un patrón sistemático, de modo que no puede confirmarse una estructura libre de escala (\textit{scale-free}) como la observada en el grafo EuroSiSGenerale.
+
+
+El grafo RetGraph tampoco cumple las propiedades de una red de mundo pequeño, ya que su coeficiente de clustering es muy bajo. 
+Tampoco presenta una ley de potencias clara, por lo que no puede clasificarse como red libre de escala.
+En el contexto lingüístico, esto refleja una red donde las palabras se coocurren de forma estadística más que semántica, sin formar comunidades léxicas densas ni jerarquías de conexión pronunciadas.
+
+
+En consecuencia, el grafo RetGraph se aproxima más a una \textbf{red aleatoria dirigida y ponderada}, caracterizada por:
+\begin{itemize}
+    \item Caminos cortos entre nodos (longitud media baja).
+    \item Clustering local muy reducido ($C \approx 0.009$).
+    \item Distribución del grado dispersa pero sin dependencia de potencia.
+\end{itemize}
+\newpage
+
+% ----------------------------------------------------
+% DESCRIPCIÓN LesMiserables
+% ----------------------------------------------------
+\section{LesMiserables.gexf}
+
+\subsection{Descripción}
+El grafo \textbf{LesMiserables} representa la red de coaparición entre los personajes de la novela \textit{Los Miserables} de Victor Hugo. 
+Cada nodo corresponde a un personaje y las aristas indican posiblemente la relación entre ellos. 
+El peso de las aristas puede representar la frecuencia con la que dos personajes coexisten en el texto, por lo que las conexiones más fuertes corresponden a vínculos narrativos más estrechos.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{./LesMiserables/LesMiserablesPortada.png}
+\caption{Visualización del grafo LesMiserables en Gephi.}
+\end{figure}
+
+% ----------------------------------------------------
+% DATOS GENERALES
+% ----------------------------------------------------
+\subsection{Datos generales}
+A partir de la ejecución de las estadísticas en Gephi, se han obtenido las siguientes métricas principales de la red:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l c}
+\hline
+\textbf{Dato} & \textbf{Valor} \\
+\hline
+Nodos & 77 \\
+Aristas & 254 \\
+Grafo dirigido & No \\
+Grafo con pesos & Sí \\
+Longitud media de los caminos & 2.641 \\
+Coeficiente medio de clustering & 0.736 \\
+Diámetro de la red & 5 \\
+Grado medio & 6.597 \\
+Grado medio (ponderado) & 21.299 \\
+Componentes conexas fuertes (SCC) & No aplicable \\
+Componentes conexas débiles (WCC) & 1 \\
+\hline
+\end{tabular}
+
+
+\caption{Métricas generales del grafo LesMiserables.}
+\end{table}
+
+El grafo es \textbf{no dirigido y ponderado}, lo que implica que las conexiones entre personajes son recíprocas y poseen un peso asociado a la frecuencia de interacción. 
+La red presenta una única componente conexa, por lo que todos los personajes están relacionados directa o indirectamente dentro de la misma estructura narrativa. 
+El diámetro bajo (5) y la longitud media de camino (2.641) indican que cualquier personaje puede conectarse con otro mediante pocos intermediarios, lo que refleja una red social compacta. 
+El coeficiente de clustering muy alto ($C = 0.736$) señala una fuerte tendencia de los personajes a formar grupos cerrados o comunidades locales dentro de la trama.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./LesMiserables/EstadisticaLesMiserables.png}
+\caption{Imagen de datos estadísticos de LesMiserables.gexf.}
+\end{figure}
+\vspace{1cm}
+
+% ----------------------------------------------------
+% PRINCIPALES CARACTERÍSTICAS
+% ----------------------------------------------------
+\subsection{Principales características}
+En la vista de estadísticas de Gephi se han ejecutado las métricas que conforman las características principales del grafo. 
+Dado que las aristas poseen diferentes pesos, se confirma que el grafo es ponderado. 
+Cada valor de peso refleja la frecuencia de interacción entre los personajes, por lo que una mayor ponderación indica una relación más estrecha o recurrente.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./LesMiserables/TablaDatosLesMiserables.png}
+\caption{Tabla de datos de LesMiserables.gexf.}
+\end{figure}
+
+% ----------------------------------------------------
+% DISTRIBUCIÓN DEL GRADO
+% ----------------------------------------------------
+\subsection{Distribución del grado}
+La probabilidad de que un nodo tomado al azar tenga grado $k$ se define como:
+\[
+P(k) = \frac{N_k}{N}
+\]
+donde $N_k$ es el número de nodos con grado $k$.
+
+El grado medio del grafo es $6.597$, lo que indica que cada personaje se relaciona en promedio con unos seis o siete más. 
+Sin embargo, el grado ponderado medio ($21.299$) muestra que la intensidad de las conexiones varía considerablemente, ya que algunos personajes parecen relacionarse con mayor frecuencia. 
+En la siguiente figura se observa que la mayoría de los nodos tienen bajo grado y sólo unos pocos presentan un número elevado de conexiones, lo que refleja una red social con clara desigualdad en las relaciones.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{./LesMiserables/DegreeDistributionLesMiserables.png}
+\caption{Distribución de grados del grafo LesMiserables obtenida por Gephi.}
+\label{degree_distribution_lesmiserables}
+\end{figure}
+
+\subsubsection{Análisis de la heterogeneidad}
+La heterogeneidad de la red puede expresarse mediante la varianza del grado:
+\[
+\sigma_k^2 = \langle k^2 \rangle - \langle k \rangle^2
+\]
+y mediante el coeficiente de heterogeneidad de Newman:
+\[
+H = \frac{\langle k^2 \rangle}{\langle k \rangle^2}
+\]
+En redes sociales, valores elevados de $H$ implican la existencia de personajes con muchos más enlaces que la media, es decir, de individuos centrales o protagonistas.  
+La forma de la distribución observada confirma una dispersión importante de los grados, coherente con una red heterogénea donde algunos personajes desempeñan un papel estructural clave.
+
+% ----------------------------------------------------
+% CLASIFICACIÓN DEL GRAFO
+% ----------------------------------------------------
+\subsection{Clasificación del grafo}
+El grafo \textbf{LesMiserables} muestra una estructura social coherente con los patrones descritos por el modelo de \textit{mundo pequeño}. 
+La elevada cohesión local ($C = 0.736$) combinada con caminos globales cortos ($L = 2.641$) evidencia la existencia de comunidades densas representadas por los grupos de personajes más cercanos entre sí, unidas por nodos clave de alta conectividad. 
+Esta topología refleja fielmente la estructura narrativa de la novela, donde unos pocos personajes principales actúan como nexo entre tramas secundarias, asegurando la cohesión global de la red de relaciones y el sentido de una trama continua.
+
+\subsubsection*{\textit{Red Small-World}}
+El grafo cumple las condiciones de una red de \textit{mundo pequeño}, ya que combina un coeficiente de clustering alto ($C=0.736$) con una longitud media de los caminos corta ($L=2.64$). 
+Esto implica que los personajes forman comunidades densas localmente conectadas, mientras que algunos personajes principales actúan como intermediarios entre otros.
+La estructura refleja la organización típica de las redes sociales reales, donde los subgrupos están unidos por conexiones interpersonales fuertes y por intermediarios que enlazan distintas comunidades.
+
+\vspace{1cm}
+
+\subsubsection*{\textit{Red libre de escala (scale-free)}}
+Para examinar si la red sigue una ley de potencias, se representó la distribución del grado $P(k)$ en escala logarítmica doble (log--log). 
+\begin{figure}[H]
+
+
+\def\slope{-1.2951}
+\def\intercept{-0.001}
+\def\rsquared{0.8622}
+
+\hspace*{1cm}
+\pgfplotstableread[col sep=semicolon]{./LesMiserables/LesMiserables_Distribution.csv}\degreeTable
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=8cm,
+    anchor=center,
+    xlabel={$\log(k)$},
+    ylabel={$\log(P(k))$},
+    title={Distribución de grado en escala log-log},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!30},
+    major grid style={line width=.2pt,draw=gray!50},
+    tick align=outside,
+    tick pos=left,
+    enlargelimits=0.05,
+    legend style={at={(0.97,0.97)},draw=none},
+]
+
+% Puntos de la distribución
+\addplot[
+    only marks,
+    mark=*,
+    mark size=1.8pt,
+    color=blue!70,
+    opacity=0.8
+]
+table[x=logk, y=logPk] {\degreeTable};
+\addlegendentry{Datos observados}
+
+% Línea de regresión con pendiente -1.2598 e intercepto -0.0005
+\addplot[
+    domain=0:2.2,
+    color=red,
+    thick,
+]
+{ \slope*x + \intercept };
+\addlegendentry{Ajuste lineal ($R^2=\rsquared$)}
+
+% Cuadro con la ecuación en la esquina inferior izquierda
+\node[anchor=south west, fill=white, draw=gray!60, rounded corners=2pt, font=\small]
+at (rel axis cs:0.03,0.05) {
+    \shortstack{$\displaystyle y = \slope x + \intercept$\\$\displaystyle R^{2} = \rsquared$}
+};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Representación log--log de la distribución de grados del grafo LesMiserables. 
+La pendiente obtenida ($\slope$) no parece confirmar una ley de potencias.}
+\label{fig:free_scale_lesmiserables}
+
+\end{figure}
+
+El coeficiente de determinación $R^2 = 0.8622$ muestra un ajuste considerable al modelo de potencia, lo que indica que la mayoría de los personajes tienen pocas conexiones, mientras que unos pocos concentran un gran número de relaciones.  
+Aunque el exponente no alcanza valores típicos de redes masivas, la tendencia es casi un comportamiento \textit{scale-free}, donde existen nodos centrales que sostienen la conectividad global.  
+Por tanto, el grafo puede considerarse una \textbf{red de mundo pequeño} pero \textbf{parcialmente libre de escala}, lo que refleja la estructura social narrativa del texto y un ejemplo de red social.
+\newpage
+
+% ----------------------------------------------------
+% DESCRIPCIÓN BoundaryCountries
+% ----------------------------------------------------
+\section{BoundaryCountries.gephi}
+\subsection{Descripción}
+El grafo \textbf{BoundaryCountries} fue generado en el marco de un proyecto europeo cuyo objetivo era asignar países a distintos distritos administrativos o de gestión fronteriza.  
+Cada nodo representa un país o distrito, mientras que las aristas indican una relación de asignación o pertenencia entre ellos.  
+Todas las aristas poseen el mismo peso, por lo que se trata de un grafo no ponderado.  
+Su estructura refleja relaciones jerárquicas o de dependencia entre entidades, evidenciando un flujo direccional claro entre niveles administrativos.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{./BoundaryCountries/BoundaryCountriesPortada.png}
+\caption{Visualización del grafo BoundaryCountries en Gephi.}
+\end{figure}
+
+% ----------------------------------------------------
+% DATOS GENERALES
+% ----------------------------------------------------
+\subsection{Datos generales}
+A partir de la ejecución de las estadísticas en Gephi, se han obtenido las siguientes métricas principales de la red:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l c}
+\hline
+\textbf{Dato} & \textbf{Valor} \\
+\hline
+Nodos & 146 \\
+Aristas & 1290 \\
+Grafo dirigido & Sí \\
+Grafo con pesos & No \\
+Grado medio & 8.836 \\
+Grado medio (ponderado) & 8.836 \\
+Diámetro de la red & 1 \\
+Longitud media de los caminos & 1 \\
+Coeficiente medio de clustering & 0 \\
+Componentes conexas fuertes (SCC) & 146 \\
+Componentes conexas débiles (WCC) & 1 \\
+\hline
+\end{tabular}
+
+
+\caption{Métricas generales del grafo BoundaryCountries.}
+\end{table}
+
+El grafo es completamente \textbf{dirigido y no ponderado}, lo que indica que las conexiones poseen sentido de dirección (origen–destino) pero no varían en intensidad.  
+La existencia de una única componente conexa, indica que todos los nodos están vinculados de algún modo, pero al existir 146 componentes fuertemente conexas, las conexiones no son recíprocas, cada enlace es unidireccional.
+El diámetro y la longitud media de los caminos iguales a uno reflejan que la red es extremadamente densa, donde prácticamente todos los nodos están interconectados sin intermediarios.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./BoundaryCountries/TablaDatosBoundaryCountries.png}
+\caption{Tabla de datos de BoundaryCountries.gexf.}
+\end{figure}
+
+% ----------------------------------------------------
+% PRINCIPALES CARACTERÍSTICAS
+% ----------------------------------------------------
+\subsection{Principales características}
+Como puede observarse en la vista de estadísticas de Gephi, los valores de grado medio y grado medio ponderado coinciden, confirmando que el grafo no es ponderado.  
+El coeficiente medio de clustering es nulo, lo que significa que no existen triángulos formados entre los nodos; es decir, si un país A está conectado con B y B con C, no necesariamente existe una conexión directa entre A y C.  
+Esto indica ausencia de comunidades locales o agrupaciones cerradas dentro de la red.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{./BoundaryCountries/EstadisticaBoundaryCountries.png}
+\caption{Imagen de datos estadísticos de BoundaryCountries.gexf.}
+\end{figure}
+
+
+% ----------------------------------------------------
+% DISTRIBUCIÓN DEL GRADO
+% ----------------------------------------------------
+\subsection{Distribución del grado}
+La distribución del grado $P(k)$ describe la probabilidad de que un nodo seleccionado al azar tenga un número $k$ de conexiones, definida por:
+\[
+P(k) = \frac{N_k}{N}
+\]
+donde $N_k$ es el número de nodos con grado $k$.  
+
+En este grafo, el grado medio es $8.836$, y la distribución del grado muestra que la mayoría de los nodos tienen un número similar de conexiones, con pocos nodos que alcanzan valores más elevados.  
+Este comportamiento refleja una red bastante homogénea, donde la conectividad está distribuida de forma uniforme entre los países o distritos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{./BoundaryCountries/DegreeDistributionBoundaryCountries.png}
+\caption{Distribución de grados del grafo BoundaryCountries obtenida por Gephi.}
+\label{degree_distribution_boundarycountries}
+\end{figure}
+
+\subsubsection{Análisis de la heterogeneidad}
+La heterogeneidad se puede estimar mediante la varianza del grado:
+\[
+\sigma_k^2 = \langle k^2 \rangle - \langle k \rangle^2
+\]
+y mediante el coeficiente de heterogeneidad de Newman:
+\[
+H = \frac{\langle k^2 \rangle}{\langle k \rangle^2}
+\]
+En este caso, el grafo presenta valores de grado muy próximos entre sí, por lo que la varianza es baja y $H$ se aproximaría a 1, lo cual corresponde a una red homogénea y estructuralmente regular.
+
+% ----------------------------------------------------
+% CLASIFICACIÓN DEL GRAFO
+% ----------------------------------------------------
+\subsection{Clasificación del grafo}
+El grafo \textbf{BoundaryCountries} presenta una estructura fuertemente conectada, caracterizada por caminos mínimos y ausencia total de agrupaciones locales.  
+Para que una red sea de tipo \textit{mundo pequeño}, debe combinar caminos cortos con un alto coeficiente de \textit{clustering}; sin embargo, en este caso, aunque la longitud media de los caminos es mínima ($L = 1$), el coeficiente de \textit{clustering} nulo ($C = 0$) impide clasificarla como tal.  
+La red responde más bien a una estructura \textbf{dirigida} y \textbf{bipartita}, donde las conexiones son puramente unidireccionales y se establecen únicamente entre dos tipos de nodos distintos, lo que explica la imposibilidad de formar triángulos y la homogeneidad en su conectividad.
+
+
+\subsubsection*{\textit{Red libre de escala (scale-free)}}
+Para analizar su posible naturaleza libre de escala, se representó la distribución de grados en escala logarítmica doble (log--log).  
+
+Aunque el ajuste lineal presenta un coeficiente de determinación alto ($R^2 = 0.9892$) y una pendiente cercana a $-1$, esta relación se debe al reducido número de valores distintos de grado presentes en el grafo, más que a una verdadera distribución tipo potencia.  
+
+\begin{figure}[H]
+
+\def\slope{-0.9911}
+\def\intercept{0.00003}
+\def\rsquared{0.9892}
+
+\hspace*{1cm}
+\pgfplotstableread[col sep=semicolon]{./BoundaryCountries/BoundaryCountries_Distribution.csv}\degreeTable
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=8cm,
+    anchor=center,
+    xlabel={$\log(k)$},
+    ylabel={$\log(P(k))$},
+    title={Distribución de grado en escala log-log},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!30},
+    major grid style={line width=.2pt,draw=gray!50},
+    tick align=outside,
+    tick pos=left,
+    enlargelimits=0.05,
+    legend style={
+        at={(0.97,0.80)},
+        anchor=east,
+        draw=none,
+        fill=white,
+        font=\small
+    }
+]
+
+% --- Puntos observados ---
+\addplot[
+    only marks,
+    mark=*,
+    mark size=1.8pt,
+    color=blue!70,
+    opacity=0.8
+]
+table[x=logk, y=logPk] {\degreeTable};
+\addlegendentry{Datos observados}
+
+% --- Línea de regresión ---
+\addplot[
+    domain=0:3,
+    color=red,
+    thick,
+]
+{ \slope*x + \intercept };
+\addlegendentry{Ajuste lineal ($R^2=\rsquared$)}
+
+% --- Cuadro con la ecuación ---
+\node[anchor=south west, fill=white, draw=gray!60, rounded corners=2pt, font=\small]
+at (rel axis cs:0.05,0.08) {
+    \shortstack{
+        $\displaystyle y = (\slope)x + (\intercept)$\\
+        $\displaystyle R^{2} = \rsquared$
+    }
+};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Representación log--log de la distribución de grados del grafo BoundaryCountries.}
+\label{fig:free_scale_boundarycountries}
+\end{figure}
+ 
+Una red libre de escala debe cumplir dos condiciones esenciales:  
+(1) que su distribución de grados siga una ley de potencias del tipo $P(k) \sim k^{-c}$ con $2 < c < 3$, y  
+(2) que exista una “cola larga” en la distribución de grados donde unos pocos nodos concentren la mayoría de las conexiones.  
+Estas propiedades no se observan en el grafo \textbf{BoundaryCountries}, donde la mayoría de nodos poseen grados similares entre 8 y 10, y sólo unos pocos alcanzan valores extremos sin continuidad intermedia.  
+
+Su estructura es más coherente con una \textbf{red aleatoria densamente conectada}, caracterizada por:
+\begin{itemize}
+    \item Un grado medio elevado y homogéneo ($\langle k \rangle = 8.836$).  
+    \item Un diámetro mínimo ($D = 1$) y longitud media de camino igualmente mínima ($L = 1$).  
+    \item Ausencia de clustering local ($C = 0$).  
+\end{itemize}
+
+Estas propiedades describen un grafo fuertemente conectado, regular y no jerárquico, donde todos los nodos mantienen relaciones casi uniformes, descartando la red de tipo \textit{scale-free}.
+
+\newpage
+\section*{Conclusión}
+
+El análisis realizado ha permitido comprender mejor la estructura y comportamiento de diferentes tipos de redes a través del uso de \textit{Gephi}.  
+La herramienta ha resultado muy intuitiva y visual, facilitando la exploración de grafos complejos y la interpretación de sus propiedades mediante métricas y gráficas automáticas.  
+
+Entre las principales dificultades se encontró la correcta comprensión teórica de los conceptos estudiados, especialmente los relacionados con los temas 2, 13 y 20, que fue necesario complementar con lecturas adicionales para entender con precisión qué caracteriza a una red libre de escala y cómo representar su distribución en escala log--log.  
+
+Lo más gratificante del proceso ha sido comprobar cómo grafos de gran tamaño, que en un principio resultaban complejos, se pueden descomponer y analizar con claridad, permitiendo descubrir patrones, relaciones y estructuras que no son evidentes a simple vista.
+
+
+\end{document}
+

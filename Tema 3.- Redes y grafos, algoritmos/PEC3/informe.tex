@@ -1,0 +1,1352 @@
+
+\documentclass{article}
+\documentclass[12pt,a4paper]{article}
+
+% ----------------------------------------------------
+% PAQUETES BÁSICOS
+% ----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{threeparttable}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage[bottom]{footmisc}
+\usepackage{makecell}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{xcolor,colortbl}
+\usepackage{array}
+\usepackage{tikz}  
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{float}
+\usepackage[spanish]{babel}
+\usepackage{alltt} 
+\usepackage[dvipsnames]{xcolor}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usetikzlibrary{babel}
+
+
+
+\usepackage[hyperfootnotes=true]{hyperref}
+
+\usepackage[table]{xcolor}
+\usepackage[margin=2cm]{geometry}
+\begin{document}
+\section*{Comunidad 0}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+267 & \textcolor{ForestGreen}{vote} & 51 & 74.1021 \\
+4 & \textcolor{ForestGreen}{election} & 41 & 61.9433 \\
+135 & taxpayer & 38 & 30.4639 \\
+100 & \textcolor{ForestGreen}{federal} & 35 & 31.6903 \\
+64 & \textcolor{ForestGreen}{government} & 33 & 39.0482 \\
+692 & method & 32 & 18.0729 \\
+352 & \textcolor{ForestGreen}{tax} & 30 & 34.9038 \\
+33 & \textcolor{ForestGreen}{voter} & 29 & 39.3848 \\
+266 & \textcolor{ForestGreen}{force} & 28 & 33.8163 \\
+22 & report & 26 & 30.0436 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+267 & \textcolor{ForestGreen}{vote} & 51 & 74.1021 \\
+4 & \textcolor{ForestGreen}{election} & 41 & 61.9433 \\
+33 & \textcolor{ForestGreen}{voter} & 29 & 39.3848 \\
+64 & \textcolor{ForestGreen}{government} & 33 & 39.0482 \\
+352 & \textcolor{ForestGreen}{tax} & 30 & 34.9038 \\
+242 & candidate & 18 & 34.3173 \\
+266 & \textcolor{ForestGreen}{force} & 28 & 33.8163 \\
+66 & propose & 26 & 32.3521 \\
+100 & \textcolor{ForestGreen}{federal} & 35 & 31.6903 \\
+116 & state & 22 & 31.1115 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 1}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+20 & \textcolor{ForestGreen}{term} & 21 & 15.9108 \\
+206 & \textcolor{ForestGreen}{prison} & 17 & 21.1576 \\
+198 & \textcolor{ForestGreen}{permit} & 14 & 13.3879 \\
+67 & \textcolor{ForestGreen}{believe} & 12 & 11.9297 \\
+316 & \textcolor{ForestGreen}{approve} & 12 & 16.0187 \\
+517 & \textcolor{ForestGreen}{violate} & 12 & 10.0479 \\
+808 & crisis & 12 & 4.8851 \\
+705 & remainder & 11 & 7.1639 \\
+265 & warn & 10 & 4.7316 \\
+1933 & split & 10 & 6.8805 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+206 & \textcolor{ForestGreen}{prison} & 17 & 21.1576 \\
+316 & \textcolor{ForestGreen}{approve} & 12 & 16.0187 \\
+20 & \textcolor{ForestGreen}{term} & 21 & 15.9108 \\
+315 & bond & 8 & 14.1677 \\
+198 & \textcolor{ForestGreen}{permit} & 14 & 13.3879 \\
+67 & \textcolor{ForestGreen}{believe} & 12 & 11.9297 \\
+517 & \textcolor{ForestGreen}{violate} & 12 & 10.0479 \\
+789 & courtroom & 6 & 8.8003 \\
+865 & vindication & 6 & 8.8003 \\
+920 & stagger & 6 & 8.8003 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 2}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1498 & \textcolor{ForestGreen}{sewer} & 19 & 14.7579 \\
+208 & file & 17 & 9.0250 \\
+454 & gun & 17 & 4.5346 \\
+458 & sheriff & 17 & 8.1063 \\
+233 & \textcolor{ForestGreen}{brief} & 16 & 12.0738 \\
+324 & \textcolor{ForestGreen}{adjustment} & 16 & 12.0738 \\
+3661 & corporate & 16 & 10.2493 \\
+21 & \textcolor{ForestGreen}{investigate} & 15 & 13.3669 \\
+202 & pension & 15 & 10.0948 \\
+1731 & object & 15 & 7.5810 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1345 & hire & 11 & 16.3325 \\
+1470 & assure & 10 & 15.0955 \\
+1498 & \textcolor{ForestGreen}{sewer} & 19 & 14.7579 \\
+383 & reject & 13 & 13.4912 \\
+378 & privilege & 11 & 13.3967 \\
+21 & \textcolor{ForestGreen}{investigate} & 15 & 13.3669 \\
+204 & employe & 12 & 12.8397 \\
+233 & \textcolor{ForestGreen}{brief} & 16 & 12.0738 \\
+324 & \textcolor{ForestGreen}{adjustment} & 16 & 12.0738 \\
+1497 & provision & 12 & 11.3156 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 3}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+772 & \textcolor{ForestGreen}{police} & 47 & 59.9574 \\
+331 & \textcolor{ForestGreen}{construction} & 34 & 36.8864 \\
+470 & \textcolor{ForestGreen}{hearing} & 33 & 30.2936 \\
+219 & \textcolor{ForestGreen}{attorney} & 26 & 31.0277 \\
+798 & \textcolor{ForestGreen}{admit} & 25 & 29.5414 \\
+222 & \textcolor{ForestGreen}{property} & 24 & 25.6138 \\
+777 & arrest & 24 & 22.1554 \\
+1000 & \textcolor{ForestGreen}{cabinet} & 24 & 26.2667 \\
+1 & investigation & 23 & 16.9025 \\
+137 & court & 23 & 14.4315 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+772 & \textcolor{ForestGreen}{police} & 47 & 59.9574 \\
+331 & \textcolor{ForestGreen}{construction} & 34 & 36.8864 \\
+10 & jury & 19 & 31.4183 \\
+219 & \textcolor{ForestGreen}{attorney} & 26 & 31.0277 \\
+470 & \textcolor{ForestGreen}{hearing} & 33 & 30.2936 \\
+798 & \textcolor{ForestGreen}{admit} & 25 & 29.5414 \\
+138 & fire & 17 & 29.2208 \\
+28 & receive & 21 & 28.1654 \\
+1000 & \textcolor{ForestGreen}{cabinet} & 24 & 26.2667 \\
+222 & \textcolor{ForestGreen}{property} & 24 & 25.6138 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 4}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1149 & \textcolor{ForestGreen}{consultation} & 49 & 41.8272 \\
+1037 & \textcolor{ForestGreen}{ally} & 41 & 34.0270 \\
+1229 & \textcolor{ForestGreen}{diplomatic} & 41 & 34.0270 \\
+1238 & intervention & 38 & 28.3684 \\
+1228 & bloc & 35 & 27.7394 \\
+1297 & neutralist & 35 & 27.7394 \\
+1057 & bitter & 32 & 22.5169 \\
+1051 & tension & 31 & 19.7045 \\
+1175 & \textcolor{ForestGreen}{prevent} & 30 & 35.9384 \\
+1061 & allied & 29 & 23.5419 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1149 & \textcolor{ForestGreen}{consultation} & 49 & 41.8272 \\
+1175 & \textcolor{ForestGreen}{prevent} & 30 & 35.9384 \\
+972 & reaction & 26 & 34.2553 \\
+1037 & \textcolor{ForestGreen}{ally} & 41 & 34.0270 \\
+1229 & \textcolor{ForestGreen}{diplomatic} & 41 & 34.0270 \\
+169 & political & 27 & 33.9719 \\
+1022 & climate & 24 & 33.1499 \\
+1088 & global & 24 & 32.5985 \\
+1148 & timely & 24 & 32.5985 \\
+1184 & inclination & 24 & 32.5985 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 5}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+482 & \textcolor{ForestGreen}{estimate} & 29 & 24.4942 \\
+559 & \textcolor{ForestGreen}{outlay} & 21 & 18.3271 \\
+554 & \textcolor{ForestGreen}{residential} & 20 & 19.7080 \\
+2062 & flat & 20 & 13.9847 \\
+1192 & chain & 19 & 13.6469 \\
+2090 & builder & 19 & 7.0864 \\
+1067 & atomic & 18 & 13.7516 \\
+1426 & shopping & 17 & 8.8281 \\
+2076 & \textcolor{ForestGreen}{victim} & 17 & 17.3913 \\
+459 & \textcolor{ForestGreen}{approval} & 16 & 17.4590 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+482 & \textcolor{ForestGreen}{estimate} & 29 & 24.4942 \\
+581 & proposal & 14 & 24.3684 \\
+554 & \textcolor{ForestGreen}{residential} & 20 & 19.7080 \\
+559 & \textcolor{ForestGreen}{outlay} & 21 & 18.3271 \\
+459 & \textcolor{ForestGreen}{approval} & 16 & 17.4590 \\
+2076 & \textcolor{ForestGreen}{victim} & 17 & 17.3913 \\
+364 & increase & 14 & 17.2862 \\
+498 & personal & 10 & 14.3840 \\
+904 & payment & 13 & 14.1531 \\
+610 & requirement & 12 & 14.0937 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 6}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1332 & \textcolor{ForestGreen}{stem} & 23 & 14.7057 \\
+1016 & \textcolor{ForestGreen}{very} & 22 & 20.5590 \\
+3389 & \textcolor{ForestGreen}{vary} & 20 & 16.1942 \\
+3947 & \textcolor{ForestGreen}{mechanism} & 20 & 13.7127 \\
+1431 & enterprise & 18 & 10.6537 \\
+3768 & profession & 18 & 10.5577 \\
+1126 & european & 17 & 9.0358 \\
+1039 & circumstance & 15 & 7.6644 \\
+1111 & application & 15 & 10.1116 \\
+168 & eliminate & 14 & 6.1563 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1016 & \textcolor{ForestGreen}{very} & 22 & 20.5590 \\
+4968 & scheme & 11 & 16.7398 \\
+4987 & protective & 11 & 16.7398 \\
+5014 & brand & 11 & 16.7398 \\
+5029 & paradox & 11 & 16.7398 \\
+5045 & substitute & 11 & 16.7398 \\
+5059 & artificial & 11 & 16.7398 \\
+3389 & \textcolor{ForestGreen}{vary} & 20 & 16.1942 \\
+1332 & \textcolor{ForestGreen}{stem} & 23 & 14.7057 \\
+3947 & \textcolor{ForestGreen}{mechanism} & 20 & 13.7127 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 7}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3321 & \textcolor{ForestGreen}{automatic} & 24 & 19.0645 \\
+3881 & farmer & 22 & 14.5975 \\
+1721 & \textcolor{ForestGreen}{taxi} & 21 & 22.6571 \\
+3567 & fuel & 21 & 16.9585 \\
+1253 & disclose & 19 & 12.8941 \\
+1326 & crime & 17 & 14.2169 \\
+1762 & mortgage & 15 & 11.7213 \\
+817 & write & 13 & 6.1059 \\
+1449 & wage & 13 & 12.6424 \\
+3921 & \textcolor{ForestGreen}{halt} & 12 & 19.3924 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1721 & \textcolor{ForestGreen}{taxi} & 21 & 22.6571 \\
+3921 & \textcolor{ForestGreen}{halt} & 12 & 19.3924 \\
+3928 & cockpit & 12 & 19.3924 \\
+3932 & bomber & 12 & 19.3924 \\
+3933 & runway & 12 & 19.3924 \\
+3936 & jet & 12 & 19.3924 \\
+3939 & pilot & 12 & 19.3924 \\
+3950 & engine & 12 & 19.3924 \\
+3966 & landing & 12 & 19.3924 \\
+3321 & \textcolor{ForestGreen}{automatic} & 24 & 19.0645 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 8}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1014 & \textcolor{ForestGreen}{understanding} & 24 & 15.5003 \\
+1060 & \textcolor{ForestGreen}{advance} & 21 & 32.8997 \\
+1026 & \textcolor{ForestGreen}{understand} & 20 & 28.7065 \\
+4537 & adequate & 19 & 10.4317 \\
+670 & \textcolor{ForestGreen}{development} & 17 & 25.1008 \\
+462 & certain & 15 & 9.1241 \\
+1567 & \textcolor{ForestGreen}{reference} & 14 & 12.7389 \\
+862 & \textcolor{ForestGreen}{process} & 13 & 14.4028 \\
+1697 & \textcolor{ForestGreen}{weakness} & 13 & 16.2344 \\
+555 & \textcolor{ForestGreen}{budget} & 12 & 14.9643 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1060 & \textcolor{ForestGreen}{advance} & 21 & 32.8997 \\
+1026 & \textcolor{ForestGreen}{understand} & 20 & 28.7065 \\
+670 & \textcolor{ForestGreen}{development} & 17 & 25.1008 \\
+1697 & \textcolor{ForestGreen}{weakness} & 13 & 16.2344 \\
+1014 & \textcolor{ForestGreen}{understanding} & 24 & 15.5003 \\
+555 & \textcolor{ForestGreen}{budget} & 12 & 14.9643 \\
+862 & \textcolor{ForestGreen}{process} & 13 & 14.4028 \\
+1567 & \textcolor{ForestGreen}{reference} & 14 & 12.7389 \\
+1142 & apparent & 10 & 11.4902 \\
+1035 & difficulty & 10 & 11.3314 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 9}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1636 & \textcolor{ForestGreen}{pledge} & 15 & 11.8739 \\
+1661 & \textcolor{ForestGreen}{tract} & 10 & 11.7035 \\
+2128 & explosive & 10 & 3.9676 \\
+425 & calm & 9 & 4.9719 \\
+1490 & meaning & 9 & 4.3317 \\
+2064 & \textcolor{ForestGreen}{animal} & 9 & 7.2759 \\
+2108 & \textcolor{ForestGreen}{teamster} & 9 & 7.2759 \\
+441 & violence & 8 & 3.1471 \\
+2038 & intervene & 8 & 4.8900 \\
+4624 & wash & 8 & 5.2467 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1636 & \textcolor{ForestGreen}{pledge} & 15 & 11.8739 \\
+1661 & \textcolor{ForestGreen}{tract} & 10 & 11.7035 \\
+1568 & discredited & 6 & 10.5921 \\
+1591 & desperate & 6 & 10.5921 \\
+1607 & repay & 6 & 10.5921 \\
+1657 & hoodlum & 6 & 10.5921 \\
+1665 & conservation & 6 & 10.5921 \\
+2064 & \textcolor{ForestGreen}{animal} & 9 & 7.2759 \\
+2108 & \textcolor{ForestGreen}{teamster} & 9 & 7.2759 \\
+17 & manner & 3 & 5.3877 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 10}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3384 & \textcolor{ForestGreen}{market} & 35 & 37.6279 \\
+4046 & \textcolor{ForestGreen}{earning} & 33 & 20.4574 \\
+4032 & \textcolor{ForestGreen}{investor} & 32 & 19.7702 \\
+4097 & marketing & 30 & 16.7314 \\
+2173 & compare & 28 & 18.6556 \\
+4054 & corn & 27 & 13.6037 \\
+4094 & \textcolor{ForestGreen}{production} & 27 & 25.6798 \\
+1357 & \textcolor{ForestGreen}{equipment} & 25 & 22.4271 \\
+4052 & competitive & 24 & 16.0284 \\
+179 & \textcolor{ForestGreen}{price} & 23 & 20.4423 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3384 & \textcolor{ForestGreen}{market} & 35 & 37.6279 \\
+1448 & product & 17 & 29.9264 \\
+4094 & \textcolor{ForestGreen}{production} & 27 & 25.6798 \\
+1357 & \textcolor{ForestGreen}{equipment} & 25 & 22.4271 \\
+4046 & \textcolor{ForestGreen}{earning} & 33 & 20.4574 \\
+179 & \textcolor{ForestGreen}{price} & 23 & 20.4423 \\
+1551 & industry & 22 & 20.2054 \\
+4032 & \textcolor{ForestGreen}{investor} & 32 & 19.7702 \\
+2289 & yield & 12 & 19.2198 \\
+3345 & improvement & 23 & 19.0698 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 11}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2292 & \textcolor{ForestGreen}{deadlock} & 17 & 9.1953 \\
+2125 & \textcolor{ForestGreen}{front} & 15 & 9.3025 \\
+2170 & \textcolor{ForestGreen}{rebel} & 13 & 8.5288 \\
+1451 & catch & 12 & 5.1904 \\
+2354 & slug & 12 & 7.8427 \\
+2442 & physician & 12 & 5.6775 \\
+1824 & tactic & 10 & 4.9889 \\
+3169 & \textcolor{ForestGreen}{heat} & 10 & 8.6750 \\
+1306 & \textcolor{ForestGreen}{err} & 9 & 8.4916 \\
+2510 & \textcolor{ForestGreen}{treatment} & 9 & 8.2077 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2125 & \textcolor{ForestGreen}{front} & 15 & 9.3025 \\
+5182 & chinese & 7 & 9.2556 \\
+5188 & transport & 7 & 9.2556 \\
+5256 & ante & 7 & 9.2556 \\
+5266 & presidency & 7 & 9.2556 \\
+2292 & \textcolor{ForestGreen}{deadlock} & 17 & 9.1953 \\
+3169 & \textcolor{ForestGreen}{heat} & 10 & 8.6750 \\
+2170 & \textcolor{ForestGreen}{rebel} & 13 & 8.5288 \\
+1306 & \textcolor{ForestGreen}{err} & 9 & 8.4916 \\
+2510 & \textcolor{ForestGreen}{treatment} & 9 & 8.2077 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 12}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2851 & drag & 18 & 9.2876 \\
+2891 & \textcolor{ForestGreen}{blond} & 17 & 15.4827 \\
+2894 & \textcolor{ForestGreen}{ultimate} & 17 & 12.2663 \\
+2901 & \textcolor{ForestGreen}{possess} & 17 & 15.4827 \\
+2917 & \textcolor{ForestGreen}{mantle} & 17 & 15.4827 \\
+2360 & pound & 16 & 9.7960 \\
+2897 & peak & 16 & 9.8173 \\
+2066 & \textcolor{ForestGreen}{catcher} & 15 & 11.3041 \\
+2872 & \textcolor{ForestGreen}{recall} & 15 & 9.9340 \\
+2324 & \textcolor{ForestGreen}{bunt} & 14 & 12.7305 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2891 & \textcolor{ForestGreen}{blond} & 17 & 15.4827 \\
+2901 & \textcolor{ForestGreen}{possess} & 17 & 15.4827 \\
+2917 & \textcolor{ForestGreen}{mantle} & 17 & 15.4827 \\
+2324 & \textcolor{ForestGreen}{bunt} & 14 & 12.7305 \\
+2358 & shortstop & 14 & 12.7305 \\
+2390 & teammate & 14 & 12.7305 \\
+2894 & \textcolor{ForestGreen}{ultimate} & 17 & 12.2663 \\
+2066 & \textcolor{ForestGreen}{catcher} & 15 & 11.3041 \\
+2919 & thin & 13 & 10.9846 \\
+2872 & \textcolor{ForestGreen}{recall} & 15 & 9.9340 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 13}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2357 & \textcolor{ForestGreen}{player} & 63 & 141.2842 \\
+2286 & \textcolor{ForestGreen}{pennant} & 54 & 91.2147 \\
+2303 & \textcolor{ForestGreen}{rookie} & 54 & 91.2147 \\
+2315 & \textcolor{ForestGreen}{pitcher} & 54 & 91.2147 \\
+2387 & \textcolor{ForestGreen}{bat} & 54 & 91.2147 \\
+2323 & \textcolor{ForestGreen}{ball} & 52 & 118.8597 \\
+721 & \textcolor{ForestGreen}{team} & 49 & 80.0137 \\
+1488 & \textcolor{ForestGreen}{league} & 49 & 96.7207 \\
+2199 & \textcolor{ForestGreen}{game} & 49 & 90.5975 \\
+2295 & ninth & 49 & 66.9841 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2357 & \textcolor{ForestGreen}{player} & 63 & 141.2842 \\
+2323 & \textcolor{ForestGreen}{ball} & 52 & 118.8597 \\
+2307 & pitch & 47 & 112.1459 \\
+1488 & \textcolor{ForestGreen}{league} & 49 & 96.7207 \\
+2286 & \textcolor{ForestGreen}{pennant} & 54 & 91.2147 \\
+2303 & \textcolor{ForestGreen}{rookie} & 54 & 91.2147 \\
+2315 & \textcolor{ForestGreen}{pitcher} & 54 & 91.2147 \\
+2387 & \textcolor{ForestGreen}{bat} & 54 & 91.2147 \\
+2199 & \textcolor{ForestGreen}{game} & 49 & 90.5975 \\
+721 & \textcolor{ForestGreen}{team} & 49 & 80.0137 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 14}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+5030 & \textcolor{ForestGreen}{recruit} & 17 & 13.0521 \\
+2591 & \textcolor{ForestGreen}{newsman} & 16 & 11.2682 \\
+2598 & \textcolor{ForestGreen}{speculate} & 14 & 15.1572 \\
+2611 & \textcolor{ForestGreen}{grip} & 14 & 15.1572 \\
+5228 & leak & 14 & 8.8128 \\
+2318 & chore & 13 & 8.0454 \\
+3327 & discrepancy & 13 & 3.4763 \\
+943 & qualified & 12 & 5.3733 \\
+3182 & marvel & 12 & 8.7209 \\
+2603 & \textcolor{ForestGreen}{mad} & 11 & 11.0337 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2598 & \textcolor{ForestGreen}{speculate} & 14 & 15.1572 \\
+2611 & \textcolor{ForestGreen}{grip} & 14 & 15.1572 \\
+5030 & \textcolor{ForestGreen}{recruit} & 17 & 13.0521 \\
+4969 & biology & 9 & 12.2457 \\
+5006 & enrollment & 9 & 12.2457 \\
+5019 & academic & 9 & 12.2457 \\
+5020 & scholar & 9 & 12.2457 \\
+2591 & \textcolor{ForestGreen}{newsman} & 16 & 11.2682 \\
+2603 & \textcolor{ForestGreen}{mad} & 11 & 11.0337 \\
+923 & stay & 7 & 10.6072 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 15}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2126 & \textcolor{ForestGreen}{wheel} & 14 & 10.2449 \\
+2602 & \textcolor{ForestGreen}{conductor} & 14 & 12.8794 \\
+2669 & red & 12 & 6.3482 \\
+2060 & male & 10 & 5.9002 \\
+2665 & powerful & 10 & 3.2460 \\
+4733 & ancient & 10 & 6.8665 \\
+2646 & lifetime & 9 & 4.2030 \\
+4152 & \textcolor{ForestGreen}{dull} & 8 & 7.4662 \\
+4715 & \textcolor{ForestGreen}{style} & 8 & 10.5212 \\
+2586 & tag & 7 & 7.4639 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2602 & \textcolor{ForestGreen}{conductor} & 14 & 12.8794 \\
+4715 & \textcolor{ForestGreen}{style} & 8 & 10.5212 \\
+2126 & \textcolor{ForestGreen}{wheel} & 14 & 10.2449 \\
+4734 & roman & 7 & 8.8502 \\
+4765 & poet & 7 & 8.8502 \\
+4772 & austere & 7 & 8.8502 \\
+2553 & viewer & 6 & 7.7017 \\
+2628 & sigh & 6 & 7.7017 \\
+2635 & meaningless & 6 & 7.7017 \\
+4152 & \textcolor{ForestGreen}{dull} & 8 & 7.4662 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 16}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3082 & swim & 26 & 13.1190 \\
+2811 & nerve & 25 & 16.0043 \\
+2976 & \textcolor{ForestGreen}{setting} & 23 & 16.5333 \\
+2977 & \textcolor{ForestGreen}{italian} & 23 & 16.5333 \\
+2775 & \textcolor{ForestGreen}{slice} & 21 & 19.6605 \\
+2822 & \textcolor{ForestGreen}{soft} & 21 & 19.6605 \\
+1867 & \textcolor{ForestGreen}{chapter} & 20 & 16.3190 \\
+2731 & amateur & 20 & 11.1253 \\
+3044 & candy & 20 & 8.6244 \\
+1563 & motor & 19 & 15.1308 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2762 & golfer & 16 & 20.6904 \\
+2763 & par & 16 & 20.6904 \\
+2772 & fairway & 16 & 20.6904 \\
+2818 & tee & 16 & 20.6904 \\
+2820 & bunker & 16 & 20.6904 \\
+2775 & \textcolor{ForestGreen}{slice} & 21 & 19.6605 \\
+2822 & \textcolor{ForestGreen}{soft} & 21 & 19.6605 \\
+2976 & \textcolor{ForestGreen}{setting} & 23 & 16.5333 \\
+2977 & \textcolor{ForestGreen}{italian} & 23 & 16.5333 \\
+1867 & \textcolor{ForestGreen}{chapter} & 20 & 16.3190 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 17}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3189 & \textcolor{ForestGreen}{pink} & 40 & 36.1221 \\
+2967 & gown & 34 & 30.8768 \\
+3023 & entertain & 34 & 30.8768 \\
+3054 & \textcolor{ForestGreen}{wear} & 33 & 45.5821 \\
+3283 & \textcolor{ForestGreen}{chic} & 31 & 34.8132 \\
+2978 & engagement & 30 & 21.7875 \\
+4293 & wardrobe & 30 & 24.4597 \\
+2947 & buffet & 29 & 19.6070 \\
+2939 & publicity & 28 & 29.7137 \\
+3097 & \textcolor{ForestGreen}{guest} & 28 & 36.5391 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1516 & cocktail & 26 & 47.4608 \\
+3054 & \textcolor{ForestGreen}{wear} & 33 & 45.5821 \\
+3280 & lady & 27 & 40.4794 \\
+2928 & marriage & 24 & 38.2980 \\
+3097 & \textcolor{ForestGreen}{guest} & 28 & 36.5391 \\
+3096 & orchestra & 19 & 36.4394 \\
+3189 & \textcolor{ForestGreen}{pink} & 40 & 36.1221 \\
+2969 & invitation & 19 & 35.9160 \\
+3283 & \textcolor{ForestGreen}{chic} & 31 & 34.8132 \\
+761 & color & 22 & 34.4726 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 18}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3223 & \textcolor{ForestGreen}{fun} & 32 & 31.4950 \\
+3016 & \textcolor{ForestGreen}{handsome} & 31 & 26.6047 \\
+4279 & \textcolor{ForestGreen}{designer} & 30 & 30.5695 \\
+4461 & \textcolor{ForestGreen}{yellow} & 30 & 30.5695 \\
+3273 & \textcolor{ForestGreen}{ballroom} & 27 & 26.7968 \\
+4301 & \textcolor{ForestGreen}{charm} & 26 & 23.2020 \\
+4308 & lively & 25 & 20.3991 \\
+4340 & athlete & 25 & 20.3991 \\
+3037 & typical & 23 & 12.9775 \\
+1531 & love & 22 & 18.8029 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3223 & \textcolor{ForestGreen}{fun} & 32 & 31.4950 \\
+4279 & \textcolor{ForestGreen}{designer} & 30 & 30.5695 \\
+4461 & \textcolor{ForestGreen}{yellow} & 30 & 30.5695 \\
+3273 & \textcolor{ForestGreen}{ballroom} & 27 & 26.7968 \\
+3016 & \textcolor{ForestGreen}{handsome} & 31 & 26.6047 \\
+4301 & \textcolor{ForestGreen}{charm} & 26 & 23.2020 \\
+4287 & showing & 16 & 21.5013 \\
+4342 & charming & 16 & 21.5013 \\
+4371 & bake & 16 & 21.5013 \\
+4408 & decorate & 16 & 21.5013 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 19}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+659 & \textcolor{ForestGreen}{majority} & 18 & 12.5393 \\
+1917 & enjoy & 14 & 2.3023 \\
+762 & \textcolor{ForestGreen}{underlie} & 13 & 10.2589 \\
+764 & \textcolor{ForestGreen}{extension} & 13 & 9.2418 \\
+3383 & consist & 12 & 5.2182 \\
+658 & \textcolor{ForestGreen}{legislative} & 11 & 10.1177 \\
+521 & \textcolor{ForestGreen}{undermine} & 10 & 10.2161 \\
+587 & \textcolor{ForestGreen}{senate} & 10 & 10.2161 \\
+644 & \textcolor{ForestGreen}{lieutenant} & 10 & 11.7355 \\
+701 & \textcolor{ForestGreen}{normal} & 10 & 10.2161 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+659 & \textcolor{ForestGreen}{majority} & 18 & 12.5393 \\
+726 & associate & 7 & 11.8017 \\
+644 & \textcolor{ForestGreen}{lieutenant} & 10 & 11.7355 \\
+762 & \textcolor{ForestGreen}{underlie} & 13 & 10.2589 \\
+521 & \textcolor{ForestGreen}{undermine} & 10 & 10.2161 \\
+587 & \textcolor{ForestGreen}{senate} & 10 & 10.2161 \\
+701 & \textcolor{ForestGreen}{normal} & 10 & 10.2161 \\
+658 & \textcolor{ForestGreen}{legislative} & 11 & 10.1177 \\
+764 & \textcolor{ForestGreen}{extension} & 13 & 9.2418 \\
+489 & fiscal & 9 & 9.0952 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 20}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1466 & govern & 20 & 9.9990 \\
+19 & conduct & 19 & 9.0764 \\
+3476 & \textcolor{ForestGreen}{advanced} & 19 & 11.8341 \\
+3512 & \textcolor{ForestGreen}{bag} & 19 & 11.8341 \\
+493 & \textcolor{ForestGreen}{book} & 16 & 13.5660 \\
+1477 & \textcolor{ForestGreen}{movement} & 16 & 14.5587 \\
+2206 & organized & 16 & 6.6668 \\
+4657 & fundamental & 16 & 8.0733 \\
+1405 & type & 15 & 9.6044 \\
+1622 & division & 15 & 9.5814 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2205 & dinner & 14 & 22.3284 \\
+799 & honor & 9 & 20.4638 \\
+2161 & father & 13 & 14.6317 \\
+1477 & \textcolor{ForestGreen}{movement} & 16 & 14.5587 \\
+1350 & headquarters & 12 & 14.2470 \\
+493 & \textcolor{ForestGreen}{book} & 16 & 13.5660 \\
+3783 & guidance & 13 & 13.5374 \\
+4637 & library & 14 & 13.0460 \\
+3476 & \textcolor{ForestGreen}{advanced} & 19 & 11.8341 \\
+3512 & \textcolor{ForestGreen}{bag} & 19 & 11.8341 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 21}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+4579 & \textcolor{ForestGreen}{stick} & 24 & 15.5197 \\
+2711 & personality & 21 & 14.1118 \\
+1091 & fix & 16 & 6.9702 \\
+4655 & \textcolor{ForestGreen}{vow} & 16 & 14.3896 \\
+1879 & hero & 15 & 10.1835 \\
+1642 & trip & 13 & 9.8713 \\
+2900 & rare & 11 & 12.6343 \\
+816 & summer & 10 & 8.6867 \\
+1280 & huge & 10 & 4.5679 \\
+2888 & \textcolor{ForestGreen}{talent} & 10 & 14.6705 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+4579 & \textcolor{ForestGreen}{stick} & 24 & 15.5197 \\
+4568 & instrument & 10 & 15.3037 \\
+4599 & skip & 10 & 15.3037 \\
+4616 & pianist & 10 & 15.3037 \\
+4631 & ballet & 10 & 15.3037 \\
+4632 & performer & 10 & 15.3037 \\
+4633 & symphony & 10 & 15.3037 \\
+4651 & enthrall & 10 & 15.3037 \\
+2888 & \textcolor{ForestGreen}{talent} & 10 & 14.6705 \\
+4655 & \textcolor{ForestGreen}{vow} & 16 & 14.3896 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 22}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3309 & \textcolor{ForestGreen}{drastic} & 14 & 8.7519 \\
+3337 & \textcolor{ForestGreen}{summon} & 14 & 8.7519 \\
+3594 & \textcolor{ForestGreen}{pursue} & 13 & 7.0110 \\
+4112 & \textcolor{ForestGreen}{communism} & 12 & 10.9307 \\
+4146 & \textcolor{ForestGreen}{routine} & 12 & 5.8626 \\
+355 & \textcolor{ForestGreen}{battle} & 11 & 11.8936 \\
+2865 & \textcolor{ForestGreen}{trio} & 10 & 9.3312 \\
+2909 & \textcolor{ForestGreen}{preach} & 10 & 9.3312 \\
+2449 & hip & 9 & 2.9730 \\
+3386 & encouraging & 9 & 5.3125 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+355 & \textcolor{ForestGreen}{battle} & 11 & 11.8936 \\
+4112 & \textcolor{ForestGreen}{communism} & 12 & 10.9307 \\
+2865 & \textcolor{ForestGreen}{trio} & 10 & 9.3312 \\
+2909 & \textcolor{ForestGreen}{preach} & 10 & 9.3312 \\
+3309 & \textcolor{ForestGreen}{drastic} & 14 & 8.7519 \\
+3337 & \textcolor{ForestGreen}{summon} & 14 & 8.7519 \\
+440 & threat & 3 & 8.6965 \\
+4148 & accompany & 5 & 7.1139 \\
+3594 & \textcolor{ForestGreen}{pursue} & 13 & 7.0110 \\
+4146 & \textcolor{ForestGreen}{routine} & 12 & 5.8626 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 23}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+840 & \textcolor{ForestGreen}{significance} & 19 & 15.9856 \\
+3903 & \textcolor{ForestGreen}{scientific} & 16 & 13.2788 \\
+4206 & \textcolor{ForestGreen}{implement} & 16 & 16.1372 \\
+2234 & nominate & 15 & 7.6020 \\
+2578 & \textcolor{ForestGreen}{organ} & 15 & 13.1642 \\
+3428 & suburban & 15 & 11.4732 \\
+1367 & enemy & 14 & 7.2114 \\
+2954 & success & 13 & 9.2594 \\
+787 & client & 12 & 4.8045 \\
+1411 & grocery & 12 & 7.1645 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+4206 & \textcolor{ForestGreen}{implement} & 16 & 16.1372 \\
+840 & \textcolor{ForestGreen}{significance} & 19 & 15.9856 \\
+3903 & \textcolor{ForestGreen}{scientific} & 16 & 13.2788 \\
+2578 & \textcolor{ForestGreen}{organ} & 15 & 13.1642 \\
+2653 & arrangement & 9 & 12.8308 \\
+4904 & informal & 9 & 12.6511 \\
+4916 & illusion & 9 & 12.6511 \\
+4923 & broad & 9 & 12.6511 \\
+4932 & fatal & 9 & 12.6511 \\
+4955 & initiative & 9 & 12.6511 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 24}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3361 & \textcolor{ForestGreen}{murder} & 18 & 13.8694 \\
+2247 & mature & 17 & 10.6203 \\
+171 & elaborate & 16 & 11.1266 \\
+444 & \textcolor{ForestGreen}{death} & 16 & 13.1834 \\
+2210 & \textcolor{ForestGreen}{delegate} & 16 & 11.4510 \\
+2994 & hint & 16 & 6.3101 \\
+3640 & \textcolor{ForestGreen}{grade} & 16 & 11.2311 \\
+2942 & \textcolor{ForestGreen}{uncle} & 15 & 11.1851 \\
+2943 & aunt & 15 & 11.1851 \\
+3116 & civilian & 15 & 6.1706 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3361 & \textcolor{ForestGreen}{murder} & 18 & 13.8694 \\
+444 & \textcolor{ForestGreen}{death} & 16 & 13.1834 \\
+3582 & collection & 12 & 12.2605 \\
+3520 & appeal & 10 & 11.8602 \\
+3636 & institution & 13 & 11.5116 \\
+3662 & existence & 13 & 11.5116 \\
+2210 & \textcolor{ForestGreen}{delegate} & 16 & 11.4510 \\
+3583 & faculty & 12 & 11.2654 \\
+3640 & \textcolor{ForestGreen}{grade} & 16 & 11.2311 \\
+2942 & \textcolor{ForestGreen}{uncle} & 15 & 11.1851 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+\section*{Comunidad 25}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+529 & \textcolor{ForestGreen}{enact} & 26 & 20.7854 \\
+894 & employer & 26 & 14.4611 \\
+778 & criminal & 25 & 8.9822 \\
+3467 & missile & 24 & 10.8210 \\
+704 & credit & 22 & 13.0036 \\
+779 & disclosure & 21 & 11.5444 \\
+914 & excess & 21 & 12.1162 \\
+936 & freedom & 21 & 14.4427 \\
+3491 & indictment & 20 & 14.2949 \\
+3506 & convict & 20 & 14.2949 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2074 & sentence & 14 & 22.9521 \\
+529 & \textcolor{ForestGreen}{enact} & 26 & 20.7854 \\
+1362 & vehicle & 18 & 17.9736 \\
+153 & citizen & 14 & 17.9622 \\
+2934 & sister & 15 & 16.2134 \\
+3882 & interfere & 18 & 16.0827 \\
+3091 & die & 13 & 15.7493 \\
+837 & prosecution & 12 & 15.6911 \\
+838 & unfair & 12 & 15.6911 \\
+855 & constitute & 12 & 15.6911 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+
+
+
+\end{document}

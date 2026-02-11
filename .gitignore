@@ -1,0 +1,61 @@
+# ================================
+# PYTHON
+# ================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.venv/
+venv/
+env/
+lib/
+.ipynb_checkpoints/
+.mypy_cache/
+.pytest_cache/
+*.env
+.env.*
+
+
+# ================================
+# LATEX
+# ================================
+
+*.aux
+*.out
+*.toc
+*.lof
+*.lot
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+
+# ================================
+# SISTEMA / EDITORES
+# ================================
+
+.DS_Store
+Thumbs.db
+*.swo
+*.bak
+*.tmp
+*.sav   
+
+# ================================
+# MASTER
+# ================================
+**/output/
+**/html_output/
+**/corpus/
+**/html_corpus/
+**/pkl/
+**/models/
+*.pkl
+**/*.mp4
