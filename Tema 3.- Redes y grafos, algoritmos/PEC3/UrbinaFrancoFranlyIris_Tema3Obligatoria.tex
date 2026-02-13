@@ -256,10 +256,12 @@ el significado común de los nodos centrales.
 
 \section*{Comunidad 1 - Prision}
 En la Comunidad 1 se observa una estructura relativamente compacta donde los términos 
-\textit{term}, \textit{prison} y \textit{permit} ocupan posiciones destacadas en ambas 
+\textit{term}, \textit{prison}, \textit{permit} y \textit{approve} ocupan posiciones destacadas en ambas 
 métricas, lo que indica que actúan como núcleos estructurales y semánticos dentro de la red. 
 Estos nodos presentan simultáneamente una diversidad notable de conexiones y una intensidad 
-alta de coaparición, lo que sugiere que forman parte del vocabulario central de esta comunidad.
+que, en términos de valores, presenta una diferencia numérica mayor. Esto sugiere que todos 
+forman parte del vocabulario central de esta comunidad, otorgándole a \textit{prison}
+la mayor carga descriptiva.
 
 \vspace{0.5cm}
 \noindent
@@ -310,39 +312,37 @@ Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
 \end{minipage}
 \vspace{0.5cm}
 
-El núcleo principal es estable, ya que seis de los diez términos coinciden en ambas tablas, 
-lo que refleja coherencia temática entre los nodos más conectados y los más intensamente 
-relacionados. Esta coincidencia indica que los conceptos dominantes mantienen su relevancia 
-independientemente de si se mide la amplitud estructural o la fuerza acumulada de sus vínculos.
-
-Destaca \textit{bond}, que no aparece entre los nodos con 
+Seis de los diez términos coinciden en ambas tablas, 
+lo que refleja coherencia temática entre los nodos más conectados y relacionados. 
+Esta coincidencia indica que los conceptos dominantes mantienen su relevancia 
+independientemente de la existencia de otros términos, existiendo una amplitud estructural 
+con un fuerte vínculo semántico.
+Destaca \textit{bond} (fianza), que no aparece entre los nodos con 
 mayor grado pero sí alcanza una posición alta en el ranking ponderado, lo que indica que, aunque 
 se relaciona con menos términos distintos, sus conexiones son especialmente intensas dentro del 
-contexto de la comunidad. De forma similar, \textit{courtroom} y \textit{vindication} aparecen 
-solo en el listado ponderado, lo que sugiere que representan conceptos específicos con relaciones 
-fuertes pero concentradas.
+contexto de la comunidad. De forma similar, \textit{courtroom}, \textit{vindication} y \textit{stagger}\footnote{
+que podría venir de \textit{staggering sentence} (sentencia desproporcionada) o \textit{stagger payments} (pagos prorrateados).}
+aparecen solo en el listado ponderado como términos formales, lo que sugiere que refuerza un entorno jurídico
+y de ámbito penal.
 
 Por el contrario, términos como \textit{crisis}, \textit{remainder}, \textit{warn} o 
 \textit{split} aparecen únicamente en el top por grado, lo que indica que poseen una mayor 
 diversidad de conexiones pero con menor intensidad total, actuando como nodos de enlace o 
-términos más generales. La distribución de los nodos sugiere que esta comunidad se organiza en torno a un 
-campo semántico relacionado con el ámbito legal o judicial, donde conceptos como 
-\textit{prison}, \textit{permit}, \textit{violate}, \textit{approve} o \textit{courtroom} 
-apuntan a procesos normativos, decisiones formales y situaciones de carácter jurídico. Por este 
+términos más generales que apuntan a procesos normativos, decisiones formales y situaciones 
+de carácter jurídico. Por este 
 motivo, el término más representativo para esta comunidad es \textit{prison}, ya que 
-el ascenso de la palabra \textit{bond} (fianza), refuerza la interpretación 
-legal y punitiva que se le puede atribuir a la temática donimante.
+el ascenso de la palabra \textit{bond} (fianza) refuerza la interpretación 
+legal y punitiva que se le puede atribuir a la temática dominante.
 
 
 
 \section*{Comunidad 2 - Investigate}
 
-En la Comunidad 2 se observa una estructura distribuida donde los términos 
-\textit{sewer}, \textit{brief}, \textit{adjustment} e \textit{investigate} destacan en ambas 
-métricas, lo que indica que constituyen el núcleo estructural y semántico del subgrafo. 
-Estos nodos combinan un número elevado de conexiones distintas con una intensidad alta de 
-coaparición, lo que los sitúa como puntos centrales dentro de la red.
-
+En la Comunidad 2 la estructura no presenta un núcleo tan marcado como en otras comunidades. 
+Aunque \textit{sewer}, \textit{brief}, \textit{adjustment} e \textit{investigate} 
+aparecen en ambas métricas, el grado con pesos muestra una distribución más homogénea 
+entre varios términos, sin un liderazgo tan acusado, donde en el ranking ponderado 
+se introducen términos distintos con mayor intensidad.
 \vspace{0.5cm}
 \noindent
 \begin{minipage}[t]{0.48\textwidth}
@@ -391,28 +391,31 @@ Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
 \textbf{Top 10 por Grado con pesos}
 \end{minipage}
 \vspace{0.5cm}
+El término \textit{sewer} posee el mayor grado y es el tercer término con mayor grado 
+con pesos. Esto lo convierte en un nodo estructural fuerte que, si aparece junto a 
+palabras como \textit{adjustment}, \textit{corporate}, \textit{pension}, 
+\textit{provision} o \textit{investigate}, podría estar vinculado a gestión pública, 
+contratos municipales o revisiones administrativas relacionadas con servicios urbanos.
+Ees un sustantivo concreto que puede ser candidato a 
+término representativo, pero deja sin representar a varios elementos de la comunidad. 
 
-La coincidencia es parcial entre ambas tablas, ya que cuatro de los 
-diez términos aparecen en los dos rankings, lo que sugiere que la comunidad posee un centro 
-conceptual estable, pero también una generalización con algunos nodos cambian de relevancia 
-según se mida la diversidad de conexiones o la intensidad de las relaciones.
+Uno de los términos que más destaca es \textit{gun}, que aparece en grado simple 
+pero no en el ranking ponderado, lo que hace probable que se conecte con muchos términos 
+distintos pero no forme parte del núcleo temático más cohesionado, situándolo como 
+término contextual, no central. Podría estar relacionado con regulación o licencias, 
+si en el corpus existen textos administrativos sobre armas.
+La comunidad en general combina nodos con alta diversidad de conexiones 
+(\textit{file}, \textit{gun}, \textit{sheriff}, \textit{pension}). 
+Si analizamos la proximidad numérica en el grado con pesos, se sugiere un entorno 
+temático compartido que aborda diferentes partes de un mismo tema. El conjunto apunta a procesos 
+administrativos y procedimentales, donde investigación, contratación, revisión y 
+decisiones formales forman parte del mismo núcleo.
 
-Términos como \textit{file}, \textit{gun}, 
-\textit{sheriff}, \textit{pension} u \textit{object} aparecen únicamente en el listado por grado, 
-lo que indica que se relacionan con muchos términos distintos pero con menor frecuencia total, 
-actuando como nodos de enlace o elementos contextuales amplios dentro de la comunidad.
-
-Por el contrario, palabras como \textit{hire}, \textit{assure}, \textit{reject}, 
-\textit{privilege}, \textit{employe} o \textit{provision} solo aparecen en el ranking ponderado, 
-lo que sugiere que mantienen relaciones más intensas aunque con menos conexiones distintas, 
-característica propia de términos especializados o dependientes de contextos más concretos.
-El campo semántico parece estar vinculado a procesos 
-administrativos, legales y organizativos, donde conceptos relacionados con investigación, 
-documentación y procedimientos formales aparecen como elementos dominantes. Por este motivo, el 
-término más representativo para esta comunidad es \textit{investigate}, ya que aparece entre los 
-nodos con mayor grado y peso y sintetiza el eje temático que articula el resto de relaciones.
-
-
+Por otro lado, \textit{hire} y \textit{assure} son menos estructurales aunque lideren 
+el peso ponderado. Por ello, el término más representativo para esta comunidad es 
+\textit{investigate}, ya que aparece entre los nodos con mayor grado y peso y podría 
+englobar el resto de relaciones ya que si el campo semántico dominante es 
+procedimental o administrativo, funciona como verbo articulador.
 
 \newpage
 
