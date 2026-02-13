@@ -110,7 +110,79 @@
 
 
 
-\section*{Comunidad 0}
+
+
+
+% ----------------------------------------------------
+% ÍNDICE
+% ----------------------------------------------------
+\tableofcontents
+\newpage
+
+% ----------------------------------------------------
+% INTRODUCCIÓN
+% ----------------------------------------------------
+\section*{Introducción}
+A continuación, se presenta un análisis basado en \texttt{Brown\_10-2.graphML}, un fichero que 
+contiene una red léxica de coaparición construida a partir de un corpus textual.
+
+La estructura interna de esta red se organiza en comunidades detectadas 
+mediante modularidad, donde cada nodo corresponde a un término y las palabras tienden a agruparse
+en campos semánticos diferenciados. Cada arista indica que dos términos aparecen juntos en un
+mismo contexto y posee un peso asociado que mide la frecuencia de esa relación.
+
+A partir de esta estructura se generan cincuenta tablas, dos por cada comunidad, con los diez nodos más
+relevantes según dos criterios: el grado, que indica cuántas conexiones distintas tiene un término, y el
+grado con pesos, que refleja la intensidad total de sus relaciones.
+
+Cada clase modular representa una comunidad de palabras que conforman un vocabulario interno del corpus,
+lo que permite identificar grupos temáticos, términos que actúan como centros estructurales y palabras
+que funcionan como enlaces dentro de cada dominio semántico. Ordenar por grado permite observar cuántas
+palabras diferentes coaparecen con un término al menos una vez, ya que el grado representa el número de
+nodos distintos con los que está conectado, identificando así palabras presentes en muchos contextos y
+nodos estructuralmente centrales con alta diversidad de relaciones. Por otro lado, el grado ponderado es
+la suma de los pesos de todas sus aristas, es decir, cuántas veces en total coaparece ese término con otros,
+lo que permite detectar qué palabras funcionan como núcleos temáticos más intensos. De este modo se responde
+a dos cuestiones: cuáles son los nodos con más relaciones distintas y cuáles presentan relaciones más fuertes
+dentro de cada comunidad.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l l}
+\hline
+Condición & Interpretación \\
+\hline
+Alto grado + alto peso & Conceptos centrales del tema \\
+Alto grado + bajo peso & Términos puente o generales \\
+Bajo grado + alto peso & Términos muy específicos \\
+Bajo grado + bajo peso & Nodos periféricos \\
+\hline
+\end{tabular}
+\caption{Interpretación estructural de los nodos según grado y grado ponderado}
+\end{table}
+
+Los nodos de las tablas representan el significado global de cada comunidad, por lo que el nombre asignado
+reflejará su campo semántico mediante la elección de un sustantivo representativo de las etiquetas de los nodos,
+con el fin de caracterizar los núcleos modulares por significado dentro del corpus.
+
+Para obtener las comunidades se siguieron las instrucciones: primero se filtró el componente gigante
+para eliminar subgrafos irrelevantes; después se calcularon métricas estructurales y se aplicó el
+algoritmo de modularidad para detectar comunidades y el algoritmo de distribución \textit{ForceAtlas2}
+para la disposición visual del grafo. Esto permite interpretar las comunidades como agrupaciones semánticas
+de términos relacionados a partir del análisis de redes léxicas orientado a extraer conocimiento estructural
+del corpus.
+
+ 
+\newpage
+
+
+\section*{Comunidad 0 - Election}
+En la Comunidad 0 se observa una estructura jerárquica definida donde los términos 
+\textit{vote} y \textit{election} actúan como centro semántico de la red. Estos nodos 
+mantienen las dos primeras posiciones en ambas métricas, lo que demuestra que no solo 
+poseen una alta conectividad estructural (grado), sino que sus relaciones son las más 
+intensas en términos de coocurrencia recurrente (grado con pesos).
+\vspace{0.5cm}
 
 \noindent
 \begin{minipage}[t]{0.48\textwidth}
@@ -159,896 +231,1960 @@ Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
 \textbf{Top 10 por Grado con pesos}
 \end{minipage}
 
+\vspace{0.5cm}
+El núcleo central es estable, ya que ambas tablas comparten el 70\% de palabras en común 
+entre clasificaciones, tanto cuando se mide la diversidad de conexiones como cuando se 
+evalúa su intensidad acumulada.
 
+Sin embargo, el cambio más significativo ocurre con el término \textit{voter}, que en la clasificación
+de grado con peso se observa en agrupación junto a \textit{government}. Esto indica un posible
+discurso electoral vinculado a cuestiones institucionales y fiscales por su 
+similitud en pesos con los términos \textit{tax}, \textit{candidate}, 
+\textit{force}, \textit{propose}, \textit{federal} y 
+\textit{state}.
 
-
-
-% ----------------------------------------------------
-% ÍNDICE
-% ----------------------------------------------------
-\tableofcontents
-\newpage
-
-% ----------------------------------------------------
-% INTRODUCCIÓN
-% ----------------------------------------------------
-\section*{Introducción}
-La evolución humana ha marcado una aceleración del desarrollo cognitivo, tecnológico y social 
-que puede definirse en términos culturales y tecnológicos como un crecimiento exponencial 
-que ha permitido generar, acumular y transmitir conocimiento a un ritmo muy superior al que, 
-biológicamente, podemos asimilar. La necesidad de procesar nuestra información convertida en historia ha creado
-un paradigma que, tras digitalizar nuestra realidad, nos permite acceder a ella y 
-procesarla al mismo ritmo que lo hace nuestra necesidad de evolución. Sistemáticamente, debemos 
-identificar patrones, hechos y relaciones de manera consistente, mediante procesos que reduzcan 
-la carga cognitiva del análisis humano. Para ello, la transformación del texto en datos 
-estructurados que puedan ser comparados, consultados y analizados automáticamente facilita la 
-gestión de nuestro legado y, con ello, la toma de decisiones y el acceso efectivo al conocimiento, 
-que puede ser extraído, gestionado e interpretado en órdenes inconmensurables de texto.
-
-\begin{center}
-\textit{El lenguaje natural es ambiguo pero funcional, dinámico pero heredado, impreciso 
-pero inferencial: es una arquitectura simbólica finita en sus medios e inagotable en sus combinaciones, 
-moldeada por el uso social, dependiente del contexto y capaz de trascenderlo mediante la abstracción, 
-la escritura y la memoria cultural; optimizado no para la coherencia formal, sino para la comunicación, 
-la cognición compartida y la continuidad civilizatoria}
-\end{center}
-
-La extracción de información responde a la necesidad de transformar el lenguaje natural de los 
-textos en representaciones estructuradas que permitan su tratamiento computacional. La presente 
-memoria se centrará concretamente en dicha extracción; en la identificación de entidades 
-y en cómo diferentes Reconocedores de Entidades Nombradas (NER, por sus siglas en inglés 
-\textit{Named Entity Recognition}) son capaces de asignar las etiquetas a esos 
-objetos del mundo real o conceptos claramente identificables, como personas, organizaciones, 
-lugares u otras categorías relevantes para su procesamiento.
-
-El esquema de etiquetado utilizado como convención para representar las entidades será IOB, y de 
-igual forma IOBES. Ambos se emplean en tareas de reconocimiento de entidades nombradas para 
-representar, a nivel de token, la extensión y los límites de las entidades dentro de un texto. En 
-el esquema IOB, cada palabra se etiqueta como comienzo de una entidad (B), interior de una entidad 
-(I) o fuera de cualquier entidad (O), mientras que IOBES amplía este esquema añadiendo etiquetas 
-específicas para entidades de un solo token (S) y para el final de una entidad (E). Estas 
-diferencias hacen interesante analizar ambos esquemas, ya que distintas formas de codificar los 
-límites de las entidades influyen en la representación del problema de etiquetado secuencial y en 
-la evaluación de los sistemas NER. Qué diferencias observables en precisión, recall o F1 aportan, 
-o cómo distintos esquemas de anotación pueden condicionar el comportamiento de los modelos, son 
-cuestiones planteadas en el desarrollo de la práctica que se han querido plasmar ampliando la 
-perspectiva del enunciado.
-
-El evaluador utilizado para estimar las etiquetas mediante métricas de validación será el 
-proporcionado por la asignatura, \texttt{conlleval.py}, aplicado sobre el corpus \texttt{CoNLL-2003}, un 
-corpus ampliamente utilizado como referencia en tareas de reconocimiento de entidades nombradas.
-
-En primer lugar se empleará NLTK, una librería de carácter académico y didáctico iniciada en 2001, 
-cuyo reconocedor de entidades se apoya en enfoques clásicos basados en \textit{chunking} y modelos 
-menos complejos. Su uso permitirá disponer de un sistema representativo de las primeras 
-aproximaciones al reconocimiento automático de entidades.
-
-Como segundo sistema se utilizará spaCy, una librería moderna de Python publicada inicialmente en 
-2015, diseñada para aplicaciones prácticas de procesamiento del lenguaje natural. spaCy integra 
-modelos estadísticos entrenados a gran escala y se utiliza de forma habitual en entornos de 
-producción, lo que permitirá analizar el comportamiento de un sistema actual orientado a uso real.
-
-La comparación entre NLTK y spaCy permitirá contrastar dos aproximaciones representativas de 
-distintas etapas en la evolución de las técnicas de procesamiento del lenguaje natural. No 
-obstante, para ampliar esta comparativa hacia modelos de etiquetado estadísticos modernos, se 
-incorporará un tercer reconocedor basado en Transformers, concretamente BERT, propuesto 
-originalmente en 2018. El modelo utilizado, 
-\textit{dbmdz/bert-large-cased-finetuned-conll03-english}, se obtiene de la plataforma 
-\textit{HuggingFace} y se basa en un preentrenamiento sobre grandes corpus textuales como 
-\textit{Wikipedia} y \textit{BooksCorpus}, lo que sitúa el análisis en el contexto de las técnicas 
-más recientes y permite observar de forma empírica la evolución de los enfoques tratados.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.95\textwidth]{./images/nltk_to_huggingface.png}
-\caption{Natural Language Processing (NLTK to Huggingface)}
-\label{fig:nltk_to_huggingface}
-\end{figure}
-
-
-El ejercicio de análisis que se presenta pretende una comparación que busca no solo obtener 
-resultados numéricos y concluir que un sistema supera a otro, sino comprender las decisiones 
-metodológicas implicadas, las limitaciones de cada enfoque y su relación directa con los conceptos 
-teóricos estudiados a lo largo del tema.
-
-
-\newpage
-
+Términos como \textit{taxpayer} o \textit{method} mantienen vínculos fuertes y frecuentes 
+dada su posición en el ranking y correlación con términos de alto grado en peso.
  
-\section{NLTK - Natural Language Toolkit}
+Si bien todas las palabras son léxicamente distintas, se pueden formar grupos de palabras 
+que definen un proceso electoral y, además, connotan un contexto político posiblemente
+enfocado en propuestas electorales. Es por ello que la palabra que más define el conjunto
+es \textit{election}, el cual es un término más representativo para esta comunidad y sintetiza
+el significado común de los nodos centrales.
+\newpage
 
-NLTK (\textit{Natural Language Toolkit}) es una librería de software libre para procesamiento del
-lenguaje natural desarrollada en Python. Su origen se sitúa en el ámbito académico, concretamente
-en la Universidad de Pensilvania, donde fue iniciada en 2001 por Steven Bird y Edward Loper, y
-posteriormente mantenida y ampliada por Steven Bird y la comunidad académica \cite{nltk_wikipedia}. 
-Desde su creación, NLTK ha tenido como objetivo principal servir como plataforma educativa y de 
-investigación para el estudio del PLN. La librería se concibe como un conjunto modular de herramientas 
-que cubren tareas fundamentales del procesamiento del lenguaje natural. Entre ellas se incluyen la 
-tokenización, el etiquetado morfosintáctico, el análisis sintáctico, el reconocimiento de entidades 
-nombradas, el manejo de corpus y la evaluación de sistemas. NLTK no está orientada a ofrecer modelos 
-de alto rendimiento listos para producción, sino a proporcionar implementaciones claras y accesibles 
-de técnicas clásicas y modernas \cite{nltk_official}.
 
-Se apoya en estructuras de datos explícitas y algoritmos bien documentados, donde muchas de sus 
-funcionalidades se basan en modelos estadísticos tradicionales, reglas lingüísticas y métodos de 
-aprendizaje supervisado sencillos. En el caso del reconocimiento de entidades nombradas, NLTK utiliza 
-un enfoque basado en \textit{chunking}, donde primero se realiza un etiquetado gramatical y 
-posteriormente se agrupan secuencias de palabras en función de patrones aprendidos. El resultado se 
-representa internamente mediante árboles sintácticos que pueden transformarse a esquemas de 
-etiquetado secuencial como IOB.
+\section*{Comunidad 1 - Prision}
+En la Comunidad 1 se observa una estructura relativamente compacta donde los términos 
+\textit{term}, \textit{prison} y \textit{permit} ocupan posiciones destacadas en ambas 
+métricas, lo que indica que actúan como núcleos estructurales y semánticos dentro de la red. 
+Estos nodos presentan simultáneamente una diversidad notable de conexiones y una intensidad 
+alta de coaparición, lo que sugiere que forman parte del vocabulario central de esta comunidad.
 
-\begin{figure}[H]
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
 \centering
-\includegraphics[width=1\textwidth]{./images/tree_nltk.png}
-\caption{Árbol de análisis generado con NLTK}
-\label{fig:tree_nltk}
-\end{figure}
-
-Una característica central de NLTK es su estrecha integración con corpus lingüísticos. La librería 
-incluye utilidades para descargar, explorar y manipular conjuntos de datos ampliamente utilizados 
-en investigación, lo que facilita la experimentación controlada y la evaluación reproducible. Esta 
-orientación la hace especialmente adecuada para contextos donde la transparencia 
-del proceso y la comprensión de cada etapa son prioritarias. Entre las principales fortalezas de 
-NLTK destaca su valor pedagógico; el diseño de la librería permite inspeccionar fácilmente los pasos 
-intermedios de los algoritmos, comprender las decisiones del modelo y modificar el comportamiento de 
-los componentes. Además, su documentación y ejemplos están pensados para introducir conceptos de PLN 
-de forma progresiva y estructurada \cite{nltk_first_steps}.
-
-Como contrapartida, NLTK presenta limitaciones claras en entornos aplicados; suele ser menos precisa 
-que las librerías modernas, ya que su rendimiento no está optimizado para procesar grandes volúmenes 
-de texto y su enfoque no se adapta bien a escenarios productivos en tiempo real. Estas limitaciones 
-no son un defecto de diseño, sino una consecuencia directa de su orientación académica, por lo que 
-su inclusión permite observar cómo se aborda el problema desde una perspectiva más clásica y 
-contrastar sus resultados con los obtenidos por herramientas más recientes.
-
-
-\section{spaCy}
-
-spaCy es una librería de procesamiento del lenguaje natural desarrollada en Python y Cython,
-orientada a la construcción de aplicaciones prácticas y sistemas de PLN en entornos de producción.
-Fue creada por Matthew Honnibal y publicada por primera vez en 2015, con el objetivo explícito de
-ofrecer herramientas eficientes, robustas y fáciles de integrar en flujos de trabajo reales,
-en contraste con librerías de carácter más académico \cite{spacy_api}.
-
-Desde su diseño inicial, spaCy se ha centrado en proporcionar componentes de alto rendimiento para
-tareas del procesamiento del lenguaje natural, como la tokenización, el etiquetado
-morfosintáctico, el análisis de dependencias y el reconocimiento de entidades nombradas. La
-librería prioriza la velocidad, la estabilidad y la coherencia de los resultados, lo que la ha
-convertido en una opción habitual en aplicaciones industriales.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{./images/spacy.png}
-\caption{Library architecture}
-\label{fig:spacy_library_architecture}
-\end{figure}
-
-A nivel interno, spaCy se basa en una arquitectura de procesamiento por \textit{pipelines}. Cada
-documento pasa secuencialmente por una serie de componentes independientes que añaden anotaciones
-lingüísticas al texto. Estos componentes están implementados en Cython y optimizados para reducir
-la latencia y el consumo de memoria. El núcleo de spaCy se apoya en estructuras de datos compactas
-y en modelos estadísticos preentrenados.
-
-En el caso del reconocimiento de entidades nombradas, spaCy emplea modelos supervisados entrenados
-sobre grandes corpus anotados. En versiones recientes, estos modelos se basan en arquitecturas
-neuronales que integran representaciones distribuidas de palabras y mecanismos de contexto. El
-sistema produce etiquetas de entidad directamente alineadas con los tokens generados por su propio
-tokenizador, lo que garantiza consistencia interna a lo largo del proceso \cite{spacy_architecture}.
-
-En este contexto, el modelo de spaCy utilizado será \textit{en\_core\_web\_sm}, un modelo
-preentrenado para inglés que incluye componentes de tokenización, etiquetado morfosintáctico,
-análisis de dependencias y reconocimiento de entidades nombradas. Se trata de un modelo neuronal
-ligero que se apoya en una arquitectura basada en redes neuronales convolucionales (CNN). Emplea 
-un componente denominado \texttt{tok2vec}, que genera representaciones vectoriales
-de los tokens combinando embeddings subléxicos, que se componen de información de caracteres y
-hashes de palabras, con capas convolucionales de ventana deslizante. Estas capas permiten capturar
-información contextual local de manera eficiente, agregando información de los tokens vecinos sin
-recurrir a mecanismos recurrentes ni de atención global. El modelo está diseñado para ofrecer un
-equilibrio entre velocidad y calidad, y ha sido entrenado sobre corpus anotados de dominio general,
-orientándose a su uso en aplicaciones prácticas.
-
-Entre las principales fortalezas de spaCy destacan su rendimiento, su diseño orientado a
-producción y su facilidad de uso, al ofrecer modelos preentrenados listos para usar, una API clara
-y una documentación enfocada en casos prácticos. Como limitación, spaCy puede funcionar como una
-caja negra, ya que los detalles del entrenamiento y de la estructura interna del modelo no siempre
-son accesibles, lo que puede dificultar la comprensión del sistema y la realización de ajustes
-personalizados. Aun así, destaca por el equilibrio entre calidad, eficiencia y facilidad de
-integración que ofrece, resultando especialmente adecuado para sistemas orientados a uso real.
-
-\section{BERT: Bidirectional Encoder Representations from Transformers}
-
-BERT (\textit{Bidirectional Encoder Representations from Transformers}) es un modelo de lenguaje
-basado en redes neuronales profundas propuesto en 2018 por Jacob Devlin y otros investigadores de
-Google AI. Su aparición marca un punto de inflexión en el procesamiento del lenguaje natural, al
-introducir un enfoque de preentrenamiento contextual bidireccional que permite aprender
-representaciones lingüísticas generales reutilizables en múltiples tareas \cite{bert_wikipedia}.
-
-El origen de BERT se sitúa en la necesidad de superar las limitaciones de modelos previos basados en
-representaciones estáticas de palabras y en arquitecturas recurrentes. Hasta su aparición, muchos
-sistemas procesaban el texto de forma unidireccional o dependían de ventanas de contexto limitadas.
-BERT adopta la arquitectura Transformer, propuesta en 2017, y se centra exclusivamente en el bloque
-codificador (\textit{encoder}), prescindiendo de componentes recurrentes o convolucionales.
-
-Desde el punto de vista interno, BERT se compone de múltiples capas de atención de autoatención
-multi-cabeza y capas \textit{feed-forward} totalmente conectadas. Cada token de entrada se
-representa como la suma de tres embeddings: el embedding de palabra, el embedding de posición y el
-embedding de segmento. Esta representación permite al modelo capturar información léxica,
-posicional y de estructura de frases. El mecanismo de autoatención permite que cada token tenga
-acceso directo al resto de la secuencia, lo que facilita la modelización de dependencias a largo
-alcance.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{./images/bert.png}
-\caption{Transformer architecture for NER}
-\label{fig:bert}
-\end{figure}
-
-BERT, una vez preentrenado, puede ajustarse a tareas concretas mediante un proceso de
-\textit{fine-tuning}. En tareas de reconocimiento de entidades nombradas, se añade una capa de
-salida específica y se ajustan todos los parámetros del modelo utilizando un corpus anotado, donde
-el problema se formula como una tarea de etiquetado secuencial\cite{bert_ner}.
-
-Entre las principales fortalezas de BERT destaca su capacidad para capturar contexto bidireccional
-real, que mejora notablemente el rendimiento en tareas que dependen del significado global
-de la secuencia. Su disponibilidad en plataformas como HuggingFace permite un acceso casi
-inmediato a modelos potentes que han marcado un punto de inflexión en el rendimiento de los sistemas
-de PLN, ya que permiten aplicar reconocimiento de entidades sobre grandes volúmenes de texto con
-un esfuerzo reducido. 
-
-Como contrapartida, BERT presenta limitaciones claras en términos de tamaño y complejidad. A cambio
-de su rendimiento, el coste computacional asociado a su entrenamiento y ajuste genera dependencia
-de recursos externos con grandes capacidades de cómputo y memoria. No está pensado para entrenarse
-en entornos con recursos limitados y, además, el modelo actúa como una caja negra, lo que dificulta
-la interpretación directa de sus decisiones. En el contexto de esta práctica se utilizará un modelo 
-BERT ajustado específicamente para reconocimiento de entidades nombradas, que parte de \textit{BERT-large cased}, preentrenado sobre
-grandes colecciones de texto general como \textit{Wikipedia} y \textit{BooksCorpus}.
-
-
-\section{Corpus CoNLL-2003}
-
-El corpus seleccionado para el desarrollo de la práctica es \textit{CoNLL-2003}, un corpus de
-referencia ampliamente utilizado en tareas de reconocimiento de entidades nombradas, ya que
-proporciona un marco de evaluación bien establecido, para la comparativa en 
-contextos académicos bajo distintos reconocedores. 
-
-El corpus se distribuye públicamente como parte de los objetivos de la CoNLL\footnote{Una conferencia de 
-primer nivel centrada en enfoques teóricos, cognitivos y científicos motivados por la lingüística computacional y el PNL}
-y se ha convertido en un punto de referencia para la validación empírica de
-modelos de reconocimiento de entidades.
-CoNLL-2003 está compuesto por textos periodísticos en inglés procedentes de la agencia Reuters y
-anotados siguiendo un esquema de entidades bien definido. Las entidades incluidas pertenecen a las
-categorías \textit{PER}, \textit{ORG}, \textit{LOC} y \textit{MISC}, y se representan mediante un
-esquema de etiquetado secuencial IOB. Este 
-formato permite comparar directamente las salidas de NLTK, spaCy y BERT, con el Gold Standard\cite{conll2003deepai}.
-
-Una de las principales ventajas de \texttt{CoNLL-2003} es la calidad y consistencia de sus anotaciones, al
-haber sido revisadas manualmente y su formato estructurado facilita el procesamiento
-automático y la integración con herramientas de evaluación como \texttt{conlleval.py}. 
-
-Para el desarrollo de la práctica se ha trabajado con un subconjunto del corpus, seleccionando las
-primeras 30 frases del conjunto de datos. Esta reducción permite limitar
-el volumen de datos a un tamaño manejable y facilita la identificación de las fronteras de frase, porque
-se preserva la alineación entre tokens y etiquetas de referencia.
-
-
-\begin{footnotesize}
-\begin{enumerate}
-    \item \texttt{SOCCER - JAPAN GET LUCKY WIN , CHINA IN SURPRISE DEFEAT }
-    \item \texttt{Nadim Ladki}
-    \item \texttt{AL-AIN , United Arab Emirates 1996-12-06}
-    \item \texttt{Japan began the defence of their Asian Cup title with a lucky 2-1 win against Syria in a Group C championship match on Friday }
-    \item \texttt{But China saw their luck desert them in the second match of the group , crashing to a surprise 2-0 defeat to newcomers Uzbekistan }
-    \item \texttt{China controlled most of the match and saw several chances missed until the 78th minute when Uzbek striker Igor Shkvyrin took advantage of a misdirected defensive header to lob the ball over the advancing Chinese keeper and into an empty net }
-    \item \texttt{Oleg Shatskiku made sure of the win in injury time , hitting an unstoppable left foot shot from just outside the area }
-    \item \texttt{The former Soviet republic was playing in an Asian Cup finals tie for the first time }
-    \item \texttt{Despite winning the Asian Games title two years ago , Uzbekistan are in the finals as outsiders }
-    \item \texttt{Two goals from defensive errors in the last six minutes allowed Japan to come from behind and collect all three points from their opening meeting against Syria }
-    \item \texttt{Takuya Takagi scored the winner in the 88th minute , rising to head a Hiroshige Yanagimoto cross towards the Syrian goal which goalkeeper Salem Bitar appeared to have covered but then allowed to slip into the net }
-    \item \texttt{It was the second costly blunder by Syria in four minutes }
-    \item \texttt{Defender Hassan Abbas rose to intercept a long ball into the area in the 84th minute but only managed to divert it into the top corner of Bitar 's goal }
-    \item \texttt{Nader Jokhadar had given Syria the lead with a well-struck header in the seventh minute }
-    \item \texttt{Japan then laid siege to the Syrian penalty area for most of the game but rarely breached the Syrian defence }
-    \item \texttt{Bitar pulled off fine saves whenever they did }
-    \item \texttt{Japan coach Shu Kamo said : ' ' The Syrian own goal proved lucky for us }
-    \item \texttt{The Syrians scored early and then played defensively and adopted long balls which made it hard for us . '}
-    \item \texttt{Japan , co-hosts of the World Cup in 2002 and ranked 20th in the world by FIFA , are favourites to regain their title here }
-    \item \texttt{Hosts UAE play Kuwait and South Korea take on Indonesia on Saturday in Group A matches }
-    \item \texttt{All four teams are level with one point each from one game }
-    \item \texttt{RUGBY UNION - CUTTITTA BACK FOR ITALY AFTER A YEAR }
-    \item \texttt{ROME 1996-12-06}
-    \item \texttt{Italy recalled Marcello Cuttitta}
-    \item \texttt{on Friday for their friendly against Scotland at Murrayfield more than a year after the 30-year-old wing announced he was retiring following differences over selection }
-    \item \texttt{Cuttitta , who trainer George Coste said was certain to play on Saturday week , was named in a 21-man squad lacking only two of the team beaten 54-21 by England at Twickenham last month }
-    \item \texttt{Stefano Bordon is out through illness and Coste said he had dropped back row Corrado Covi , who had been recalled for the England game after five years out of the national team }
-    \item \texttt{Cuttitta announced his retirement after the 1995 World Cup , where he took issue with being dropped from the Italy side that faced England in the pool stages }
-    \item \texttt{Coste said he had approached the player two months ago about a comeback }
-    \item \texttt{`` He ended the World Cup on the wrong note , '' Coste said }
-\end{enumerate}
-\end{footnotesize}
-
-
-
-\subsection{Análisis del Corpus}
-
-El corpus utiliza el formato de anotación CoNLL, empleado en tareas de
-reconocimiento de entidades nombradas donde se representa cada token colocando 
-una palabra por línea con las distintas anotaciones lingüísticas.
-Las frases se delimitan mediante líneas en blanco, y cada documento comienza con
-una marca \texttt{-DOCSTART- -X- -X- O} que no forma parte del contenido textual.
-
-\begin{center}
-\begin{minipage}{0.3\textwidth}
-\begin{verbatim}
--DOCSTART- -X- -X- O
-
-EU NNP B-NP B-ORG
-rejects VBZ B-VP O
-German JJ B-NP B-MISC
-call NN I-NP O
-to TO B-VP O
-boycott VB I-VP O
-British JJ B-NP B-MISC
-lamb NN I-NP O
-. . O O
-\end{verbatim}
-\end{minipage}
-\end{center}
-
-Cada línea del corpus contiene cuatro columnas definidas; la primera columna
-corresponde al token original del texto; la segunda a la etiqueta
-morfosintáctica (\textit{Part-of-Speech}) que describe la categoría gramatical del
-token. En este ejemplo, \texttt{EU} tiene la etiqueta \texttt{NNP}, que significa
-\textit{Proper Noun, Singular}, lo que indica que se
-trata de un nombre propio en singular. La tercera columna representa el sintagma gramatical al
-que pertenece el token, como sintagma nominal, verbal o preposicional y la cuarta 
-columna contiene la etiqueta de reconocimiento de entidades nombradas,
-que constituye el \textit{gold standard} del corpus bajo el esquema IOB.
-
-Por ejemplo, la anotación \texttt{EU NNP B-NP B-ORG} indica que el token
-\texttt{EU} es nombre propio, sintagma nominal y corresponde al inicio
-de una entidad nombrada de tipo organización. En cambio, el token
-\texttt{rejects} es un verbo, sintagma verbal y está etiquetado como
-\texttt{O} (Outside), lo que indica que no forma parte de ninguna entidad nombrada.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{r l r r}
 \hline
-\textbf{Token} & \textbf{POS} & \textbf{Sintagma gramatical} & \textbf{Etiqueta IOB} \\
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
 \hline
-EU & NNP & B-NP & B-ORG \\
-rejects & VBZ & B-VP & O \\
-German & JJ & B-NP & B-MISC \\
-call & NN & I-NP & O \\
-to & TO & B-VP & O \\
-boycott & VB & I-VP & O \\
-British & JJ & B-NP & B-MISC \\
-lamb & NN & I-NP & O \\
-. & . & O & O \\
+20 & \textcolor{ForestGreen}{term} & 21 & 15.9108 \\
+206 & \textcolor{ForestGreen}{prison} & 17 & 21.1576 \\
+198 & \textcolor{ForestGreen}{permit} & 14 & 13.3879 \\
+67 & \textcolor{ForestGreen}{believe} & 12 & 11.9297 \\
+316 & \textcolor{ForestGreen}{approve} & 12 & 16.0187 \\
+517 & \textcolor{ForestGreen}{violate} & 12 & 10.0479 \\
+808 & crisis & 12 & 4.8851 \\
+705 & remainder & 11 & 7.1639 \\
+265 & warn & 10 & 4.7316 \\
+1933 & split & 10 & 6.8805 \\
 \hline
 \end{tabular}
-\caption{Ejemplo de anotación del corpus CoNLL-2003}
-\label{tab:conll_example}
-\end{table}
 
-Las etiquetas IOBES se obtienen a partir del esquema IOB mediante una transformación
-de las etiquetas. En este proceso, la etiqueta \textit{O} se mantiene sin cambios para
-los tokens que no pertenecen a ninguna entidad, la etiqueta \textit{B-X} se
-mantiene como inicio de entidad si el token siguiente está etiquetado como
-\textit{I-X}; en caso contrario, se transforma en \textit{S-X}, indicando que la
-entidad está formada por un único token.
-Las etiquetas \textit{I-X} se mantienen como interior de entidad si el siguiente
-token también es \textit{I-X}, pero se convierten en \textit{E-X} cuando marcan el
-final de la entidad. De este modo, IOBES marca de forma más precisa el comienzo,
-el interior, el final y las entidades unitarias. Así el esquema delimita 
-con mayor claridad los límites de las entidades y facilita el análisis comparativo 
-del rendimiento de los modelos en tareas de reconocimiento de entidades nombradas.
-
-
-
-\section{Preparación del entorno}
-Una vez establecidos los modelos que se van a evaluar y el corpus con el que se trabajará,
-se genera un entorno que permita realizar el experimento en condiciones reproducibles. Para ello,
-se configura un entorno virtual con Python 3.10 que aísla las dependencias del proyecto e instala
-las librerías necesarias para el reconocimiento de entidades en inglés mediante el gestor de
-paquetes \texttt{pip}, incluyendo \texttt{spacy} v3.7, \texttt{nltk} v3.8.1, \texttt{numpy} v1.26.4
-y \texttt{pandas} v2.1.4.
-
-El corpus \texttt{CoNLL-2003} se descargó localmente para facilitar su procesamiento
-directo\footnote{La descarga se realiza directamente desde el \textit{CoNLL-2003 Named Entity Recognition Dataset}
-\cite{conll2003deepai}} y, a partir del conjunto de test del corpus, se generó un subconjunto reducido
-de treinta frases que sirve como base común para los reconocedores.
-En este contexto se preparó un script que procesa el corpus y genera los ficheros
-de salida en los formatos IOB e IOBES.
-
-En el caso de spaCy y NLTK, cada herramienta emplea su propio inventario interno de etiquetas,
-distinto al definido en el corpus \texttt{CoNLL-2003}. NLTK utiliza categorías como
-\textit{PERSON}, \textit{ORGANIZATION} o \textit{FACILITY}, que se pueden observar en el
-Cuadro~\ref{tab:mapeo_nltk}, mientras que spaCy distingue etiquetas como
-\textit{GPE}, \textit{NORP}, \textit{LAW} o \textit{EVENT}, tal y como se aprecia en el
-Cuadro~\ref{tab:mapeo_spacy}. Estas categorías no coinciden directamente con las etiquetas gold del
-corpus (\textit{PER}, \textit{ORG}, \textit{LOC}, \textit{MISC}), por lo que es necesario realizar
-una adaptación de las predicciones para que puedan compararse de forma válida con las anotaciones
-de referencia.
-\newpage
-\begin{verbatim}
-$ python ./materiales-tarea3/conlleval.py < eval_nltk.txt
-processed 619 tokens with 68 phrases; found: 73 phrases; correct: 0.
-accuracy:   0.00%; (non-O)
-accuracy:  84.68%; precision:   0.00%; recall:   0.00%; FB1:   0.00
-              GPE: precision:   0.00%; recall:   0.00%; FB1:   0.00  33
-              GSP: precision:   0.00%; recall:   0.00%; FB1:   0.00  5
-              LOC: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-             MISC: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-              ORG: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-     ORGANIZATION: precision:   0.00%; recall:   0.00%; FB1:   0.00  12
-              PER: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-           PERSON: precision:   0.00%; recall:   0.00%; FB1:   0.00  21
-\end{verbatim}
-
-Como se puede observar, sin esta adaptación la evaluación mide diferencias de esquema y no la
-calidad real del reconocimiento. Los resultados indican que se procesaron 619 tokens y que el
-corpus contenía 68 entidades anotadas, mientras que el sistema detectó 73. Sin embargo, ninguna de
-las entidades predichas fue considerada correcta, lo que se refleja en el valor \texttt{correct: 0}
-y en las métricas nulas de precisión, recall y FB1. Este comportamiento evidencia la incompatibilidad
-entre los esquemas de etiquetado utilizados y justifica la necesidad del mapeo previo.
-
-\begin{table}[h]
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
 \centering
-\begin{minipage}{0.45\textwidth}
-    \centering
-    \begin{tabular}{|l|l|}
-        \hline
-        \textbf{NLTK} & \textbf{CoNLL} \\
-        \hline
-        PERSON & PER \\
-        ORGANIZATION & ORG \\
-        GPE & LOC \\
-        GSP & LOC \\
-        FACILITY & LOC \\
-        \hline
-    \end{tabular}
-    \caption{Mapeo de etiquetas entre NLTK y CoNLL-2003}
-    \label{tab:mapeo_nltk}
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+206 & \textcolor{ForestGreen}{prison} & 17 & 21.1576 \\
+316 & \textcolor{ForestGreen}{approve} & 12 & 16.0187 \\
+20 & \textcolor{ForestGreen}{term} & 21 & 15.9108 \\
+315 & bond & 8 & 14.1677 \\
+198 & \textcolor{ForestGreen}{permit} & 14 & 13.3879 \\
+67 & \textcolor{ForestGreen}{believe} & 12 & 11.9297 \\
+517 & \textcolor{ForestGreen}{violate} & 12 & 10.0479 \\
+789 & courtroom & 6 & 8.8003 \\
+865 & vindication & 6 & 8.8003 \\
+920 & stagger & 6 & 8.8003 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
 \end{minipage}
-\hfill
-\begin{minipage}{0.45\textwidth}
-    \centering
-    \begin{tabular}{|l|l|}
-        \hline
-        \textbf{spaCy} & \textbf{CoNLL} \\
-        \hline
-        PERSON & PER \\
-        ORG & ORG \\
-        GPE & LOC \\
-        LOC & LOC \\
-        FAC & LOC \\
-        NORP & MISC \\
-        EVENT & MISC \\
-        PRODUCT & MISC \\
-        WORK\_OF\_ART & MISC \\
-        LAW & MISC \\
-        LANGUAGE & MISC \\
-        DATE & MISC \\
-        TIME & MISC \\
-        PERCENT & MISC \\
-        MONEY & MISC \\
-        QUANTITY & MISC \\
-        ORDINAL & MISC \\
-        CARDINAL & MISC \\
-        \hline
-    \end{tabular}
-    \caption{Mapeo de etiquetas entre spaCy y CoNLL-2003}
-    \label{tab:mapeo_spacy}
+\vspace{0.5cm}
+
+El núcleo principal es estable, ya que seis de los diez términos coinciden en ambas tablas, 
+lo que refleja coherencia temática entre los nodos más conectados y los más intensamente 
+relacionados. Esta coincidencia indica que los conceptos dominantes mantienen su relevancia 
+independientemente de si se mide la amplitud estructural o la fuerza acumulada de sus vínculos.
+
+Destaca \textit{bond}, que no aparece entre los nodos con 
+mayor grado pero sí alcanza una posición alta en el ranking ponderado, lo que indica que, aunque 
+se relaciona con menos términos distintos, sus conexiones son especialmente intensas dentro del 
+contexto de la comunidad. De forma similar, \textit{courtroom} y \textit{vindication} aparecen 
+solo en el listado ponderado, lo que sugiere que representan conceptos específicos con relaciones 
+fuertes pero concentradas.
+
+Por el contrario, términos como \textit{crisis}, \textit{remainder}, \textit{warn} o 
+\textit{split} aparecen únicamente en el top por grado, lo que indica que poseen una mayor 
+diversidad de conexiones pero con menor intensidad total, actuando como nodos de enlace o 
+términos más generales. La distribución de los nodos sugiere que esta comunidad se organiza en torno a un 
+campo semántico relacionado con el ámbito legal o judicial, donde conceptos como 
+\textit{prison}, \textit{permit}, \textit{violate}, \textit{approve} o \textit{courtroom} 
+apuntan a procesos normativos, decisiones formales y situaciones de carácter jurídico. Por este 
+motivo, el término más representativo para esta comunidad es \textit{prison}, ya que 
+el ascenso de la palabra \textit{bond} (fianza), refuerza la interpretación 
+legal y punitiva que se le puede atribuir a la temática donimante.
+
+
+
+\section*{Comunidad 2 - Investigate}
+
+En la Comunidad 2 se observa una estructura distribuida donde los términos 
+\textit{sewer}, \textit{brief}, \textit{adjustment} e \textit{investigate} destacan en ambas 
+métricas, lo que indica que constituyen el núcleo estructural y semántico del subgrafo. 
+Estos nodos combinan un número elevado de conexiones distintas con una intensidad alta de 
+coaparición, lo que los sitúa como puntos centrales dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1498 & \textcolor{ForestGreen}{sewer} & 19 & 14.7579 \\
+208 & file & 17 & 9.0250 \\
+454 & gun & 17 & 4.5346 \\
+458 & sheriff & 17 & 8.1063 \\
+233 & \textcolor{ForestGreen}{brief} & 16 & 12.0738 \\
+324 & \textcolor{ForestGreen}{adjustment} & 16 & 12.0738 \\
+3661 & corporate & 16 & 10.2493 \\
+21 & \textcolor{ForestGreen}{investigate} & 15 & 13.3669 \\
+202 & pension & 15 & 10.0948 \\
+1731 & object & 15 & 7.5810 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
 \end{minipage}
-\end{table}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1345 & hire & 11 & 16.3325 \\
+1470 & assure & 10 & 15.0955 \\
+1498 & \textcolor{ForestGreen}{sewer} & 19 & 14.7579 \\
+383 & reject & 13 & 13.4912 \\
+378 & privilege & 11 & 13.3967 \\
+21 & \textcolor{ForestGreen}{investigate} & 15 & 13.3669 \\
+204 & employe & 12 & 12.8397 \\
+233 & \textcolor{ForestGreen}{brief} & 16 & 12.0738 \\
+324 & \textcolor{ForestGreen}{adjustment} & 16 & 12.0738 \\
+1497 & provision & 12 & 11.3156 \\
+\hline
+\end{tabular}
 
-Por el contrario, el modelo BERT basado en Transformers ya está entrenado y configurado con el mismo
-esquema de etiquetas del corpus, por lo que no requiere este paso adicional. Al haber sido ajustado
-específicamente sobre \texttt{CoNLL-2003} y utilizando el mismo criterio de anotación que el gold
-standard, su salida es compatible de forma directa con el proceso de evaluación y puede compararse
-sin necesidad de mapeos adicionales, lo que hace que el modelo Transformer esté mejor alineado con el
-corpus de referencia.
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
 
+La coincidencia es parcial entre ambas tablas, ya que cuatro de los 
+diez términos aparecen en los dos rankings, lo que sugiere que la comunidad posee un centro 
+conceptual estable, pero también una generalización con algunos nodos cambian de relevancia 
+según se mida la diversidad de conexiones o la intensidad de las relaciones.
 
-\section{Resultados}
-La interpretación de los resultados se abordará desde la perspectiva de un problema de 
-clasificación multiclase. Esto se debe a que la valoración se realiza con base en el 
-conjunto de entidades correctamente etiquetadas.
+Términos como \textit{file}, \textit{gun}, 
+\textit{sheriff}, \textit{pension} u \textit{object} aparecen únicamente en el listado por grado, 
+lo que indica que se relacionan con muchos términos distintos pero con menor frecuencia total, 
+actuando como nodos de enlace o elementos contextuales amplios dentro de la comunidad.
 
-Las tablas de resultados muestran cuatro métricas fundamentales para evaluar los 
-reconocedores de entidades. El \textit{accuracy} mide la proporción total de tokens 
-correctamente etiquetados; como veremos, .estará dominada por los aciertos en la etiqueta \texttt{O}, al ser la clase mayoritaria.
-Por ello, aunque se realizarán observaciones 
-al respecto, se tomará en cuenta el \textit{accuracy non-O} para centrar el análisis en 
-las etiquetas correctamente clasificadas. La \textit{precision} evalúa la fiabilidad 
-de las predicciones: de todas las veces que el sistema asignó una etiqueta, qué 
-porcentaje fue correcto (evitando falsos positivos). Por otro lado, el \textit{recall} 
-mide la cobertura del sistema: de todas las etiquetas que realmente existían en el 
-texto, qué porcentaje fue capaz de predecir (evitando falsos negativos); y 
-la métrica \textit{FB1} (F1-score) que combina \textit{precision} y \textit{recall} en 
-una única medida, ofreciendo una estimación equilibrada del rendimiento global en la 
-que centraremos el análisis.
-
-
-\subsection{NLTK}
-\begin{verbatim}
-$ python ./materiales-tarea3/conlleval.py < eval_nltk.txt
-processed 619 tokens with 68 phrases; found: 73 phrases; correct: 37.
-accuracy:  56.52%; (non-O)
-accuracy:  93.05%; precision:  50.68%; recall:  54.41%; FB1:  52.48
-              LOC: precision:  63.16%; recall:  80.00%; FB1:  70.59  38
-             MISC: precision:   0.00%; recall:   0.00%; FB1:   0.00  0
-              ORG: precision:   8.33%; recall:  50.00%; FB1:  14.29  12
-              PER: precision:  52.17%; recall:  54.55%; FB1:  53.33  23
-\end{verbatim}
-
-Se observa cómo el \textit{accuracy} global se ve incrementado por la alta frecuencia 
-de la etiqueta \texttt{O}. Sin embargo, el \textit{accuracy (non-O)} demuestra que 
-solo el 56.52\% de los tokens pertenecientes a entidades fueron clasificados 
-correctamente.
-
-NLTK presenta una capacidad de detección de entidades cercana al 50\%. En rasgos 
-generales, la precisión más alta se obtuvo en las etiquetas de Localización 
-(\texttt{LOC}) con un 63.16\%, contrastando con la gran dificultad para identificar 
-correctamente organizaciones (\texttt{ORG}), con apenas un 8.33\%. El \textit{recall} 
-confirma que las etiquetas de localización fueron las mejor recuperadas con un 80.00\%, 
-mientras que el \textit{FB1} refleja un rendimiento equilibrado global del 52.48\%. 
-De las 68 entidades reales, el modelo identificó 73 candidatas, de las cuales solo 
-37 fueron correctas. Esto resulta en una precisión del 50.68\%, evidenciando que casi 
-la mitad de las etiquetas propuestas por el modelo son incorrectas. Este desempeño 
-limitado es característico de los etiquetadores clásicos de inicios de los 2000, 
-y sirve como punto de referencia histórico para observar la evolución hacia los 
-clasificadores actuales.
-
-\subsubsection{NLTK IOB vs IOBES}
-El script \texttt{conlleval.py} también se aplicó tras adaptar el corpus al esquema 
-\texttt{IOBES}, con el fin de analizar el impacto de este etiquetado en el rendimiento 
-de los modelos y comprender sus variaciones en distintos escenarios.
-
-\begin{alltt}
-$ python materiales-tarea3/conlleval.py < eval_nltk_iobes.txt 
-processed \textcolor{ForestGreen}{619} tokens with \textcolor{ForestGreen}{68} phrases; found: \textcolor{ForestGreen}{73} phrases; correct: \textcolor{ForestGreen}{37}.
-accuracy:  \textcolor{red}{48.91\%}; (non-O)
-accuracy:  91.92\%; precision:  50.68\%; recall:  54.41\%; FB1:  52.48
-              LOC: precision:  63.16\%; recall:  80.00\%; FB1:  70.59  \textcolor{ForestGreen}{38}
-             MISC: precision:   0.00\%; recall:   0.00\%; FB1:   0.00  \textcolor{ForestGreen}{0}
-              ORG: precision:   8.33\%; recall:  50.00\%; FB1:  14.29  \textcolor{ForestGreen}{12}
-              PER: precision:  \textcolor{red}{52.17\%}; recall:  54.55\%; FB1:  \textcolor{red}{53.33}  \textcolor{ForestGreen}{23}
-\end{alltt}
-
-A primera vista vemos que el rendimiento se mantiene en niveles muy similares a los obtenidos con \texttt{IOB}.
-Teóricamente, \texttt{IOBES} debería facilitar la detección de fronteras  \texttt{S-} y \texttt{E-}; pero
-en su lugar, la transición a IOBES en NLTK se ve penalizada en los valores marcados en rojo pero sin existir
-un cambio en las predicciones reales del modelo como se observa en los resultados en verde, los cuales corresponden 
-a los aciertos de las etiquetas que permanecen invariables. Si nos basamos en estos últimos, el resultado 
-de NLTK es exactamente el mismo, pero el evaluador nos 
-devuelve peores métricas de rendimiento\footnote{En este apartado mostraremos los resultados obtenidos y en la Sección
-\ref{anexo}, se detallará el motivo que explica esta aparente inconsistencia}.
- 
-
-\subsection{spaCy}
-
-Con spaCy se observa una evolución interesante en la detección de entidades. Aunque el 
-\textit{accuracy (non-O)} solo aumenta un punto porcentual, el modelo demuestra una 
-especialización notable en categorías clave. A pesar de que las métricas globales como 
-el \textit{precision} y el \textit{FB1} son ligeramente inferiores a las de NLTK 
-debido al alto volumen de falsos positivos (91 entidades propuestas frente a las 68 
-reales), el sistema introduce con éxito la clase \texttt{MISC}, diversificando el 
-reconocimiento.
-
-\newpage
-\begin{verbatim}
-$ python ./materiales-tarea3/conlleval.py < eval_spacy.txt
-processed 619 tokens with 68 phrases; found: 91 phrases; correct: 39.
-accuracy:  57.61%; (non-O)
-accuracy:  82.71%; precision:  42.86%; recall:  57.35%; FB1:  49.06
-              LOC: precision:  86.36%; recall:  63.33%; FB1:  73.08  22
-             MISC: precision:  19.15%; recall:  64.29%; FB1:  29.51  47
-              ORG: precision:   0.00%; recall:   0.00%; FB1:   0.00  10
-              PER: precision:  91.67%; recall:  50.00%; FB1:  64.71  12
-\end{verbatim}
+Por el contrario, palabras como \textit{hire}, \textit{assure}, \textit{reject}, 
+\textit{privilege}, \textit{employe} o \textit{provision} solo aparecen en el ranking ponderado, 
+lo que sugiere que mantienen relaciones más intensas aunque con menos conexiones distintas, 
+característica propia de términos especializados o dependientes de contextos más concretos.
+El campo semántico parece estar vinculado a procesos 
+administrativos, legales y organizativos, donde conceptos relacionados con investigación, 
+documentación y procedimientos formales aparecen como elementos dominantes. Por este motivo, el 
+término más representativo para esta comunidad es \textit{investigate}, ya que aparece entre los 
+nodos con mayor grado y peso y sintetiza el eje temático que articula el resto de relaciones.
 
 
-El valor diferencial de spaCy en este experimento reside en su alta fiabilidad para 
-dos categorías en concreto: alcanza una precisión excelente del 91.67\% en personas 
-(\texttt{PER}) y del 86.36\% en localizaciones (\texttt{LOC}). Esto supone una mejora 
-sustancial en la calidad de los aciertos; cuando el modelo identifica una persona o 
-un lugar, es altamente probable que sea correcto. Aunque el rendimiento global se ve 
-opacado por el ruido en la clase \texttt{MISC} y la nula detección de organizaciones 
-(\texttt{ORG}), estos resultados son positivos para aplicaciones donde la prioridad 
-sea la identificación precisa de individuos y ubicaciones, marcando un paso adelante 
-hacia modelos con mayor capacidad de discriminación entre tipos de entidades.
-
-\subsubsection{spaCy IOB vs IOBES}
-Las métricas han resultado idénticas a las obtenidas mediante el esquema \texttt{IOB}.
-
-\begin{alltt} 
-$ python materiales-tarea3/conlleval.py < eval_spacy_iobes.txt
-processed \textcolor{ForestGreen}{619} tokens with \textcolor{ForestGreen}{68} phrases; found: \textcolor{ForestGreen}{91} phrases; correct: \textcolor{ForestGreen}{39}.
-accuracy:  57.61\%; (non-O)
-accuracy:  82.71\%; precision:  42.86\%; recall:  57.35\%; FB1:  49.06
-              LOC: precision:  86.36\%; recall:  63.33\%; FB1:  73.08  \textcolor{ForestGreen}{22}
-             MISC: precision:  19.15\%; recall:  64.29\%; FB1:  29.51  \textcolor{ForestGreen}{47}
-              ORG: precision:   0.00\%; recall:   0.00\%; FB1:   0.00  \textcolor{ForestGreen}{10}
-              PER: precision:  91.67\%; recall:  50.00\%; FB1:  64.71  \textcolor{ForestGreen}{12}
-\end{alltt}
-
-Esto sugiere que, al igual que en NLTK, el tipo de esquema no afecta a los etiquetadores; 
-las capacidades de predicción se mantienen intactas y el incremento de la complejidad 
-no genera un beneficio demostrable en estos experimentos.
-
-\subsection{Transformer}
-
-
-Con el uso de Transformers, el reconocimiento de entidades alcanza un nivel de 
-rendimiento superior, demostrando la potencia de los modelos basados en atención. 
-La precisión en la categoría de personas (\texttt{PER}) llega al 100\%, lo que 
-significa que cada vez que el modelo predijo una persona, acertó sin margen de 
-error. Es destacable también el \textit{recall} del 100\% en organizaciones 
-(\texttt{ORG}), indicando que el sistema fue capaz de localizar todas las 
-entidades de este tipo presentes en el texto, aunque con una precisión del 50\% 
-que sugiere cierta sensibilidad a los falsos positivos en esta clase 
-(que, aun así, sigue siendo muy superior a la de los anteriores etiquetadores).
-\begin{verbatim}
-$ python ./materiales-tarea3/conlleval.py < eval_transformer.txt
-processed 619 tokens with 68 phrases; found: 67 phrases; correct: 61.
-accuracy:  91.30%; (non-O)
-accuracy:  98.71%; precision:  91.04%; recall:  89.71%; FB1:  90.37
-              LOC: precision:  93.33%; recall:  93.33%; FB1:  93.33  30
-             MISC: precision:  86.67%; recall:  92.86%; FB1:  89.66  15
-              ORG: precision:  50.00%; recall: 100.00%; FB1:  66.67  4
-              PER: precision: 100.00%; recall:  81.82%; FB1:  90.00  18
-\end{verbatim}
-
-
-De las 68 entidades, 67 fueron detectadas y de esas, 61 fueron correctas, lo que se traduce en un 
-\textit{FB1} global del 90.37\%. Este valor se ha visto incrementado gracias a 
-que la detección de falsos positivos es drásticamente inferior a la de los 
-etiquetadores anteriores. Un detalle fundamental es el \textit{accuracy (non-O)} 
-del 91.30\%, que refleja una precisión casi total a nivel de token dentro de las 
-entidades. Estos resultados dejan de manifiesto el salto evolutivo del paradigma: 
-mientras que los modelos anteriores sufrían para mantener el equilibrio entre 
-detectar y clasificar erróneamente, el Transformer logra una cobertura 
-(\textit{recall}) y una fiabilidad (\textit{precision}) muy altas. Este 
-experimento confirma que la arquitectura de aprendizaje profundo ha minimizado 
-la brecha de error, permitiendo automatizaciones de alta fidelidad en el procesamiento 
-del lenguaje natural actual.
-
-\subsubsection{Transformer IOB vs IOBES}
-\begin{alltt}
-$ python ./materiales-tarea3/conlleval.py < eval_transformer_iobes.txt
-processed \textcolor{ForestGreen}{619} tokens with \textcolor{ForestGreen}{68} phrases; found: \textcolor{ForestGreen}{67} phrases; correct: \textcolor{ForestGreen}{61}.
-accuracy:  91.30%; (non-O)
-accuracy:  98.71%; precision:  91.04%; recall:  89.71%; FB1:  90.37
-              LOC: precision:  93.33%; recall:  93.33%; FB1:  93.33  \textcolor{ForestGreen}{30}
-             MISC: precision:  86.67%; recall:  92.86%; FB1:  89.66  \textcolor{ForestGreen}{15}
-              ORG: precision:  50.00%; recall: 100.00%; FB1:  66.67  \textcolor{ForestGreen}{4}
-              PER: precision: 100.00%; recall:  81.82%; FB1:  90.00  \textcolor{ForestGreen}{18}
-\end{alltt}
-BERT mantiene su consistencia al igual que spaCy; las métricas demuestran 
-que el modelo identifica y respeta estrictamente sus fronteras gramaticales, validando que los modelos de 
-aprendizaje profundo generan estructuras de etiquetado altamente robustas.
-
-\subsection{Análisis de resultados}
-Para comparar los tres etiquetadores en la detección de entidades mediante el esquema IOB, 
-se presenta la siguiente gráfica comparativa. En ella se evidencia el "sesgo del accuracy 
-global": mientras que NLTK y spaCy muestran valores altos en esta métrica debido al peso 
-de la clase mayoritaria \texttt{O}, su rendimiento real en la detección (\textit{Accuracy 
-non-O}, \textit{Precision} y \textit{Recall}) se sitúa en niveles mucho más bajos. Esto 
-confirma la necesidad de evaluar el desempeño mediante métricas que prioricen los 
-aciertos sobre las etiquetas de contenido, como el \textit{Accuracy non-O}.
-\\
-
-\noindent\hspace{0.5cm} % Ajusta este valor para moverla más a la izquierda
-\begin{tikzpicture}[trim axis left]
-    \begin{axis}[
-        ybar,
-        enlarge x limits=0.2,
-        legend style={at={(0.5,-0.25)}, anchor=north, legend columns=-1},
-        ylabel={Porcentaje (\%)},
-        symbolic x coords={Acc, AccNonO, Prec, Rec, F1},
-        xtick=data,
-        xticklabels={Accuracy, {Accuracy\\non-O}, Precision, Recall, F1-Score},
-        x tick label style={align=center, font=\small}, 
-        nodes near coords,
-        nodes near coords style={font=\tiny, rotate=90, anchor=west, /pgf/number format/fixed},
-        ymin=0, ymax=140,
-        title={Comparativa de Métricas: NLTK vs spaCy vs BERT},
-        bar width=7pt,
-        height=7.5cm,
-        width=1.1\textwidth,  
-        grid=major,
-        grid style={dashed, gray!30}
-    ]
-        % Serie para NLTK
-        \addplot[fill=blue!40!white] coordinates {
-            (Acc, 93.05) (AccNonO, 56.52) (Prec, 50.68) (Rec, 54.41) (F1, 52.48)
-        };
-        
-        % Serie para spaCy
-        \addplot[fill=red!40!white] coordinates {
-            (Acc, 82.71) (AccNonO, 57.61) (Prec, 42.86) (Rec, 57.35) (F1, 49.06)
-        };
-        
-        % Serie para BERT (Transformer)
-        \addplot[fill=green!70!gray!50] coordinates {
-            (Acc, 98.71) (AccNonO, 91.30) (Prec, 91.04) (Rec, 89.71) (F1, 90.37)
-        };
-        
-        \legend{NLTK, spaCy, BERT}
-    \end{axis}
-\end{tikzpicture}
-
-Se observa que spaCy, pese a tener un \textit{accuracy} global inferior al de NLTK, mantiene 
-una capacidad de cobertura (\textit{recall}) ligeramente superior. Esto indica que spaCy 
-es más "arriesgado" al identificar entidades; sin embargo, ese aumento de la sensibilidad 
-provoca un incremento de falsos positivos, lo que resulta en información menos fiable y 
-penaliza su \textit{precision}.
-
-Finalmente, el gráfico ilustra el salto cualitativo definitivo de BERT, cuyas métricas 
-mantienen una estabilidad superior al 90\%. Esta consistencia visual confirma que el modelo 
-basado en Transformers no solo detecta más etiquetas, sino que lo hace con una fiabilidad 
-que los métodos tradicionales no pueden alcanzar, minimizando drásticamente la brecha 
-entre detección y error.
-
-\noindent\hspace{0.5cm}
-\begin{tikzpicture}[trim axis left]
-    \begin{axis}[
-        ybar,
-        enlarge x limits=0.2,
-        legend style={at={(0.5,-0.2)}, anchor=north, legend columns=-1},
-        ylabel={F1-Score (FB1) \%},
-        symbolic x coords={LOC, MISC, ORG, PER},
-        xtick=data,
-        x tick label style={font=\small},
-        nodes near coords,
-        nodes near coords style={font={ \fontsize{4}{5}\selectfont}, /pgf/number format/fixed},
-        ymin=0, ymax=115,
-        title={Comparativa por Etiquetas: NLTK vs spaCy vs Transformer},
-        bar width=10pt,
-        height=7.5cm,
-        width=1.1\textwidth,
-        grid=major,
-        grid style={dashed, gray!30}
-    ]
-        % Serie para NLTK
-        \addplot[fill=blue!40!white] coordinates {
-            (LOC, 70.59) (MISC, 0.00) (ORG, 14.29) (PER, 53.33)
-        };
-        
-        % Serie para spaCy (En el medio)
-        \addplot[fill=red!40!white] coordinates {
-            (LOC, 73.08) (MISC, 29.51) (ORG, 0) (PER, 64.71)
-        };
-        
-        % Serie para Transformer (BERT)
-        \addplot[fill=green!70!gray!50] coordinates {
-            (LOC, 93.33) (MISC, 89.67) (ORG, 66.67) (PER, 90.00)
-        };
-        
-        \legend{NLTK, spaCy, Transformer}
-    \end{axis}
-\end{tikzpicture}
-
-Complementando el análisis global, la comparativa por etiquetas permite identificar 
-las fortalezas de cada modelo según la categoría. Se observa que \texttt{LOC} es la 
-etiqueta más estable en los tres sistemas, mientras que \texttt{ORG} representa el mayor 
-desafío, con un rendimiento nulo en spaCy y muy reducido en NLTK. Es notable cómo 
-spaCy, a pesar de sus limitaciones globales, logra superar a NLTK en las categorías 
-\texttt{MISC} y \texttt{PER}, lo que confirma su mayor capacidad de especialización. 
-Nuevamente, el modelo Transformer demuestra su hegemonía al mantener un \textit{F1-Score} 
-robusto en todas las clases, logrando rescatar incluso categorías críticas como 
-\texttt{ORG} y \texttt{MISC} donde los modelos clásicos muestran una eficacia mínima 
-o inexistente.
- 
-
-\section{Anexo: Inconsistencia en NLTK. IOB vs IOBES}
-\label{anexo}
-Tras varios análisis, se ha observado que la caída del \textit{accuracy (non-O)} en 
-NLTK responde a la incapacidad del modelo para generar secuencias estructuralmente 
-coherentes con la jerarquía de etiquetas de IOBES. 
-
-En el esquema IOB, el modelo puede obtener un acierto parcial por token si identifica 
-correctamente el inicio de una entidad (\texttt{B-}), incluso si falla en la 
-segmentación de los tokens posteriores. Sin embargo, en IOBES esta permisividad 
-desaparece si el modelo no detecta la continuidad de una entidad y la etiqueta 
-erróneamente como palabra única (\texttt{S-}). 
-
-\begin{alltt}
-Nadim Ladki. Inconsistencia en ``Nadim''
-  IOB   -> Gold: B-PER  | Pred: B-PER  => ACIERTO
-  IOBES -> Gold: B-PER  | Pred: S-PER  => FALLO
-
-United Arab Emirates. Inconsistencia en ``Arab''
-  IOB   -> Gold: I-LOC  | Pred: I-LOC  => ACIERTO
-  IOBES -> Gold: I-LOC  | Pred: E-LOC  => FALLO
-
-Oleg Shatskiku. Inconsistencia en ``Oleg''
-  IOB   -> Gold: B-PER  | Pred: B-PER  => ACIERTO
-  IOBES -> Gold: B-PER  | Pred: S-PER  => FALLO
-
-Takuya Takagi. Inconsistencia en ``Takuya''
-  IOB   -> Gold: B-PER  | Pred: B-PER  => ACIERTO
-  IOBES -> Gold: B-PER  | Pred: S-PER  => FALLO
-
-Nader Jokhadar. Inconsistencia en ``Nader''
-  IOB   -> Gold: B-PER  | Pred: B-PER  => ACIERTO
-  IOBES -> Gold: B-PER  | Pred: S-PER  => FALLO
-
-RUGBY UNION. Inconsistencia en ``RUGBY''
-  IOB   -> Gold: B-ORG  | Pred: B-ORG  => ACIERTO
-  IOBES -> Gold: B-ORG  | Pred: S-ORG  => FALLO
-
-Stefano Bordon. Inconsistencia en ``Stefano''
-  IOB   -> Gold: B-PER  | Pred: B-PER  => ACIERTO
-  IOBES -> Gold: B-PER  | Pred: S-PER  => FALLO
-\end{alltt}
-
-
-
-En estos escenarios se produce un error de coincidencia frente al \textit{Gold 
-Standard}, que espera un prefijo \texttt{B-}. Por tanto, la degradación en el 
-accuracy de NLTK no se debe a la aparición de nuevos errores, sino a que el esquema 
-IOBES es más estricto. Aunque el modelo falla en las mismas entidades en ambos 
-esquemas, IOB contabiliza el primer token de la secuencia fallida como correcto, 
-mientras que IOBES penaliza la falta de exactitud en la estructura de las entidades 
-compuestas si, tras acertar una primera etiqueta, el modelo no mantiene o no 
-continua con los elementos que completan la secuencia \texttt{B-I-E}.
-
-Esta discrepancia explica por qué el esquema IOBES devuelve un porcentaje de acierto 
-por token inferior en NLTK. A diferencia de las redes neuronales de spaCy o de la 
-arquitectura Transformer de BERT, NLTK carece de mecanismos de modelado secuencial 
-capaces de aprender y mantener de forma consistente la estructura interna de las 
-entidades. Mientras que en modelos modernos la predicción de etiquetas se realiza 
-teniendo en cuenta el contexto completo de la secuencia, lo que favorece transiciones 
-coherentes entre etiquetas \texttt{B-}, \texttt{I-} y \texttt{E-} alineadas con el 
-\textit{gold standard}, NLTK puede generar secuencias válidas en IOB pero inconsistentes 
-al transformarse a IOBES. Como resultado, aunque el número de entidades detectadas se 
-mantiene, la normalización penaliza estas incoherencias estructurales, 
-afectando a las métricas finales.
- 
 
 \newpage
 
+
+
+\section*{Comunidad 3 - Police}
+
+En la Comunidad 3 se observa una estructura jerárquica donde los términos 
+\textit{police}, \textit{construction}, \textit{hearing}, \textit{attorney}, \textit{admit}, 
+\textit{cabinet} y \textit{property} ocupan posiciones destacadas en ambas métricas, 
+constituyendo el núcleo estructural y semántico del subgrafo. Estos nodos combinan 
+una alta diversidad de conexiones con una intensidad elevada de coaparición, situándose como 
+centros semánticos de la red.
+
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+772 & \textcolor{ForestGreen}{police} & 47 & 59.9574 \\
+331 & \textcolor{ForestGreen}{construction} & 34 & 36.8864 \\
+470 & \textcolor{ForestGreen}{hearing} & 33 & 30.2936 \\
+219 & \textcolor{ForestGreen}{attorney} & 26 & 31.0277 \\
+798 & \textcolor{ForestGreen}{admit} & 25 & 29.5414 \\
+222 & \textcolor{ForestGreen}{property} & 24 & 25.6138 \\
+777 & arrest & 24 & 22.1554 \\
+1000 & \textcolor{ForestGreen}{cabinet} & 24 & 26.2667 \\
+1 & investigation & 23 & 16.9025 \\
+137 & court & 23 & 14.4315 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+772 & \textcolor{ForestGreen}{police} & 47 & 59.9574 \\
+331 & \textcolor{ForestGreen}{construction} & 34 & 36.8864 \\
+10 & jury & 19 & 31.4183 \\
+219 & \textcolor{ForestGreen}{attorney} & 26 & 31.0277 \\
+470 & \textcolor{ForestGreen}{hearing} & 33 & 30.2936 \\
+798 & \textcolor{ForestGreen}{admit} & 25 & 29.5414 \\
+138 & fire & 17 & 29.2208 \\
+28 & receive & 21 & 28.1654 \\
+1000 & \textcolor{ForestGreen}{cabinet} & 24 & 26.2667 \\
+222 & \textcolor{ForestGreen}{property} & 24 & 25.6138 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+
+\vspace{0.5cm}
+
+
+El núcleo principal presenta una coincidencia elevada entre ambas tablas con siete de los 
+diez términos en común en ambos rankings. Esto indica que los conceptos centrales 
+de la comunidad mantienen relevancia tanto en la amplitud de relaciones como en 
+intensidad total de sus vínculos, lo que sugiere una cohesión temática fuerte y estable.
+
+Entre las diferencias más relevantes se observa que términos como \textit{arrest}, 
+\textit{investigation} y \textit{court} aparecen únicamente en el listado por grado, lo que indica 
+que se relacionan con un número amplio de términos distintos pero con menor intensidad acumulada, 
+actuando como nodos de enlace o elementos contextuales generales dentro de la comunidad. Mientras
+tanto, palabras como \textit{jury}, \textit{fire} y \textit{receive} solo aparecen en el 
+ranking ponderado, lo que indica que mantienen relaciones más intensas aunque con menos conexiones 
+distintas, característica propia de términos más específicos o dependientes de contextos concretos.
+
+El campo semántico se ve vinculado al ámbito judicial y 
+administrativo, donde conceptos relacionados con procedimientos legales, autoridades y gestión 
+institucional estructuran la comunidad. Por este motivo, el término más representativo para esta 
+comunidad es \textit{police}, ya que aparece como el nodo con mayor grado y peso y sintetiza el eje 
+temático dominante del subgrafo.
+
+
+
+\newpage
+
+\section*{Comunidad 4 - Diplomatic}
+
+
+En la Comunidad 4 se observa una estructura jerárquica bien definida donde los términos 
+\textit{consultation}, \textit{ally}, \textit{diplomatic} y \textit{prevent} ocupan posiciones 
+destacadas en ambas métricas, lo que indica que constituyen el núcleo estructural y semántico 
+del subgrafo. Estos nodos presentan simultáneamente una alta diversidad de conexiones y una 
+intensidad elevada de coaparición, lo que evidencia su papel central dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1149 & \textcolor{ForestGreen}{consultation} & 49 & 41.8272 \\
+1037 & \textcolor{ForestGreen}{ally} & 41 & 34.0270 \\
+1229 & \textcolor{ForestGreen}{diplomatic} & 41 & 34.0270 \\
+1238 & intervention & 38 & 28.3684 \\
+1228 & bloc & 35 & 27.7394 \\
+1297 & neutralist & 35 & 27.7394 \\
+1057 & bitter & 32 & 22.5169 \\
+1051 & tension & 31 & 19.7045 \\
+1175 & \textcolor{ForestGreen}{prevent} & 30 & 35.9384 \\
+1061 & allied & 29 & 23.5419 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1149 & \textcolor{ForestGreen}{consultation} & 49 & 41.8272 \\
+1175 & \textcolor{ForestGreen}{prevent} & 30 & 35.9384 \\
+972 & reaction & 26 & 34.2553 \\
+1037 & \textcolor{ForestGreen}{ally} & 41 & 34.0270 \\
+1229 & \textcolor{ForestGreen}{diplomatic} & 41 & 34.0270 \\
+169 & political & 27 & 33.9719 \\
+1022 & climate & 24 & 33.1499 \\
+1088 & global & 24 & 32.5985 \\
+1148 & timely & 24 & 32.5985 \\
+1184 & inclination & 24 & 32.5985 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+ 
+
+Entre las variaciones más relevantes se observa que términos como \textit{intervention}, 
+\textit{bloc}, \textit{neutralist}, \textit{bitter}, \textit{tension} y \textit{allied} aparecen 
+únicamente en el ranking por grado. Esto indica que se relacionan con un número amplio de términos 
+distintos, aunque con menor intensidad acumulada, lo que sugiere que funcionan como elementos de 
+contexto general o nodos de enlace dentro de la estructura temática.
+
+Por el contrario, palabras como \textit{reaction}, \textit{political}, \textit{climate}, 
+\textit{global}, \textit{timely} o \textit{inclination} solo aparecen en el listado ponderado, lo 
+que indica que mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo 
+propio de términos más específicos o dependientes de contextos concretos.
+
+Los nodos que ganan peso son 
+los que realmente sostienen la intensidad temática orientada a la diplomacia 
+y las relaciones internacionales, donde conceptos asociados a alianzas, prevención de 
+conflictos y cooperación política estructuran la comunidad. Por este motivo, el 
+término más representativo para esta comunidad es \textit{diplomatic}, ya que 
+aparece entre los nodos con mayor 
+grado y peso y sintetiza el eje temático dominante del subgrafo.
+
+ 
+
+\section*{Comunidad 5 - Estimate}
+En la Comunidad 5 se observa una estructura relativamente equilibrada donde los términos 
+\textit{estimate}, \textit{residential}, \textit{outlay}, \textit{approval} y \textit{victim} 
+aparecen en posiciones destacadas en ambas métricas, lo que indica que constituyen el núcleo 
+estructural y semántico del subgrafo. Estos nodos presentan simultáneamente una diversidad notable 
+de conexiones y una intensidad elevada de coaparición, situándose como puntos centrales dentro de 
+la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+482 & \textcolor{ForestGreen}{estimate} & 29 & 24.4942 \\
+559 & \textcolor{ForestGreen}{outlay} & 21 & 18.3271 \\
+554 & \textcolor{ForestGreen}{residential} & 20 & 19.7080 \\
+2062 & flat & 20 & 13.9847 \\
+1192 & chain & 19 & 13.6469 \\
+2090 & builder & 19 & 7.0864 \\
+1067 & atomic & 18 & 13.7516 \\
+1426 & shopping & 17 & 8.8281 \\
+2076 & \textcolor{ForestGreen}{victim} & 17 & 17.3913 \\
+459 & \textcolor{ForestGreen}{approval} & 16 & 17.4590 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+482 & \textcolor{ForestGreen}{estimate} & 29 & 24.4942 \\
+581 & proposal & 14 & 24.3684 \\
+554 & \textcolor{ForestGreen}{residential} & 20 & 19.7080 \\
+559 & \textcolor{ForestGreen}{outlay} & 21 & 18.3271 \\
+459 & \textcolor{ForestGreen}{approval} & 16 & 17.4590 \\
+2076 & \textcolor{ForestGreen}{victim} & 17 & 17.3913 \\
+364 & increase & 14 & 17.2862 \\
+498 & personal & 10 & 14.3840 \\
+904 & payment & 13 & 14.1531 \\
+610 & requirement & 12 & 14.0937 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+ 
+
+Entre las diferencias más relevantes se observa que términos como \textit{flat}, \textit{chain}, 
+\textit{builder}, \textit{atomic} y \textit{shopping} aparecen únicamente en el listado por grado, 
+lo que indica que se relacionan con muchos términos distintos pero con menor frecuencia total, 
+actuando como nodos de enlace o elementos contextuales amplios dentro del subgrafo.
+
+Por el contrario, palabras como \textit{proposal}, \textit{increase}, \textit{personal}, 
+\textit{payment} o \textit{requirement} solo aparecen en el ranking ponderado, lo que indica que 
+mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo característico de 
+términos más específicos o dependientes de contextos concretos.
+
+El campo semántico está vinculado a procesos económicos y 
+administrativos relacionados con planificación, inversión y gestión de recursos, donde conceptos 
+asociados a estimaciones, gastos y aprobaciones destacan en la comunidad.El término 
+más representativo es \textit{estimate}, ya que aparece como el nodo con mayor 
+grado y peso y sintetiza el eje temático dominante del subgrafo, lo que confirma 
+que sus relaciones no solo son numerosas, sino también las más intensas y 
+frecuentes dentro de la comunidad.
+
+
+\newpage
+
+\section*{Comunidad 6 - Mechanism}
+
+En la Comunidad 6 se observa una estructura relativamente cohesionada donde los términos 
+\textit{stem}, \textit{very}, \textit{vary} y \textit{mechanism} aparecen en posiciones destacadas 
+en ambas métricas, lo que indica que constituyen el núcleo estructural y semántico del subgrafo. 
+La palabra \textit{very} tiende a aparecer de forma extremadamente recurrente, lo que posiblemente 
+sea debido a apariciones junto a términos técnicos de esta comunidad, como artificial, 
+protective o mechanism, para reforzar descripciones por lo que su co-aparición no es 
+aleatoria, sino que está anclada a conceptos técnicos de este clúster específico.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1332 & \textcolor{ForestGreen}{stem} & 23 & 14.7057 \\
+1016 & \textcolor{ForestGreen}{very} & 22 & 20.5590 \\
+3389 & \textcolor{ForestGreen}{vary} & 20 & 16.1942 \\
+3947 & \textcolor{ForestGreen}{mechanism} & 20 & 13.7127 \\
+1431 & enterprise & 18 & 10.6537 \\
+3768 & profession & 18 & 10.5577 \\
+1126 & european & 17 & 9.0358 \\
+1039 & circumstance & 15 & 7.6644 \\
+1111 & application & 15 & 10.1116 \\
+168 & eliminate & 14 & 6.1563 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1016 & \textcolor{ForestGreen}{very} & 22 & 20.5590 \\
+4968 & scheme & 11 & 16.7398 \\
+4987 & protective & 11 & 16.7398 \\
+5014 & brand & 11 & 16.7398 \\
+5029 & paradox & 11 & 16.7398 \\
+5045 & substitute & 11 & 16.7398 \\
+5059 & artificial & 11 & 16.7398 \\
+3389 & \textcolor{ForestGreen}{vary} & 20 & 16.1942 \\
+1332 & \textcolor{ForestGreen}{stem} & 23 & 14.7057 \\
+3947 & \textcolor{ForestGreen}{mechanism} & 20 & 13.7127 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{enterprise}, 
+\textit{profession}, \textit{european}, \textit{circumstance}, \textit{application} y 
+\textit{eliminate} aparecen únicamente en el listado por grado, lo que indica que se relacionan 
+con muchos términos distintos pero con menor intensidad total, actuando como nodos de enlace o 
+elementos contextuales amplios dentro de la comunidad.
+
+Por el contrario, palabras como \textit{scheme}, \textit{protective}, \textit{brand}, 
+\textit{paradox}, \textit{substitute} y \textit{artificial} solo aparecen en el ranking ponderado, 
+lo que indica que mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo 
+propio de términos más específicos o dependientes de contextos concretos.
+
+El campo semántico sugiere un ámbito conceptual relacionado con procesos, variación y funcionamiento 
+de sistemas, donde aparecen términos asociados a mecanismos, cambios y condiciones de operación. Por 
+este motivo, el término más representativo es \textit{mechanism}, ya que aparece entre los nodos con 
+mayor grado y peso y sintetiza el eje temático dominante del subgrafo.
+
+\newpage
+\section*{Comunidad 7 - Pilot}
+
+En la Comunidad 7 se observa una estructura parcialmente concentrada donde los términos 
+\textit{automatic}, \textit{taxi} y \textit{halt} que sugieren una comunidad heterogénea y 
+dispersa, con conexiones variadas pero posiblemente accidentales o de baja frecuencia en el corpus. 
+Esto podría reflejar una amplitud estructural alta pero con poca fuerza de enlace en la 
+matriz de adyacencia.
+Sin embargo, al aplicar la métrica de grado con pesos, la estructura cambia por completo. 
+Aparece un bloque sólido de términos relacionados con la aeronáutica 
+\textit{cockpit}, \textit{bomber}, \textit{runway}, 
+\textit{jet}, que poseen exactamente el mismo peso de interacción. 
+Este fenómeno indica la existencia de una ``clique'' o subgrupo con una relación más fuerte entre sí 
+que con el resto de la red y solo aparecen en el ranking 
+ponderado, lo que refuerza que mantienen relaciones más intensas aunque con menos conexiones 
+distintas, rasgo característico de términos especializados o dependientes de contextos muy 
+concretos.
+El término halt, que ocupa una posición baja en grado simple, escala hasta la 
+segunda posición ponderada, lo que demuestra que su uso está íntimamente ligado a 
+este contexto específico de aviación.
+ 
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3321 & \textcolor{ForestGreen}{automatic} & 24 & 19.0645 \\
+3881 & farmer & 22 & 14.5975 \\
+1721 & \textcolor{ForestGreen}{taxi} & 21 & 22.6571 \\
+3567 & fuel & 21 & 16.9585 \\
+1253 & disclose & 19 & 12.8941 \\
+1326 & crime & 17 & 14.2169 \\
+1762 & mortgage & 15 & 11.7213 \\
+817 & write & 13 & 6.1059 \\
+1449 & wage & 13 & 12.6424 \\
+3921 & \textcolor{ForestGreen}{halt} & 12 & 19.3924 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1721 & \textcolor{ForestGreen}{taxi} & 21 & 22.6571 \\
+3921 & \textcolor{ForestGreen}{halt} & 12 & 19.3924 \\
+3928 & cockpit & 12 & 19.3924 \\
+3932 & bomber & 12 & 19.3924 \\
+3933 & runway & 12 & 19.3924 \\
+3936 & jet & 12 & 19.3924 \\
+3939 & pilot & 12 & 19.3924 \\
+3950 & engine & 12 & 19.3924 \\
+3966 & landing & 12 & 19.3924 \\
+3321 & \textcolor{ForestGreen}{automatic} & 24 & 19.0645 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{farmer}, 
+\textit{fuel}, \textit{disclose}, \textit{crime}, \textit{mortgage}, \textit{write} y 
+\textit{wage} aparecen únicamente en el listado por grado, lo que indica que se relacionan con 
+muchos términos distintos pero con menor intensidad total, actuando como nodos de enlace o 
+elementos contextuales amplios dentro de la comunidad.
+ 
+El campo semántico apunta a un ámbito relacionado con transporte y sistemas mecánicos, 
+especialmente asociado al contexto de vehículos, funcionamiento técnico y maniobras. 
+Por este motivo, el término más representativo 
+es \textit{Pilot}, ya que aparece entre los nodos con mayor grado y peso y sintetiza el eje temático 
+dominante del subgrafo.
+
+
+\newpage
+
+\section*{Comunidad 8 - Development}
+
+En la Comunidad 8 se observa una estructura cohesionada donde los términos 
+\textit{advance}, \textit{understand}, \textit{development}, \textit{understanding}, 
+\textit{reference}, \textit{process}, \textit{weakness} y \textit{budget} aparecen en posiciones 
+destacadas en ambas métricas, lo que indica que constituyen el núcleo estructural y semántico del 
+subgrafo. Estos nodos combinan una diversidad notable de conexiones con una intensidad elevada de 
+coaparición, situándose como los principales organizadores conceptuales dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1014 & \textcolor{ForestGreen}{understanding} & 24 & 15.5003 \\
+1060 & \textcolor{ForestGreen}{advance} & 21 & 32.8997 \\
+1026 & \textcolor{ForestGreen}{understand} & 20 & 28.7065 \\
+4537 & adequate & 19 & 10.4317 \\
+670 & \textcolor{ForestGreen}{development} & 17 & 25.1008 \\
+462 & certain & 15 & 9.1241 \\
+1567 & \textcolor{ForestGreen}{reference} & 14 & 12.7389 \\
+862 & \textcolor{ForestGreen}{process} & 13 & 14.4028 \\
+1697 & \textcolor{ForestGreen}{weakness} & 13 & 16.2344 \\
+555 & \textcolor{ForestGreen}{budget} & 12 & 14.9643 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1060 & \textcolor{ForestGreen}{advance} & 21 & 32.8997 \\
+1026 & \textcolor{ForestGreen}{understand} & 20 & 28.7065 \\
+670 & \textcolor{ForestGreen}{development} & 17 & 25.1008 \\
+1697 & \textcolor{ForestGreen}{weakness} & 13 & 16.2344 \\
+1014 & \textcolor{ForestGreen}{understanding} & 24 & 15.5003 \\
+555 & \textcolor{ForestGreen}{budget} & 12 & 14.9643 \\
+862 & \textcolor{ForestGreen}{process} & 13 & 14.4028 \\
+1567 & \textcolor{ForestGreen}{reference} & 14 & 12.7389 \\
+1142 & apparent & 10 & 11.4902 \\
+1035 & difficulty & 10 & 11.3314 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{adequate} y 
+\textit{certain} aparecen únicamente en el listado por grado, lo que indica que se relacionan con 
+muchos términos distintos pero con menor intensidad total que palabras como \textit{apparent} y 
+\textit{difficulty} que solo aparecen en el ranking ponderado. Esto sugiere una 
+especialización temática hacia el análisis y la resolución de problemas, debido a que 
+estas últimas mantienen relaciones más intensas aunque con menos conexiones distintas, 
+rasgo característico de términos más específicos o dependientes de contextos concretos.
+
+El campo semántico sugiere un ámbito conceptual vinculado a procesos cognitivos, desarrollo y análisis, 
+donde aparecen términos relacionados con comprensión, evaluación y evolución conceptual. Por este 
+motivo, el término más representativo es \textit{development}, ya que 
+permite identificar los términos que sostienen la carga semántica real del grupo, 
+centrada en el avance, el desarrollo procedimental, además que aparece entre los nodos con mayor 
+grado y peso, sintetizando el eje temático dominante del subgrafo.
+
+
+\newpage
+\section*{Comunidad 9 - Pledge}
+
+En la Comunidad 9 se observa una estructura moderadamente dispersa donde los términos 
+\textit{pledge}, \textit{tract}, \textit{animal} y \textit{teamster} aparecen en posiciones 
+destacadas en ambas métricas, lo que indica que constituyen el núcleo estructural y semántico del 
+subgrafo. Estos nodos combinan una diversidad de conexiones relativamente alta con una intensidad 
+de coaparición significativa, situándose como los principales organizadores dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1636 & \textcolor{ForestGreen}{pledge} & 15 & 11.8739 \\
+1661 & \textcolor{ForestGreen}{tract} & 10 & 11.7035 \\
+2128 & explosive & 10 & 3.9676 \\
+425 & calm & 9 & 4.9719 \\
+1490 & meaning & 9 & 4.3317 \\
+2064 & \textcolor{ForestGreen}{animal} & 9 & 7.2759 \\
+2108 & \textcolor{ForestGreen}{teamster} & 9 & 7.2759 \\
+441 & violence & 8 & 3.1471 \\
+2038 & intervene & 8 & 4.8900 \\
+4624 & wash & 8 & 5.2467 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1636 & \textcolor{ForestGreen}{pledge} & 15 & 11.8739 \\
+1661 & \textcolor{ForestGreen}{tract} & 10 & 11.7035 \\
+1568 & discredited & 6 & 10.5921 \\
+1591 & desperate & 6 & 10.5921 \\
+1607 & repay & 6 & 10.5921 \\
+1657 & hoodlum & 6 & 10.5921 \\
+1665 & conservation & 6 & 10.5921 \\
+2064 & \textcolor{ForestGreen}{animal} & 9 & 7.2759 \\
+2108 & \textcolor{ForestGreen}{teamster} & 9 & 7.2759 \\
+17 & manner & 3 & 5.3877 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{explosive}, 
+\textit{calm}, \textit{meaning}, \textit{violence}, \textit{intervene} y \textit{wash} aparecen 
+únicamente en el listado por grado, lo que indica que se relacionan con muchos términos distintos 
+pero con menor intensidad total, actuando como nodos contextuales y palabras como \textit{discredited}, \textit{desperate}, \textit{repay}, 
+\textit{hoodlum} y \textit{conservation} emergen con un peso idéntico de 10.5921. 
+Según la teoría de partición de grafos, este fenómeno indica la existencia de un subgrupo con 
+una relación ``más fuerte'' e intensa entre sí que con el resto de la red dado a que solo aparecen en el ranking ponderado, 
+lo que indica que mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo 
+propio de términos más específicos o dependientes de contextos concretos.
+El término más representativo es \textit{pledge} (promesa o compromiso) actúa como un eje 
+central para un grupo de palabras con tintes sociales y procedimentales. La aparición 
+de términos con alto peso como repay (reembolsar), conservation (conservación) y 
+teamster (miembro de sindicato de transporte) sugiere un contexto de acuerdos o 
+compromisos institucionales y laborales. Al ser el nodo con mayor centralidad en la matriz de 
+adyacencia de este grupo, representa fielmente a una comunidad donde el compromiso o la 
+obligación parece ser el vínculo temático predominante.
+
+
+
+
+\newpage 
+
+
+\section*{Comunidad 10 - Market}
+
+En la Comunidad 10 se observa una estructura claramente definida donde los términos 
+\textit{market}, \textit{earning}, \textit{investor}, \textit{production}, \textit{equipment} y 
+\textit{price} aparecen en posiciones destacadas en ambas métricas, lo que indica que constituyen 
+el núcleo estructural y semántico del subgrafo. Estos nodos combinan una alta diversidad de 
+conexiones con una intensidad elevada de coaparición, situándose como los principales ejes 
+organizadores dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3384 & \textcolor{ForestGreen}{market} & 35 & 37.6279 \\
+4046 & \textcolor{ForestGreen}{earning} & 33 & 20.4574 \\
+4032 & \textcolor{ForestGreen}{investor} & 32 & 19.7702 \\
+4097 & marketing & 30 & 16.7314 \\
+2173 & compare & 28 & 18.6556 \\
+4054 & corn & 27 & 13.6037 \\
+4094 & \textcolor{ForestGreen}{production} & 27 & 25.6798 \\
+1357 & \textcolor{ForestGreen}{equipment} & 25 & 22.4271 \\
+4052 & competitive & 24 & 16.0284 \\
+179 & \textcolor{ForestGreen}{price} & 23 & 20.4423 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3384 & \textcolor{ForestGreen}{market} & 35 & 37.6279 \\
+1448 & product & 17 & 29.9264 \\
+4094 & \textcolor{ForestGreen}{production} & 27 & 25.6798 \\
+1357 & \textcolor{ForestGreen}{equipment} & 25 & 22.4271 \\
+4046 & \textcolor{ForestGreen}{earning} & 33 & 20.4574 \\
+179 & \textcolor{ForestGreen}{price} & 23 & 20.4423 \\
+1551 & industry & 22 & 20.2054 \\
+4032 & \textcolor{ForestGreen}{investor} & 32 & 19.7702 \\
+2289 & yield & 12 & 19.2198 \\
+3345 & improvement & 23 & 19.0698 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{marketing}, 
+\textit{compare}, \textit{corn} y \textit{competitive} aparecen únicamente en el listado por grado, 
+lo que indica que se relacionan con muchos términos distintos pero con menor intensidad total, 
+actuando como nodos de enlace o elementos contextuales amplios dentro de la comunidad.
+
+Por el contrario, palabras como \textit{product}, \textit{industry}, \textit{yield} e 
+\textit{improvement} solo aparecen en el ranking ponderado, lo que indica que mantienen relaciones 
+más intensas aunque con menos conexiones distintas, rasgo característico de términos más específicos 
+o dependientes de contextos concretos.
+
+Los términos como \textit{product}, \textit{production}, \textit{earning}, \textit{price} e \textit{investor} 
+definen un escenario comercial, un ámbito claramente vinculado a la actividad productiva y económica, por lo que el
+término más representativo para esta comunidad es \textit{market}, ya que al aparecer como el nodo con mayor grado y peso,  
+destaca como el principal centro de la red, demostrando que en la comunidad analizada, es el término que 
+articula la mayoría de las conversaciones sobre comercio e industria
+
+
+\newpage
+\section*{Comunidad 11 - Front}
+
+En la Comunidad 11 se observa una estructura moderadamente dispersa donde los términos 
+\textit{front}, \textit{deadlock}, \textit{rebel}, \textit{heat}, \textit{err} y 
+\textit{treatment} aparecen en posiciones destacadas en ambas métricas. Combinan una diversidad 
+de conexiones relativamente alta con una intensidad de coaparición significativa, situándose 
+como los principales nucleos estructurales la red.
+El nodo \textit{deadlock} posee el mayor grado simple, lo que sugiere un término de enlace con 
+una mayor variedad de palabras distintas. Sin embargo, al aplicar el grado con pesos, 
+el término \textit{front} pasa a tener la relación más fuerte y recurrente dentro del clúster.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2292 & \textcolor{ForestGreen}{deadlock} & 17 & 9.1953 \\
+2125 & \textcolor{ForestGreen}{front} & 15 & 9.3025 \\
+2170 & \textcolor{ForestGreen}{rebel} & 13 & 8.5288 \\
+1451 & catch & 12 & 5.1904 \\
+2354 & slug & 12 & 7.8427 \\
+2442 & physician & 12 & 5.6775 \\
+1824 & tactic & 10 & 4.9889 \\
+3169 & \textcolor{ForestGreen}{heat} & 10 & 8.6750 \\
+1306 & \textcolor{ForestGreen}{err} & 9 & 8.4916 \\
+2510 & \textcolor{ForestGreen}{treatment} & 9 & 8.2077 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2125 & \textcolor{ForestGreen}{front} & 15 & 9.3025 \\
+5182 & chinese & 7 & 9.2556 \\
+5188 & transport & 7 & 9.2556 \\
+5256 & ante & 7 & 9.2556 \\
+5266 & presidency & 7 & 9.2556 \\
+2292 & \textcolor{ForestGreen}{deadlock} & 17 & 9.1953 \\
+3169 & \textcolor{ForestGreen}{heat} & 10 & 8.6750 \\
+2170 & \textcolor{ForestGreen}{rebel} & 13 & 8.5288 \\
+1306 & \textcolor{ForestGreen}{err} & 9 & 8.4916 \\
+2510 & \textcolor{ForestGreen}{treatment} & 9 & 8.2077 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{catch}, \textit{slug}, 
+\textit{physician} y \textit{tactic} aparecen únicamente en el listado por grado, lo que indica 
+que se relacionan con muchos términos distintos pero con menor intensidad total, actuando como 
+nodos contextuales amplios dentro de la comunidad.
+
+Por el contrario, palabras como \textit{chinese}, \textit{transport}, \textit{ante} y 
+\textit{presidency} solo aparecen en el ranking ponderado con un valor idéntico y muy elevado.
+lo que sugiere la existencia de una relación entre ellos muy densa donde estos términos 
+co-aparecen siempre juntos, formando un bloque temático específico que el grado simple no alcanza a priorizar.
+
+El campo semántico sugiere un conjunto heterogéneo vinculado a situaciones de confrontación, 
+posición o dinámica estratégica, donde aparecen términos asociados a frentes, conflictos, 
+decisiones y reacciones. Por este motivo, el término más representativo es \textit{front}, 
+que destaca por su estabilidad en ambas métricas, ocupando la segunda posición en grado 
+simple y ascendiendo al primer puesto en grado con pesos, lo que lo consolida como el núcleo de mayor intensidad de la comunidad.
+\newpage
+
+
+\section*{Comunidad 12 - Catcher}
+
+La Comunidad 12 presenta un núcleo temático muy específico relacionado con el béisbol. 
+La aparición de términos con alto peso como \textit{bunt} (toque de bola), 
+\textit{shortstop} (paracorto) y \textit{teammate} (compañero de equipo), 
+junto con nombres propios que actúan como términos en este corpus, refuerza 
+esta interpretación. 
+
+Esto es relevante porque en inglés \textit{mantle}, probablemente en referencia 
+a Mickey Mantle, significa \textit{manto}, cuyo significado no guarda relación 
+con el resto de palabras salvo que se trate del apellido de un jugador. Esto 
+da más fuerza a la definición de un clúster deportivo.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2851 & drag & 18 & 9.2876 \\
+2891 & \textcolor{ForestGreen}{blond} & 17 & 15.4827 \\
+2894 & \textcolor{ForestGreen}{ultimate} & 17 & 12.2663 \\
+2901 & \textcolor{ForestGreen}{possess} & 17 & 15.4827 \\
+2917 & \textcolor{ForestGreen}{mantle} & 17 & 15.4827 \\
+2360 & pound & 16 & 9.7960 \\
+2897 & peak & 16 & 9.8173 \\
+2066 & \textcolor{ForestGreen}{catcher} & 15 & 11.3041 \\
+2872 & \textcolor{ForestGreen}{recall} & 15 & 9.9340 \\
+2324 & \textcolor{ForestGreen}{bunt} & 14 & 12.7305 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2891 & \textcolor{ForestGreen}{blond} & 17 & 15.4827 \\
+2901 & \textcolor{ForestGreen}{possess} & 17 & 15.4827 \\
+2917 & \textcolor{ForestGreen}{mantle} & 17 & 15.4827 \\
+2324 & \textcolor{ForestGreen}{bunt} & 14 & 12.7305 \\
+2358 & shortstop & 14 & 12.7305 \\
+2390 & teammate & 14 & 12.7305 \\
+2894 & \textcolor{ForestGreen}{ultimate} & 17 & 12.2663 \\
+2066 & \textcolor{ForestGreen}{catcher} & 15 & 11.3041 \\
+2919 & thin & 13 & 10.9846 \\
+2872 & \textcolor{ForestGreen}{recall} & 15 & 9.9340 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como 
+\textit{drag}, \textit{pound} y \textit{peak} aparecen únicamente en el 
+listado por grado, lo que indica que se relacionan con muchos términos 
+distintos pero con menor intensidad total, actuando como nodos 
+contextuales amplios dentro de la comunidad.
+
+Por el contrario, palabras como \textit{shortstop}, \textit{teammate} y 
+\textit{thin} solo aparecen en el ranking ponderado, lo que indica que 
+mantienen relaciones más intensas aunque con menos conexiones distintas, 
+rasgo propio de términos más específicos o dependientes de contextos 
+concretos.
+
+El campo semántico apunta a un ámbito deportivo, en concreto al béisbol, 
+donde aparecen términos asociados a posiciones, jugadas y jugadores. 
+Por este motivo, el término más representativo es \textit{Catcher}, ya que 
+aparece entre los nodos con mayor grado y peso y sintetiza el eje temático 
+dominante del subgrafo. Se descarta \textit{Mantle} porque, aunque podría 
+remitir a un jugador concreto, el bloque temático refleja una semántica 
+más general del deporte.
+
+
+\newpage
+\section*{Comunidad 13 - League}
+
+En la Comunidad 13 se observa una estructura altamente cohesionada donde los términos 
+\textit{player}, \textit{pennant}, \textit{rookie}, \textit{pitcher}, \textit{bat}, 
+\textit{ball}, \textit{team}, \textit{league} y \textit{game} aparecen en posiciones destacadas 
+en ambas métricas, lo que indica que constituyen el núcleo estructural y semántico del subgrafo. 
+Estos nodos combinan una elevada diversidad de conexiones con una intensidad de coaparición muy 
+alta, situándose como los principales organizadores dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2357 & \textcolor{ForestGreen}{player} & 63 & 141.2842 \\
+2286 & \textcolor{ForestGreen}{pennant} & 54 & 91.2147 \\
+2303 & \textcolor{ForestGreen}{rookie} & 54 & 91.2147 \\
+2315 & \textcolor{ForestGreen}{pitcher} & 54 & 91.2147 \\
+2387 & \textcolor{ForestGreen}{bat} & 54 & 91.2147 \\
+2323 & \textcolor{ForestGreen}{ball} & 52 & 118.8597 \\
+721 & \textcolor{ForestGreen}{team} & 49 & 80.0137 \\
+1488 & \textcolor{ForestGreen}{league} & 49 & 96.7207 \\
+2199 & \textcolor{ForestGreen}{game} & 49 & 90.5975 \\
+2295 & ninth & 49 & 66.9841 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2357 & \textcolor{ForestGreen}{player} & 63 & 141.2842 \\
+2323 & \textcolor{ForestGreen}{ball} & 52 & 118.8597 \\
+2307 & pitch & 47 & 112.1459 \\
+1488 & \textcolor{ForestGreen}{league} & 49 & 96.7207 \\
+2286 & \textcolor{ForestGreen}{pennant} & 54 & 91.2147 \\
+2303 & \textcolor{ForestGreen}{rookie} & 54 & 91.2147 \\
+2315 & \textcolor{ForestGreen}{pitcher} & 54 & 91.2147 \\
+2387 & \textcolor{ForestGreen}{bat} & 54 & 91.2147 \\
+2199 & \textcolor{ForestGreen}{game} & 49 & 90.5975 \\
+721 & \textcolor{ForestGreen}{team} & 49 & 80.0137 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que el término \textit{ninth} aparece únicamente 
+en el listado por grado y \textit{pitch} solo aparece en el ranking ponderado. 
+Esto demuestra que, aunque pitch tiene una menor diversidad de contactos distintos, 
+su intensidad de uso junto a los términos centrales como player o ball es significativamente superior
+Esta comunidad es un ejemplo de estructura semántica intrínseca, mientras que el grado simple 
+refleja la amplitud de la red deportiva, el grado con pesos confirma la existencia de un núcleo de 
+términos técnicos y operativos (pitcher, bat, pennant) con una afinidad semántica tan 
+alta que sus vínculos se sitúan entre los más pesados de la red completa.
+
+El nodo \textit{player} lidera ambas clasificaciones con una diferencia abrumadora, lo que 
+indica que en la matriz de adyacencia de este término posee el mayor número de 
+enlaces incidentes y que sus relaciones de co-aparición son las más fuertes y frecuentes de todo el corpus analizado.
+
+El campo semántico es claramente homogéneo y está vinculado al ámbito deportivo, concretamente al 
+béisbol, donde aparecen conceptos asociados a jugadores, posiciones, acciones y competición. Por 
+este motivo, el término más representativo es \textit{league}, ya que engloba el concepto global
+y aparece como uno de los nodos en el ranking  que sintetiza el eje temático dominante del subgrafo.
+
+
+\newpage
+
+\section*{Comunidad 14 - Academic}
+
+En la Comunidad 14 se observa una estructura moderadamente cohesionada donde los términos 
+\textit{speculate}, \textit{grip}, \textit{recruit}, \textit{newsman} y \textit{mad} aparecen en 
+posiciones destacadas en ambas métricas, al observar los términos que ganan peso (\textit{biology, enrollment,
+academic, scholar}), aparece un núcleo temático muy específico relacionado con la
+universidad y la investigación con un mismo valor para todos pesos.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+5030 & \textcolor{ForestGreen}{recruit} & 17 & 13.0521 \\
+2591 & \textcolor{ForestGreen}{newsman} & 16 & 11.2682 \\
+2598 & \textcolor{ForestGreen}{speculate} & 14 & 15.1572 \\
+2611 & \textcolor{ForestGreen}{grip} & 14 & 15.1572 \\
+5228 & leak & 14 & 8.8128 \\
+2318 & chore & 13 & 8.0454 \\
+3327 & discrepancy & 13 & 3.4763 \\
+943 & qualified & 12 & 5.3733 \\
+3182 & marvel & 12 & 8.7209 \\
+2603 & \textcolor{ForestGreen}{mad} & 11 & 11.0337 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2598 & \textcolor{ForestGreen}{speculate} & 14 & 15.1572 \\
+2611 & \textcolor{ForestGreen}{grip} & 14 & 15.1572 \\
+5030 & \textcolor{ForestGreen}{recruit} & 17 & 13.0521 \\
+4969 & biology & 9 & 12.2457 \\
+5006 & enrollment & 9 & 12.2457 \\
+5019 & academic & 9 & 12.2457 \\
+5020 & scholar & 9 & 12.2457 \\
+2591 & \textcolor{ForestGreen}{newsman} & 16 & 11.2682 \\
+2603 & \textcolor{ForestGreen}{mad} & 11 & 11.0337 \\
+923 & stay & 7 & 10.6072 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{leak}, \textit{chore}, 
+\textit{discrepancy}, \textit{qualified} y \textit{marvel} aparecen únicamente en el listado por 
+grado, lo que indica que se relacionan con muchos términos distintos pero con menor intensidad 
+total, actuando como nodos contextuales amplios dentro de la comunidad.
+
+Las nuevas palabras que aparecen en el ranking de grado con peso \textit{biology}, \textit{enrollment}, \textit{academic}, 
+\textit{scholar} y \textit{stay} indican que 
+mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo característico de 
+términos más específicos o dependientes de contextos concretos.
+
+Sin embargo, hay palabras claves como \textit{recruit}, \textit{grip}, \textit{newsman} y 
+\textit{speculate} que hacen pensar en reportes y noticias entorno a un sector academico, es por ello que 
+\textit{academic} es el término que mejor define la esencia del clúster si
+se prioriza un concepto que englobe una temática centrar.
+
+\newpage
+
+
+\newpage
+\section*{Comunidad 15 - Poet}
+
+En la Comunidad 15 se aprecia una estructura dispersa organizada en cuatro grupos. 
+En ambas métricas, los términos \textit{conductor}, \textit{wheel} y 
+\textit{style} ocupan posiciones centrales, por lo que actúan como ejes 
+semánticos de la comunidad.
+
+Un segundo grupo lo forman \textit{poet}, \textit{austere} y 
+\textit{roman}, que apunta a un contexto literario o estético. 
+Un tercer conjunto, compuesto por \textit{viewer}, \textit{sigh} y 
+\textit{meaningless}, introduce una dimensión interpretativa o valorativa. 
+Por último, \textit{dull} y \textit{tag} presentan un grado con pesos 
+muy similar, lo que indica una intensidad de coaparición comparable.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2126 & \textcolor{ForestGreen}{wheel} & 14 & 10.2449 \\
+2602 & \textcolor{ForestGreen}{conductor} & 14 & 12.8794 \\
+2669 & red & 12 & 6.3482 \\
+2060 & male & 10 & 5.9002 \\
+2665 & powerful & 10 & 3.2460 \\
+4733 & ancient & 10 & 6.8665 \\
+2646 & lifetime & 9 & 4.2030 \\
+4152 & \textcolor{ForestGreen}{dull} & 8 & 7.4662 \\
+4715 & \textcolor{ForestGreen}{style} & 8 & 10.5212 \\
+2586 & tag & 7 & 7.4639 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2602 & \textcolor{ForestGreen}{conductor} & 14 & 12.8794 \\
+4715 & \textcolor{ForestGreen}{style} & 8 & 10.5212 \\
+2126 & \textcolor{ForestGreen}{wheel} & 14 & 10.2449 \\
+4734 & roman & 7 & 8.8502 \\
+4765 & poet & 7 & 8.8502 \\
+4772 & austere & 7 & 8.8502 \\
+2553 & viewer & 6 & 7.7017 \\
+2628 & sigh & 6 & 7.7017 \\
+2635 & meaningless & 6 & 7.7017 \\
+4152 & \textcolor{ForestGreen}{dull} & 8 & 7.4662 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+En la comparación entre ambas métricas se observa que términos como 
+\textit{red}, \textit{male}, \textit{powerful}, \textit{ancient} y 
+\textit{lifetime} aparecen únicamente entre los primeros por grado sin 
+pesos. Esto indica que se conectan con muchos nodos distintos, pero con 
+una intensidad media menor.
+
+La copresencia de \textit{wheel} y \textit{conductor}, junto con 
+\textit{poet}, sugiere una posible referencia a un texto concreto donde 
+estos términos coaparecen, como podría ser el poema \textit{Wheels} de 
+Jim Daniels. Puede afirmarse que existe una coocurrencia sistemática 
+entre estos términos dentro del mismo conjunto documental, lo que 
+sugiere una crítica o análisis de su poemario.
+
+Con base en esto, el término que mejor 
+representa la identidad semántica de la comunidad es \textit{poet}, ya que 
+actúa como núcleo interpretativo del conjunto y da sentido a la descripción 
+del uso conjunto de las palabras.
+
+\newpage
+\section*{Comunidad 16 - Golfer}
+
+En la Comunidad 16 se observa una estructura temática definida donde términos como 
+\textit{slice}, \textit{golfer}, \textit{par}, \textit{fairway}, \textit{tee} y \textit{bunker} 
+aparecen concentrados en posiciones relevantes, lo que indica la presencia de un subcampo léxico 
+claramente especializado. Estos nodos muestran relaciones intensas entre sí y forman el núcleo 
+semántico dominante del subgrafo.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3082 & swim & 26 & 13.1190 \\
+2811 & nerve & 25 & 16.0043 \\
+2976 & \textcolor{ForestGreen}{setting} & 23 & 16.5333 \\
+2977 & \textcolor{ForestGreen}{italian} & 23 & 16.5333 \\
+2775 & \textcolor{ForestGreen}{slice} & 21 & 19.6605 \\
+2822 & \textcolor{ForestGreen}{soft} & 21 & 19.6605 \\
+1867 & \textcolor{ForestGreen}{chapter} & 20 & 16.3190 \\
+2731 & amateur & 20 & 11.1253 \\
+3044 & candy & 20 & 8.6244 \\
+1563 & motor & 19 & 15.1308 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2762 & golfer & 16 & 20.6904 \\
+2763 & par & 16 & 20.6904 \\
+2772 & fairway & 16 & 20.6904 \\
+2818 & tee & 16 & 20.6904 \\
+2820 & bunker & 16 & 20.6904 \\
+2775 & \textcolor{ForestGreen}{slice} & 21 & 19.6605 \\
+2822 & \textcolor{ForestGreen}{soft} & 21 & 19.6605 \\
+2976 & \textcolor{ForestGreen}{setting} & 23 & 16.5333 \\
+2977 & \textcolor{ForestGreen}{italian} & 23 & 16.5333 \\
+1867 & \textcolor{ForestGreen}{chapter} & 20 & 16.3190 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{swim}, \textit{nerve}, 
+\textit{amateur}, \textit{candy} y \textit{motor} aparecen únicamente en el listado por grado, lo 
+que indica que se relacionan con muchos términos distintos pero con menor intensidad total, 
+actuando como nodos contextuales generales dentro de la comunidad.
+
+Por el contrario, los términos \textit{golfer}, \textit{par}, \textit{fairway}, \textit{tee} y 
+\textit{bunker} solo aparecen en el ranking ponderado, lo que indica que mantienen relaciones muy 
+intensas entre sí aunque con menos conexiones distintas, característica propia de vocabulario 
+especializado y cohesionado.
+
+El campo semántico está claramente vinculado al ámbito deportivo del golf, donde aparecen términos 
+propios de reglas, jugadas y elementos del campo. Por este motivo, el término más representativo es 
+\textit{golfer}, ya que describe de forma directa el dominio temático que estructura el subgrafo.
+
+\newpage
+\section*{Comunidad 17 - Cocktail}
+
+En la Comunidad 17 se observa una estructura temática coherente donde términos como 
+\textit{wear}, \textit{guest}, \textit{chic}, \textit{pink}, \textit{gown}, \textit{cocktail}, 
+\textit{invitation} y \textit{orchestra} aparecen concentrados en posiciones relevantes, lo que 
+indica la presencia de un subcampo léxico claramente asociado a contextos sociales formales. Estos 
+nodos presentan relaciones intensas entre sí y forman el núcleo semántico dominante del subgrafo.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3189 & \textcolor{ForestGreen}{pink} & 40 & 36.1221 \\
+2967 & gown & 34 & 30.8768 \\
+3023 & entertain & 34 & 30.8768 \\
+3054 & \textcolor{ForestGreen}{wear} & 33 & 45.5821 \\
+3283 & \textcolor{ForestGreen}{chic} & 31 & 34.8132 \\
+2978 & engagement & 30 & 21.7875 \\
+4293 & wardrobe & 30 & 24.4597 \\
+2947 & buffet & 29 & 19.6070 \\
+2939 & publicity & 28 & 29.7137 \\
+3097 & \textcolor{ForestGreen}{guest} & 28 & 36.5391 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1516 & cocktail & 26 & 47.4608 \\
+3054 & \textcolor{ForestGreen}{wear} & 33 & 45.5821 \\
+3280 & lady & 27 & 40.4794 \\
+2928 & marriage & 24 & 38.2980 \\
+3097 & \textcolor{ForestGreen}{guest} & 28 & 36.5391 \\
+3096 & orchestra & 19 & 36.4394 \\
+3189 & \textcolor{ForestGreen}{pink} & 40 & 36.1221 \\
+2969 & invitation & 19 & 35.9160 \\
+3283 & \textcolor{ForestGreen}{chic} & 31 & 34.8132 \\
+761 & color & 22 & 34.4726 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{entertain}, 
+\textit{engagement}, \textit{wardrobe}, \textit{buffet} y \textit{publicity} aparecen únicamente en 
+el listado por grado, lo que indica que se relacionan con muchos términos distintos pero con menor 
+intensidad total, actuando como nodos contextuales generales dentro de la comunidad.
+
+Por el contrario, palabras como \textit{cocktail}, \textit{lady}, \textit{marriage}, 
+\textit{orchestra}, \textit{invitation} y \textit{color} solo aparecen en el ranking ponderado, lo 
+que indica que mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo 
+característico de vocabulario asociado a situaciones concretas y cohesivas.
+
+El campo semántico está claramente vinculado a contextos sociales formales y celebraciones, donde 
+aparecen términos relacionados con vestimenta, asistentes y elementos propios de eventos. Por este 
+motivo, el término más representativo es \textit{cocktail}, ya que describe de forma directa el 
+dominio temático que estructura el subgrafo.
+
+\newpage
+\section*{Comunidad 18 - Ballroom/Designer}
+
+En la Comunidad 18 se observa una estructura temática cohesionada donde los términos 
+\textit{fun}, \textit{designer}, \textit{yellow}, \textit{ballroom}, \textit{handsome} y 
+\textit{charm} aparecen en posiciones destacadas en ambas métricas, lo que indica que constituyen 
+el núcleo estructural y semántico del subgrafo. Estos nodos presentan simultáneamente una alta 
+diversidad de conexiones y una intensidad elevada de coaparición, situándose como los principales 
+organizadores conceptuales dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3223 & \textcolor{ForestGreen}{fun} & 32 & 31.4950 \\
+3016 & \textcolor{ForestGreen}{handsome} & 31 & 26.6047 \\
+4279 & \textcolor{ForestGreen}{designer} & 30 & 30.5695 \\
+4461 & \textcolor{ForestGreen}{yellow} & 30 & 30.5695 \\
+3273 & \textcolor{ForestGreen}{ballroom} & 27 & 26.7968 \\
+4301 & \textcolor{ForestGreen}{charm} & 26 & 23.2020 \\
+4308 & lively & 25 & 20.3991 \\
+4340 & athlete & 25 & 20.3991 \\
+3037 & typical & 23 & 12.9775 \\
+1531 & love & 22 & 18.8029 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3223 & \textcolor{ForestGreen}{fun} & 32 & 31.4950 \\
+4279 & \textcolor{ForestGreen}{designer} & 30 & 30.5695 \\
+4461 & \textcolor{ForestGreen}{yellow} & 30 & 30.5695 \\
+3273 & \textcolor{ForestGreen}{ballroom} & 27 & 26.7968 \\
+3016 & \textcolor{ForestGreen}{handsome} & 31 & 26.6047 \\
+4301 & \textcolor{ForestGreen}{charm} & 26 & 23.2020 \\
+4287 & showing & 16 & 21.5013 \\
+4342 & charming & 16 & 21.5013 \\
+4371 & bake & 16 & 21.5013 \\
+4408 & decorate & 16 & 21.5013 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{lively}, \textit{athlete}, 
+\textit{typical} y \textit{love} aparecen únicamente en el listado por grado, lo que indica que se 
+relacionan con muchos términos distintos pero con menor intensidad total, actuando como nodos 
+contextuales generales dentro de la comunidad.
+
+Por el contrario, palabras como \textit{showing}, \textit{charming}, \textit{bake} y 
+\textit{decorate} solo aparecen en el ranking ponderado, lo que indica que mantienen relaciones 
+más intensas aunque con menos conexiones distintas, rasgo característico de términos asociados a 
+situaciones concretas y cohesivas.
+
+El campo semántico está vinculado a contextos sociales y estéticos donde predominan referencias a 
+apariencia, ambiente y actividades recreativas. Por este motivo, los términos más representativos son 
+\textit{ballroom} o \textit{designer} porque en ambas métricas confirma que son los pilares 
+que sostienen la identidad temática de esta partición del grafo.
+
+
+\newpage
+\section*{Comunidad 19 - Legislative}
+
+En la Comunidad 19 se observa una estructura temática coherente donde los términos 
+\textit{majority}, \textit{senate}, \textit{legislative}, \textit{lieutenant}, \textit{underlie}, 
+\textit{undermine}, \textit{extension} y \textit{normal} aparecen en posiciones destacadas en 
+ambas métricas, lo que indica que constituyen el núcleo estructural y semántico del subgrafo. 
+Estos nodos combinan una diversidad apreciable de conexiones con una intensidad de coaparición 
+elevada, situándose como los principales organizadores conceptuales dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+659 & \textcolor{ForestGreen}{majority} & 18 & 12.5393 \\
+1917 & enjoy & 14 & 2.3023 \\
+762 & \textcolor{ForestGreen}{underlie} & 13 & 10.2589 \\
+764 & \textcolor{ForestGreen}{extension} & 13 & 9.2418 \\
+3383 & consist & 12 & 5.2182 \\
+658 & \textcolor{ForestGreen}{legislative} & 11 & 10.1177 \\
+521 & \textcolor{ForestGreen}{undermine} & 10 & 10.2161 \\
+587 & \textcolor{ForestGreen}{senate} & 10 & 10.2161 \\
+644 & \textcolor{ForestGreen}{lieutenant} & 10 & 11.7355 \\
+701 & \textcolor{ForestGreen}{normal} & 10 & 10.2161 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+659 & \textcolor{ForestGreen}{majority} & 18 & 12.5393 \\
+726 & associate & 7 & 11.8017 \\
+644 & \textcolor{ForestGreen}{lieutenant} & 10 & 11.7355 \\
+762 & \textcolor{ForestGreen}{underlie} & 13 & 10.2589 \\
+521 & \textcolor{ForestGreen}{undermine} & 10 & 10.2161 \\
+587 & \textcolor{ForestGreen}{senate} & 10 & 10.2161 \\
+701 & \textcolor{ForestGreen}{normal} & 10 & 10.2161 \\
+658 & \textcolor{ForestGreen}{legislative} & 11 & 10.1177 \\
+764 & \textcolor{ForestGreen}{extension} & 13 & 9.2418 \\
+489 & fiscal & 9 & 9.0952 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{enjoy} y 
+\textit{consist} aparecen únicamente en el listado por grado, lo que indica que se relacionan con 
+muchos términos distintos pero con menor intensidad total, actuando como nodos contextuales 
+generales dentro de la comunidad.
+
+Por el contrario, palabras como \textit{associate} y \textit{fiscal} solo aparecen en el ranking 
+ponderado, lo que indica que mantienen relaciones más intensas aunque con menos conexiones 
+distintas, rasgo característico de términos asociados a contextos más específicos.
+
+El campo semántico está claramente vinculado al ámbito político e institucional, donde aparecen 
+conceptos relacionados con órganos legislativos, jerarquías y procesos normativos. Por este 
+motivo, el término más representativo es \textit{legislative}, ya que aparece en ambas tablas y resume 
+el eje temático que organiza el subgrafo.
+
+\newpage
+\section*{Comunidad 20 - Movement}
+
+En la Comunidad 20 se observa una estructura temática heterogénea donde los términos 
+\textit{movement}, \textit{book}, \textit{advanced} y \textit{bag} aparecen en posiciones 
+destacadas en ambas métricas, lo que indica que constituyen el núcleo estructural y semántico del 
+subgrafo. Estos nodos presentan una diversidad apreciable de conexiones junto con una intensidad 
+de coaparición relevante, actuando como puntos organizadores dentro de la red.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+1466 & govern & 20 & 9.9990 \\
+19 & conduct & 19 & 9.0764 \\
+3476 & \textcolor{ForestGreen}{advanced} & 19 & 11.8341 \\
+3512 & \textcolor{ForestGreen}{bag} & 19 & 11.8341 \\
+493 & \textcolor{ForestGreen}{book} & 16 & 13.5660 \\
+1477 & \textcolor{ForestGreen}{movement} & 16 & 14.5587 \\
+2206 & organized & 16 & 6.6668 \\
+4657 & fundamental & 16 & 8.0733 \\
+1405 & type & 15 & 9.6044 \\
+1622 & division & 15 & 9.5814 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2205 & dinner & 14 & 22.3284 \\
+799 & honor & 9 & 20.4638 \\
+2161 & father & 13 & 14.6317 \\
+1477 & \textcolor{ForestGreen}{movement} & 16 & 14.5587 \\
+1350 & headquarters & 12 & 14.2470 \\
+493 & \textcolor{ForestGreen}{book} & 16 & 13.5660 \\
+3783 & guidance & 13 & 13.5374 \\
+4637 & library & 14 & 13.0460 \\
+3476 & \textcolor{ForestGreen}{advanced} & 19 & 11.8341 \\
+3512 & \textcolor{ForestGreen}{bag} & 19 & 11.8341 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{govern}, 
+\textit{conduct}, \textit{organized}, \textit{fundamental}, \textit{type} y \textit{division} 
+aparecen únicamente en el listado por grado, lo que indica que se relacionan con muchos términos 
+distintos pero con menor intensidad total, actuando como nodos contextuales generales dentro de 
+la comunidad.
+
+Por el contrario, palabras como \textit{dinner}, \textit{honor}, \textit{father}, 
+\textit{headquarters}, \textit{guidance} y \textit{library} solo aparecen en el ranking ponderado, 
+lo que indica que mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo 
+característico de términos asociados a contextos concretos y cohesivos.
+
+El campo semántico sugiere un entorno conceptual vinculado a organización, actividad colectiva y 
+contextos institucionales o sociales donde aparecen referencias a dirección, eventos y espacios 
+estructurados. Por este motivo, el término más representativo es \textit{movement}, ya que aparece 
+en ambas tablas y resume el eje temático que articula el subgrafo.
+\newpage
+\section*{Comunidad 21 - Talent}
+
+En la Comunidad 21 se observa una estructura temática definida donde los términos 
+\textit{stick}, \textit{talent} y \textit{vow} aparecen en posiciones destacadas en ambas 
+métricas, lo que indica que constituyen el núcleo estructural del subgrafo. Sin embargo, el 
+conjunto de términos con mayor peso revela un subcampo léxico claramente especializado vinculado 
+al ámbito artístico y escénico.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+4579 & \textcolor{ForestGreen}{stick} & 24 & 15.5197 \\
+2711 & personality & 21 & 14.1118 \\
+1091 & fix & 16 & 6.9702 \\
+4655 & \textcolor{ForestGreen}{vow} & 16 & 14.3896 \\
+1879 & hero & 15 & 10.1835 \\
+1642 & trip & 13 & 9.8713 \\
+2900 & rare & 11 & 12.6343 \\
+816 & summer & 10 & 8.6867 \\
+1280 & huge & 10 & 4.5679 \\
+2888 & \textcolor{ForestGreen}{talent} & 10 & 14.6705 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+4579 & \textcolor{ForestGreen}{stick} & 24 & 15.5197 \\
+4568 & instrument & 10 & 15.3037 \\
+4599 & skip & 10 & 15.3037 \\
+4616 & pianist & 10 & 15.3037 \\
+4631 & ballet & 10 & 15.3037 \\
+4632 & performer & 10 & 15.3037 \\
+4633 & symphony & 10 & 15.3037 \\
+4651 & enthrall & 10 & 15.3037 \\
+2888 & \textcolor{ForestGreen}{talent} & 10 & 14.6705 \\
+4655 & \textcolor{ForestGreen}{vow} & 16 & 14.3896 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{personality}, 
+\textit{hero}, \textit{trip}, \textit{summer} y \textit{huge} aparecen únicamente en el listado 
+por grado, lo que indica que se relacionan con muchos términos distintos pero con menor 
+intensidad total, actuando como nodos contextuales generales dentro de la comunidad.
+
+Por el contrario, palabras como \textit{instrument}, \textit{pianist}, \textit{ballet}, 
+\textit{symphony} y \textit{enthrall} solo aparecen en el ranking ponderado, lo que indica que 
+mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo característico de 
+vocabulario especializado y cohesionado.
+
+El campo semántico está claramente vinculado al ámbito artístico y escénico, donde aparecen 
+conceptos relacionados con interpretación musical y actuación. Por este motivo, el término más 
+representativo es \textit{talent}, ya que aparece dentro de la tabla ponderada y describe de 
+forma directa el dominio temático que organiza el subgrafo.
+
+\newpage
+\section*{Comunidad 22 - Battle}
+
+En la Comunidad 22 se observa una estructura cohesionada donde los términos 
+\textit{battle}, \textit{communism}, \textit{drastic}, \textit{summon}, \textit{pursue} y 
+\textit{routine} aparecen en ambas métricas, lo que indica que constituyen el núcleo estructural 
+y semántico del subgrafo. Estos nodos combinan diversidad de conexiones con intensidad de 
+coaparición, situándose como los elementos más estables de la comunidad.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3309 & \textcolor{ForestGreen}{drastic} & 14 & 8.7519 \\
+3337 & \textcolor{ForestGreen}{summon} & 14 & 8.7519 \\
+3594 & \textcolor{ForestGreen}{pursue} & 13 & 7.0110 \\
+4112 & \textcolor{ForestGreen}{communism} & 12 & 10.9307 \\
+4146 & \textcolor{ForestGreen}{routine} & 12 & 5.8626 \\
+355 & \textcolor{ForestGreen}{battle} & 11 & 11.8936 \\
+2865 & \textcolor{ForestGreen}{trio} & 10 & 9.3312 \\
+2909 & \textcolor{ForestGreen}{preach} & 10 & 9.3312 \\
+2449 & hip & 9 & 2.9730 \\
+3386 & encouraging & 9 & 5.3125 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+355 & \textcolor{ForestGreen}{battle} & 11 & 11.8936 \\
+4112 & \textcolor{ForestGreen}{communism} & 12 & 10.9307 \\
+2865 & \textcolor{ForestGreen}{trio} & 10 & 9.3312 \\
+2909 & \textcolor{ForestGreen}{preach} & 10 & 9.3312 \\
+3309 & \textcolor{ForestGreen}{drastic} & 14 & 8.7519 \\
+3337 & \textcolor{ForestGreen}{summon} & 14 & 8.7519 \\
+440 & threat & 3 & 8.6965 \\
+4148 & accompany & 5 & 7.1139 \\
+3594 & \textcolor{ForestGreen}{pursue} & 13 & 7.0110 \\
+4146 & \textcolor{ForestGreen}{routine} & 12 & 5.8626 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{hip} y 
+\textit{encouraging} aparecen únicamente en el listado por grado, lo que indica que se conectan 
+con varios términos distintos pero con menor intensidad total, funcionando como elementos 
+contextuales secundarios dentro del subgrafo.
+
+Por el contrario, palabras como \textit{threat} y \textit{accompany} solo aparecen en el ranking 
+ponderado, lo que sugiere relaciones más intensas aunque con menos conexiones distintas, rasgo 
+propio de vocabulario dependiente de contextos específicos.
+
+El campo semántico está asociado a acciones, conflicto y discurso ideológico, donde aparecen 
+términos relacionados con confrontación, convocatoria y posicionamiento político. Por este motivo, 
+el término más representativo es \textit{communism}, ya que sintetiza el eje conceptual dominante 
+y organiza semánticamente el conjunto de relaciones del subgrafo.
+
+\newpage
+\section*{Comunidad 23 - Scientific}
+
+En la Comunidad 23 se observa una estructura relativamente estable donde los términos 
+\textit{implement}, \textit{significance}, \textit{scientific} y \textit{organ} aparecen en ambas 
+métricas, lo que indica que constituyen el núcleo estructural y semántico del subgrafo. Estos 
+nodos combinan una diversidad notable de conexiones con una intensidad alta de coaparición, por 
+lo que actúan como puntos centrales dentro de la red léxica.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+840 & \textcolor{ForestGreen}{significance} & 19 & 15.9856 \\
+3903 & \textcolor{ForestGreen}{scientific} & 16 & 13.2788 \\
+4206 & \textcolor{ForestGreen}{implement} & 16 & 16.1372 \\
+2234 & nominate & 15 & 7.6020 \\
+2578 & \textcolor{ForestGreen}{organ} & 15 & 13.1642 \\
+3428 & suburban & 15 & 11.4732 \\
+1367 & enemy & 14 & 7.2114 \\
+2954 & success & 13 & 9.2594 \\
+787 & client & 12 & 4.8045 \\
+1411 & grocery & 12 & 7.1645 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+4206 & \textcolor{ForestGreen}{implement} & 16 & 16.1372 \\
+840 & \textcolor{ForestGreen}{significance} & 19 & 15.9856 \\
+3903 & \textcolor{ForestGreen}{scientific} & 16 & 13.2788 \\
+2578 & \textcolor{ForestGreen}{organ} & 15 & 13.1642 \\
+2653 & arrangement & 9 & 12.8308 \\
+4904 & informal & 9 & 12.6511 \\
+4916 & illusion & 9 & 12.6511 \\
+4923 & broad & 9 & 12.6511 \\
+4932 & fatal & 9 & 12.6511 \\
+4955 & initiative & 9 & 12.6511 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{nominate}, 
+\textit{suburban}, \textit{enemy}, \textit{client} y \textit{grocery} aparecen únicamente en el 
+listado por grado, lo que indica que se conectan con múltiples palabras distintas pero con menor 
+frecuencia total, funcionando como nodos contextuales amplios dentro del subgrafo.
+
+Por el contrario, palabras como \textit{arrangement}, \textit{informal}, \textit{illusion}, 
+\textit{initiative} o \textit{fatal} solo aparecen en el ranking ponderado, lo que sugiere que 
+mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo típico de términos 
+más especializados y dependientes de contextos concretos.
+
+El campo semántico está asociado a procesos conceptuales y terminología analítica vinculada al 
+ámbito científico y metodológico. Por este motivo, el término más representativo es 
+\textit{scientific}, ya que sintetiza el eje temático dominante y organiza semánticamente el 
+conjunto de relaciones del subgrafo.
+
+\newpage
+\section*{Comunidad 24 - Murder}
+
+En la Comunidad 24 se observa una estructura donde los términos \textit{murder}, \textit{death}, 
+\textit{delegate}, \textit{grade} y \textit{uncle} aparecen en ambas métricas, lo que indica que 
+constituyen el núcleo estructural del subgrafo. Estos nodos presentan simultáneamente diversidad 
+de conexiones e intensidad de coaparición, por lo que actúan como puntos estables dentro de la 
+red léxica.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3361 & \textcolor{ForestGreen}{murder} & 18 & 13.8694 \\
+2247 & mature & 17 & 10.6203 \\
+171 & elaborate & 16 & 11.1266 \\
+444 & \textcolor{ForestGreen}{death} & 16 & 13.1834 \\
+2210 & \textcolor{ForestGreen}{delegate} & 16 & 11.4510 \\
+2994 & hint & 16 & 6.3101 \\
+3640 & \textcolor{ForestGreen}{grade} & 16 & 11.2311 \\
+2942 & \textcolor{ForestGreen}{uncle} & 15 & 11.1851 \\
+2943 & aunt & 15 & 11.1851 \\
+3116 & civilian & 15 & 6.1706 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+3361 & \textcolor{ForestGreen}{murder} & 18 & 13.8694 \\
+444 & \textcolor{ForestGreen}{death} & 16 & 13.1834 \\
+3582 & collection & 12 & 12.2605 \\
+3520 & appeal & 10 & 11.8602 \\
+3636 & institution & 13 & 11.5116 \\
+3662 & existence & 13 & 11.5116 \\
+2210 & \textcolor{ForestGreen}{delegate} & 16 & 11.4510 \\
+3583 & faculty & 12 & 11.2654 \\
+3640 & \textcolor{ForestGreen}{grade} & 16 & 11.2311 \\
+2942 & \textcolor{ForestGreen}{uncle} & 15 & 11.1851 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{mature}, 
+\textit{elaborate}, \textit{hint}, \textit{aunt} y \textit{civilian} aparecen únicamente en el 
+listado por grado, lo que indica que se relacionan con varios términos distintos pero con menor 
+frecuencia total, funcionando como elementos contextuales dentro de la comunidad.
+
+Por el contrario, palabras como \textit{collection}, \textit{appeal}, \textit{institution}, 
+\textit{existence} o \textit{faculty} solo aparecen en el ranking ponderado, lo que indica que 
+mantienen relaciones más intensas aunque con menos conexiones distintas, rasgo propio de términos 
+más específicos o dependientes de contextos concretos.
+
+El campo semántico se organiza en torno a conceptos asociados a mortalidad, consecuencias y 
+contextos sociales relacionados con fallecimiento y responsabilidad. Por este motivo, el término 
+más representativo es \textit{death}, ya que sintetiza el eje temático dominante y estructura el 
+significado global del subgrafo.
+
+\newpage
+
+\section*{Comunidad 25 - Enact}
+
+En la Comunidad 25 se observa una estructura donde el término \textit{enact} aparece en ambas 
+métricas junto con varios nodos de fuerte carga jurídica y normativa, lo que indica que el 
+subgrafo se organiza en torno a procesos legales y regulatorios. La coexistencia de términos 
+relacionados con delito, sentencia y legislación muestra que el núcleo semántico está definido 
+por vocabulario propio del ámbito judicial.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+529 & \textcolor{ForestGreen}{enact} & 26 & 20.7854 \\
+894 & employer & 26 & 14.4611 \\
+778 & criminal & 25 & 8.9822 \\
+3467 & missile & 24 & 10.8210 \\
+704 & credit & 22 & 13.0036 \\
+779 & disclosure & 21 & 11.5444 \\
+914 & excess & 21 & 12.1162 \\
+936 & freedom & 21 & 14.4427 \\
+3491 & indictment & 20 & 14.2949 \\
+3506 & convict & 20 & 14.2949 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{tabular}{r l r r}
+\hline
+Id & Label & Grado & \shortstack{Grado \\ con pesos} \\
+\hline
+2074 & sentence & 14 & 22.9521 \\
+529 & \textcolor{ForestGreen}{enact} & 26 & 20.7854 \\
+1362 & vehicle & 18 & 17.9736 \\
+153 & citizen & 14 & 17.9622 \\
+2934 & sister & 15 & 16.2134 \\
+3882 & interfere & 18 & 16.0827 \\
+3091 & die & 13 & 15.7493 \\
+837 & prosecution & 12 & 15.6911 \\
+838 & unfair & 12 & 15.6911 \\
+855 & constitute & 12 & 15.6911 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\textbf{Top 10 por Grado con pesos}
+\end{minipage}
+\vspace{0.5cm}
+
+Entre las diferencias más relevantes se observa que términos como \textit{employer}, 
+\textit{missile}, \textit{credit}, \textit{disclosure} o \textit{excess} aparecen únicamente en el 
+listado por grado, lo que indica que se relacionan con muchos términos distintos pero con menor 
+intensidad total, funcionando como nodos contextuales amplios dentro del subgrafo.
+
+Por el contrario, palabras como \textit{sentence}, \textit{prosecution}, \textit{constitute} o 
+\textit{unfair} solo aparecen en el ranking ponderado, lo que sugiere relaciones más intensas 
+aunque con menos conexiones distintas, rasgo característico de vocabulario más específico y 
+dependiente de contextos jurídicos concretos.
+
+El campo semántico está vinculado a procedimientos legales, responsabilidad penal y aplicación de 
+normas. Por este motivo, el término más representativo es \textit{criminal}, ya que sintetiza el 
+dominio conceptual predominante y organiza semánticamente el conjunto de relaciones del subgrafo.
+
+\newpage
 \section*{Conclusiones}
 
-El análisis comparativo entre NLTK, spaCy y BERT sobre el corpus CoNLL-2003 muestra una 
-clara evolución en la detección automatizada de entidades. NLTK, basado en métodos 
-clásicos de \textit{chunking}, presenta dificultades estructurales que los modelos 
-actuales han superado. Mientras que NLTK destaca por su transparencia y utilidad 
-didáctica al permitir explorar su funcionamiento interno, spaCy y BERT ofrecen 
-resultados mucho más sólidos para un uso real gracias a sus arquitecturas de redes 
-neuronales y mecanismos de atención.
-
-Un hallazgo clave es la especialización de los modelos; spaCy ofrece una gran 
-precisión en categorías específicas como personas y localizaciones, aunque genera un 
-mayor volumen de falsos positivos en otras etiquetas. Por su parte, BERT es el 
-etiquetador más robusto, manteniendo métricas de calidad superiores al 90\% en casi 
-todas las clases. Esto confirma que el aprendizaje profundo ha reducido 
-drásticamente el margen de error, siendo una herramienta crucial para procesar y 
-clasificar volúmenes masivos de texto con alta fidelidad.
-
-La comparativa entre los esquemas IOB e IOBES deja claro que para modelos modernos esta 
-diferencia es irrelevante, ya que su consistencia interna es total. Sin embargo, 
-en el caso de NLTK, el formato IOBES sirve para exponer errores de segmentación que el 
-esquema IOB pasaba por alto al ser más permisivo. A pesar de estas limitaciones, 
-NLTK sigue siendo una primera aproximación válida para explorar modelos sencillos y 
-transparentes, algo que la naturaleza de ``caja negra'' de spaCy y BERT dificulta.
-
-Sin duda, se ha visto reflejado el éxito de los Transformers en entornos reales, no solo por su 
-facilidad de uso mediante plataformas como HuggingFace, sino que al estar preentrenados, 
-permiten una implementación rápida y resultados excelentes de forma inmediata. 
-Esta ventaja se refuerza si además, el modelo ha sido ajustado bajo el estándar del 
-corpus, lo que evita adaptaciones técnicas o mapeos manuales y ofrece una alta 
-fiabilidad con un esfuerzo mínimo. Dado que actualmente ya se alcanza casi el 
-100\% de precisión en algunas entidades, no es de extrañar que en pocos años estos 
-sistemas logren un rendimiento prácticamente perfecto, posicionándose como una de las
-necesidades más importantes en problemas de detección y clasificación para el Reconocimiento
-de Entidades Nombradas, para satisfacer la necesidad crítica de 
-estructurar información en grandes volúmenes de texto con una precisión extraordinaria.
-
+ 
 \newpage
 
 

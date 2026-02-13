@@ -11,13 +11,12 @@ def clean_id(value):
 
 def read_csv(path):
     with open(path, newline='', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        return list(reader)
+        return list(csv.DictReader(f))
 
-def latex_escape(text):
+def esc(text):
     return text.replace("_", r"\_")
 
-def generate_table(rows, common_labels):
+def build_table(rows, common):
     lines = []
     lines.append(r"\begin{tabular}{r l r r}")
     lines.append(r"\hline")
@@ -26,18 +25,19 @@ def generate_table(rows, common_labels):
 
     for row in rows:
         label = row["Label"]
-        if label in common_labels:
-            label_tex = r"\textcolor{ForestGreen}{" + latex_escape(label) + "}"
+        if label in common:
+            label_tex = r"\textcolor{ForestGreen}{" + esc(label) + "}"
         else:
-            label_tex = latex_escape(label)
+            label_tex = esc(label)
 
-        line = "{} & {} & {} & {:.4f} \\\\".format(
-            clean_id(row["Id"]),
-            label_tex,
-            int(float(row["Grado"])),
-            float(row["Grado con pesos"])
+        lines.append(
+            "{} & {} & {} & {:.4f} \\\\".format(
+                clean_id(row["Id"]),
+                label_tex,
+                int(float(row["Grado"])),
+                float(row["Grado con pesos"])
+            )
         )
-        lines.append(line)
 
     lines.append(r"\hline")
     lines.append(r"\end{tabular}")
@@ -58,8 +58,10 @@ for file in os.listdir(degree_path):
 
 with open(output_file, "w", encoding="utf-8") as out:
 
+    # Documento LaTeX completo
     out.write(r"\documentclass{article}" + "\n")
     out.write(r"\usepackage[table]{xcolor}" + "\n")
+    out.write(r"\definecolor{ForestGreen}{RGB}{34,139,34}" + "\n")
     out.write(r"\usepackage[margin=2cm]{geometry}" + "\n")
     out.write(r"\begin{document}" + "\n\n")
 
@@ -75,22 +77,22 @@ with open(output_file, "w", encoding="utf-8") as out:
         out.write(r"\section*{Comunidad " + community + "}" + "\n\n")
         out.write(r"\noindent" + "\n")
 
-        # Left table
+        # Tabla izquierda
         out.write(r"\begin{minipage}[t]{0.48\textwidth}" + "\n")
         out.write(r"\centering" + "\n")
-        out.write(generate_table(degree_rows, common_labels) + "\n")
+        out.write(build_table(degree_rows, common_labels) + "\n\n")
         out.write(r"\vspace{0.2cm}" + "\n")
         out.write(r"\textbf{Top 10 por Grado}" + "\n")
         out.write(r"\end{minipage}" + "\n")
         out.write(r"\hspace{0.5cm}" + "\n")
 
-        # Right table
+        # Tabla derecha
         out.write(r"\begin{minipage}[t]{0.48\textwidth}" + "\n")
         out.write(r"\centering" + "\n")
-        out.write(generate_table(weighted_rows, common_labels) + "\n")
+        out.write(build_table(weighted_rows, common_labels) + "\n\n")
         out.write(r"\vspace{0.2cm}" + "\n")
         out.write(r"\textbf{Top 10 por Grado con pesos}" + "\n")
-        out.write(r"\end{minipage}" + "\n\n")
+        out.write(r"\end{minipage}" + "\n\n\n")
 
     out.write(r"\end{document}")
 
